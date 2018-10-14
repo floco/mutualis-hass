@@ -1,0 +1,64 @@
+  - platform: yr
+  - platform: ring
+  - platform: broadlink
+    update_interval: 60
+    host: !secret broadlink_rm_host
+    mac: !secret broadlink_rm_mac
+    monitored_conditions:
+      - temperature
+  - platform: rest
+    resource: !secret hue_lux
+    value_template: '{{ value_json.state.lightlevel }}'
+    unit_of_measurement: Lux
+    name: 'Garage Lux'
+  - platform: rest
+    resource: !secret hue_temp
+    value_template: '{{ value_json.state.temperature | float / 100 }}'
+    unit_of_measurement: °C
+    name: 'Garage Temperature'
+  - platform: rest
+    resource: !secret hue_motion
+    value_template: '{{ value_json.state.status }}'
+    name: 'Garage Motion'
+  - platform: speedtest
+    minute: 30
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
+  - platform: alpha_vantage
+    api_key: !secret alphavantage_api_key
+    symbols:
+    - symbol: GOOGL
+      name: Google
+    foreign_exchange:
+    - name: USD_EUR
+      from: USD
+      to: EUR
+  - platform: template
+    sensors:
+      parents_window:
+        friendly_name: "Parents Window"
+        value_template: >-
+          {% if is_state('binary_sensor.door_window_sensor_158d000232b0ad', 'on') %}
+            Open
+          {% else %}
+            Closed
+          {% endif %}
+        icon_template: >
+          {% if is_state('binary_sensor.door_window_sensor_158d000232b0ad', 'on') %}
+            mdi:door-open
+          {% else %}
+            mdi:door-closed
+          {% endif %}
+
+ 

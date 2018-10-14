@@ -1,0 +1,123 @@
+  home:
+    name: Home
+    icon: mdi:home
+    view: yes
+    entities:
+      - group.living
+      - group.bedrooms
+      - group.weather
+      - group.inside
+      - group.tv
+      - group.announcements
+      - media_player.google_home
+      - media_player.salon
+      - group.hdmi_switch
+      - group.security
+#      - media_player.appletv
+#      - media_player.atv
+
+  security:
+    name: Security
+    icon: mdi:home-lock
+    view: yes
+    entities:
+      - group.alarm
+      - group.windows
+      - group.motion
+      - group.smoke
+
+  network:
+    name: Network
+    icon: mdi:account-multiple
+    view: yes
+    entities:
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+      - sensor.google
+
+# groups
+  living:
+    - light.lightstrip
+    - light.garage_light
+    - light.main_light
+    - switch.prise1
+    - switch.prise2
+    - switch.prise3
+    - switch.prise4
+    - switch.mp1_ps3
+    - switch.mp1_atv
+    - switch.mp1_btv
+    - switch.mp1_sha
+  spots:
+    - light.chambre_spot_1
+    - light.chambre_spot_2
+    - light.chambre_spot_3 
+  bedrooms:
+    - group.spots
+    - light.evy_light
+  weather:
+    - sun.sun
+    - sensor.yr_symbol
+    - sensor.netatmo_outside_temperature
+    - sensor.netatmo_outside_humidity
+  inside:
+    - sensor.netatmo_inside_temperature
+    - sensor.netatmo_inside_humidity
+    - sensor.netatmo_inside_pressure
+    - sensor.netatmo_inside_co2
+    - sensor.netatmo_inside_noise
+    - sensor.garage_temperature
+    - sensor.garage_lux
+    - sensor.garage_motion
+    - sensor.broadlink_sensor_temperature
+    - sensor.homeassistant_v2db
+    - script.netatmo
+  tv:
+    - switch.sharp
+    - switch.bose_system
+    - switch.apple
+    - switch.ps3
+    - switch.belgacom
+    - switch.chromecast_audio
+    - switch.chromecast_video
+  announcements:
+    - script.netatmo
+    - script.table_up
+    - script.table_down
+    - script.cleaning
+    - script.garbage
+    - switch.table
+  hdmi_switch:
+    - script.input1
+    - script.input2
+    - script.input3
+    - script.input4
+  alarm:
+    - alarm_control_panel.home_alarm
+    - script.alarm_on
+    - script.alarm_off
+    - binary_sensor.wall_switch_left_158d000237bae7       # Wall_Switch_Left
+    - binary_sensor.wall_switch_right_158d000237bae7      # Wall_Switch_Right
+    - binary_sensor.wall_switch_both_158d000237bae7       # Wall_Switch_Both
+    - light.gateway_light_7811dcb8f98a
+    - sensor.illumination_7811dcb8f98a
+  windows:
+    - binary_sensor.door_window_sensor_158d000232b0ad     # Fenetre_Parents
+    - binary_sensor.door_window_sensor_158d000237d1e8     # Fenetre_Mia_Devant
+    - binary_sensor.door_window_sensor_158d000238c840     # Fenetre_Mia_Laterale
+    - binary_sensor.door_window_sensor_158d00023295ce     # Fenetre Evy
+    - binary_sensor.door_window_sensor_158d000237d247     # Velux_Evy
+    - binary_sensor.door_window_sensor_158d000238628c     # Fenetre_Chambre_Amis
+    - binary_sensor.door_window_sensor_158d000237d1b8     # Fenetre_Upstairs
+    - binary_sensor.door_window_sensor_158d000243645e     # Velux_Salle_de_bain
+  motion:
+    - binary_sensor.motion_sensor_158d000276d4da          # Motion_Upstairs
+  smoke:
+    - binary_sensor.smoke_sensor_158d0001bbe483           # Smoke_Sensor_Upstairs
+    - binary_sensor.smoke_sensor_158d0001e581ee           # Smoke_Sensor_Living
+
+
+
+
+

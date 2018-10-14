@@ -1,0 +1,182 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 50.8466
+  longitude: 4.3528
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 24
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Brussels
+  # Customization file
+  customize: !include customize.yaml
+  # Whitelist
+  whitelist_external_dirs:
+    - /config
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Record events, then delete events and states older than 2 weeks of UNINTERRUPTED uptime.
+# If you restart HASS, then the clock restarts from zero again.
+recorder:
+  purge_interval: 7
+  purge_keep_days: 30
+    
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_api_password
+  base_url: !secret http_base_url
+  #ssl_certificate: !secret http_ssl_certificate
+  #ssl_key: !secret http_ssl_key
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+    language: 'fr'
+
+# Cloud
+#cloud:
+
+#emulated_hue:
+#  host_ip: !secret emulated_hue_host
+#  listen_port: 80
+#  expose_by_default: true
+#  exposed_domains:
+#    - switch
+
+light:
+  platform: hue
+  host: !secret hue_host
+
+netatmo:
+  api_key: !secret netatmo_api_key
+  secret_key: !secret netatmo_secret_key
+  username: !secret netatmo_username
+  password: !secret netatmo_password
+
+# curl -X GET https://api.telegram.org/botYOUR_API_TOKEN/getUpdates
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api_key
+    parse_mode: html
+    allowed_chat_ids:
+      - !secret telegram_chat_id_ju
+      - !secret telegram_chat_id_mo
+
+notify:
+  - name: ju
+    platform: telegram
+    chat_id: !secret telegram_chat_id_ju
+  - name: mo
+    platform: telegram
+    chat_id: !secret telegram_chat_id_mo
+
+ring:
+  username: !secret ring_username
+  password: !secret ring_password
+
+binary_sensor:
+  - platform: ring
+
+#media_player:
+#  - platform: cast
+#    host: !secret google_home_host
+#  - platform: cast
+#    host: !secret chromecast_video_host
+
+camera:
+  - platform: mjpeg
+    mjpeg_url: !secret cam2_url
+    name: cam2
+    username: !secret cam2_username
+    password: !secret cam2_password
+    valid_cert: false
+
+google_assistant:
+  project_id: !secret google_project_id
+#  client_id: !secret google_client_id
+#  access_token: !secret google_access_token
+#  agent_user_id: !secret google_agent_user_id
+  api_key: !secret google_api_key
+  exposed_domains:
+    - switch
+    - light
+
+timer:
+  charge:
+    duration: '04:00:00'
+
+xiaomi_aqara:
+  gateways:
+    - mac: !secret xiaomi_gw_mac
+      key: !secret xiaomi_gw_key
+
+input_boolean:
+  alarm:
+    name: Track alarm state
+    icon: mdi:mdi-alarm-light
+
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    pending_time: 5
+    delay_time: 1
+    trigger_time: 1
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      pending_time: 0
+      delay_time: 0
+
+#  entity_config:
+#    switch.kitchen:
+#      name: Custom Name for Google Assistant
+#      aliases:
+#        - bright lights
+#        - entry lights
+#    light.living_room:
+#      expose: false
+#      room: living room
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+sensor: !include sensors.yaml
+switch: !include switchs.yaml
