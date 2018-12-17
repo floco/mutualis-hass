@@ -355,11 +355,11 @@ doorbell:
 
 alarm_on:
   sequence:
-    - service: xiaomi_aqara.play_ringtone
-      data:
-        gw_mac: !secret xiaomi_gw_mac
-        ringtone_id: 1
-        ringtone_vol: 100
+    # - service: xiaomi_aqara.play_ringtone
+    #   data:
+    #     gw_mac: !secret xiaomi_gw_mac
+    #     ringtone_id: 1
+    #     ringtone_vol: 100
     - service: notify.ju
       data_template:
         title: Alarm Triggered... 
@@ -401,7 +401,7 @@ alarm_off:
       data:
         gw_mac: !secret xiaomi_gw_mac
         ringtone_id: 10003
-        ringtone_vol: 25     
+        ringtone_vol: 10     
     - service: script.blink_green
 
 alarm_armed:
@@ -410,7 +410,7 @@ alarm_armed:
       data:
         gw_mac: !secret xiaomi_gw_mac
         ringtone_id: 10002
-        ringtone_vol: 25  
+        ringtone_vol: 10  
     - service: script.blink_orange
 
 smoke_alarm:

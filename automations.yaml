@@ -229,10 +229,12 @@
   alias: Turn on prise3
   trigger:
     platform: time
-    at: 02:00:00
+    at: "22:30:00"
   action:
   - service: timer.start
     entity_id: timer.charge
+  - service: homeassistant.turn_on
+    entity_id: switch.prise3
   - service: homeassistant.turn_on
     entity_id: switch.prise3
 # Turn off prise3 at the end of timer
