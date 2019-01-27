@@ -360,7 +360,7 @@ alarm_on:
       data:
         gw_mac: !secret xiaomi_gw_mac
         ringtone_id: 1
-        ringtone_vol: 100
+        ringtone_vol: 1
     - service: notify.ju
       data_template:
         title: Alarm Triggered... 
