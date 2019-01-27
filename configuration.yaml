@@ -108,7 +108,7 @@ notify:
     chat_id: !secret telegram_chat_id_mo
   - name: Google Assistant
     platform: rest
-    resource: !secret google_assistant_msg_url
+    resource: !secret google_msg_url
 
 ring:
   username: !secret ring_username
