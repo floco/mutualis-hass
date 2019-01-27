@@ -200,12 +200,17 @@
 - id: A011
   alias: Toggle Light in parents room
   trigger:
-  - event_data:
-      click_type: single
-      entity_id: binary_sensor.wall_switch_right_158d000237bae7
-    event_type: click
     platform: event
-  condition: []
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d000237bae7
+      click_type: single
+  # - event_data:
+  #     click_type: single
+  #     entity_id: binary_sensor.wall_switch_right_158d000237bae7
+  #   event_type: click
+  #   platform: event
+  # condition: []
   action:
   - service: homeassistant.toggle
     data:
@@ -214,12 +219,17 @@
 - id: A012
   alias: Toggle Alarm
   trigger:
-  - event_data:
-      click_type: single
-      entity_id: binary_sensor.wall_switch_left_158d000237bae7
-    event_type: click
     platform: event
-  condition: []
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000237bae7
+      click_type: single
+  # - event_data:
+  #     click_type: single
+  #     entity_id: binary_sensor.wall_switch_left_158d000237bae7
+  #   event_type: click
+  #   platform: event
+  # condition: []
   action:
   - service: homeassistant.toggle
     data:
