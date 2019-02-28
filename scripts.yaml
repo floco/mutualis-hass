@@ -512,3 +512,11 @@ light_orange:
     - service: homeassistant.turn_off
       entity_id: light.gateway_light_7811dcb8f98a
     - delay: 00:00:01
+
+door_alert:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Main door opened ... 
+        message: >         
+          <b>door opened !</b>
