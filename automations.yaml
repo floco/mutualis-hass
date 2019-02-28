@@ -262,7 +262,7 @@
 - id: A0014
   alias: Door Alert
   trigger:
-  - entity_id: binary_sensor.door_window_sensor_158d000232b0ad 
+  - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
     from: 'off'
     platform: state
     to: 'on'
