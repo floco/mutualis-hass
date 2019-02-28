@@ -30,7 +30,12 @@ config:
 recorder:
   purge_interval: 7
   purge_keep_days: 30
-    
+
+# so all automations are on if the sytems reboot
+customize_domain:
+  automation:
+    initial_state: 'on' 
+
 http:
   # Secrets are defined in the file secrets.yaml
   api_password: !secret http_api_password
