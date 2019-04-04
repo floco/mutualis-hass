@@ -23,6 +23,7 @@
     entities:
       - group.alarm
       - group.windows
+      - group.doors
       - group.motion
       - group.smoke
 
@@ -102,8 +103,9 @@
     - binary_sensor.wall_switch_both_158d000237bae7       # Wall_Switch_Both
     - light.gateway_light_7811dcb8f98a
     - sensor.illumination_7811dcb8f98a
-  windows:
+  doors:
     - binary_sensor.door_window_sensor_158d0002c9c949     # Door_Entree
+  windows:
     - binary_sensor.door_window_sensor_158d000232b0ad     # Fenetre_Parents
     - binary_sensor.door_window_sensor_158d000237d1e8     # Fenetre_Mia_Devant
     - binary_sensor.door_window_sensor_158d000238c840     # Fenetre_Mia_Laterale
