@@ -170,9 +170,9 @@ input_select:
   home_mode:
     name: Home Mode
     options:
-      - Active
-      - Away
+      - Day
       - Night
+      - Away
       - Vacation
       - House Keeping
       - Guest
