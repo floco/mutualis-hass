@@ -136,7 +136,7 @@ camera:
     name: cam2
     username: !secret cam2_username
     password: !secret cam2_password
-    valid_cert: false
+    # valid_cert: false
 
 google_assistant:
   project_id: !secret google_project_id
