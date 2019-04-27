@@ -73,9 +73,9 @@ map:
 sun:
 
 # Text to speech
-tts:
-  - platform: google
-    language: 'fr'
+#tts:
+#  - platform: google
+#    language: 'fr'
 
 # Cloud
 #cloud:
