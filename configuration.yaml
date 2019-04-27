@@ -166,6 +166,18 @@ input_boolean:
     name: Track alarm state
     icon: mdi:mdi-alarm-light
 
+input_select:
+  home_mode:
+    name: Home Mode
+    options:
+      - Vacation
+      - House Keeping
+      - Away
+      - Active
+      - Guest
+    initial: Active
+    icon: mdi:message-settings-variant
+
 alarm_control_panel:
   - platform: manual
     name: Home Alarm
