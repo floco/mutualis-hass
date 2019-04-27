@@ -23,6 +23,9 @@ homeassistant:
 # Show links to resources in log and frontend
 #introduction:
 
+# Enables System Health card in info
+system_health:
+
 # Enables the frontend
 frontend:
 
@@ -144,6 +147,10 @@ google_assistant:
   exposed_domains:
     - switch
     - light
+
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: Y!secret google_calendar_client_secret
 
 timer:
   charge:

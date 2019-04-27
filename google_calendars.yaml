@@ -1,0 +1,5 @@
+- cal_id: "mutualis.com_qqfb74arqle3o2koruvndtekl0@group.calendar.google.com"
+  entities:
+  - device_id: home_status
+    name: Home Status
+    track: true
