@@ -258,7 +258,7 @@
   action:
   - service: homeassistant.turn_off
     entity_id: switch.prise3
-  # Activated when the door is opened
+# Activated when the door is opened
 - id: A0014
   alias: Door Alert
   trigger:
@@ -269,3 +269,27 @@
   action:
   - service: homeassistant.turn_on
     entity_id: script.door_alert
+# Activated at night
+- id: A0015a
+  alias: Activate Night Mode
+  trigger:
+    platform: time
+    at: "23:59:00"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Night
+# Activated in morning
+- id: A0015b
+  alias: Activate active Mode
+  trigger:
+    platform: time
+    at: "06:00:00"
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.home_mode
+        option: Active
+
+

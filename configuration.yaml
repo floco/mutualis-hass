@@ -170,10 +170,11 @@ input_select:
   home_mode:
     name: Home Mode
     options:
+      - Active
+      - Away
+      - Night
       - Vacation
       - House Keeping
-      - Away
-      - Active
       - Guest
     initial: Active
     icon: mdi:message-settings-variant
