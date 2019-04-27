@@ -176,7 +176,7 @@ input_select:
       - Vacation
       - House Keeping
       - Guest
-    initial: Active
+    initial: Day
     icon: mdi:message-settings-variant
 
 alarm_control_panel:
