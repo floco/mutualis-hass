@@ -1,5 +1,20 @@
-- cal_id: "mutualis.com_qqfb74arqle3o2koruvndtekl0@group.calendar.google.com"
+- cal_id: !secret google_calendar_home_status
   entities:
   - device_id: home_status
+    ignore_availability: true
     name: Home Status
+    track: true
+
+- cal_id: !secret google_calendar_poubelle_waterloo
+  entities:
+  - device_id: poubelle_waterloo
+    ignore_availability: true
+    name: Poubelle Waterloo
+    track: true
+
+- cal_id: !secret google_calendar_holidays_in_belgium
+  entities:
+  - device_id: holidays_in_belgium
+    ignore_availability: true
+    name: Holidays in Belgium
     track: true
