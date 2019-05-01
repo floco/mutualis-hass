@@ -148,14 +148,15 @@
     from: 'off'
     platform: state
     to: 'on'
-  condition: or
-  conditions:
-  - condition: state
-    entity_id: alarm_control_panel.home_alarm
-    state: armed_away
-  - condition: state
-    entity_id: alarm_control_panel.home_alarm
-    state: armed_home
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_home
   action:
   - service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.home_alarm
