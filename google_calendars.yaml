@@ -18,3 +18,24 @@
     ignore_availability: true
     name: Holidays in Belgium
     track: true
+
+- cal_id: !secret google_calendar_maison
+  entities:
+  - device_id: maison
+    ignore_availability: true
+    name: Maison
+    track: false
+
+- cal_id: !secret google_calendar_mutualis
+  entities:
+  - device_id: mutualis
+    ignore_availability: true
+    name: Mutualis
+    track: false
+
+- cal_id: !secret google_calendar_contacts
+  entities:
+  - device_id: contacts
+    ignore_availability: true
+    name: Contacts
+    track: false
