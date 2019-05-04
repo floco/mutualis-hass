@@ -108,14 +108,18 @@
 - id: A006
   alias: Sortir la poubelle
   trigger:
-    platform: time
-    at: 08:00:00
-  condition:
-  - condition: time
-    weekday:
-    - mon
-    - thu
+    platform: state
+    entity_id: calendar.poubelle_waterloo
+    to: 'on'
+  #condition:
+  #  condition: template
+  #  value_template: "{{states.calendar.calendar_name.attributes.message == 'vacation' }}"
   action:
+  # - service: script.announce
+  #   data_template:
+  #     no_say: "{{ no_say }}"
+  #         media_player: "{{ media_player }}"
+  #         message: "{{ message }}"
   - service: homeassistant.turn_on
     entity_id: script.garbage
 - id: A007
@@ -279,7 +283,7 @@
   alias: Activate Night Mode
   trigger:
     platform: time
-    at: "22:00:00"
+    at: "23:30:00"
   action:
     - service: input_select.select_option
       data:
