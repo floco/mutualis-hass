@@ -196,7 +196,6 @@
 # Activated when smoke is detected
 - id: A010
   alias: Send notification on fire alarm
-  initial_state: 'off'
   trigger:
   - entity_id: group.smoke
     platform: state
