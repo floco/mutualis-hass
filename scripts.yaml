@@ -223,16 +223,16 @@ do_nothing:
 
 netatmo:
   sequence:
-    # - service: homeassistant.turn_on
-    #   entity_id: script.increase_volume
-    # - service: tts.google_say
-    #   entity_id: media_player.google_home
-    - service: notify.google_assistant
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
       data_template:
         message: "Il fait {{states('sensor.netatmo_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_inside_co2')}} ppm. Bonne journée !"
         # cache: false
-    # - service: homeassistant.turn_on
-    #   entity_id: script.decrease_volume
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
     - service: notify.ju
       data_template:
         title: "Netatmo Info"
@@ -269,11 +269,11 @@ table_down:
 
 table:
   sequence:
-    # - service: homeassistant.turn_on
-    #   entity_id: script.increase_volume
-#    - service: tts.google_say
-#      entity_id: media_player.google_home
-    - service: notify.google_assistant
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
       data_template:
         message: >
           {%- macro speak_table(person,action) -%}
@@ -299,16 +299,16 @@ table:
             {%endif%}
           {%endif%}
           {{ speak_table(person,action) }}
-    # - service: homeassistant.turn_on
-    #   entity_id: script.decrease_volume
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
 
 garbage:
   sequence:
-    # - service: homeassistant.turn_on
-    #   entity_id: script.increase_volume
-    # - service: tts.google_say
-    #   entity_id: media_player.google_home
-    - service: notify.google_assistant
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
       data_template:
         message: >
           {%- macro speak_garbage() -%}
@@ -318,16 +318,16 @@ garbage:
             ] | random }}
           {%- endmacro -%}
           {{ speak_garbage() }}
-    # - service: homeassistant.turn_on
-    #   entity_id: script.decrease_volume
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
 
 cleaning:
   sequence:
-    # - service: homeassistant.turn_on
-    #   entity_id: script.increase_volume
-    # - service: tts.google_say
-    #   entity_id: media_player.google_home
-    - service: notify.google_assistant
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
       data_template:
         message: >
           {%- macro speak_cleaning() -%}
@@ -337,8 +337,8 @@ cleaning:
             ] | random }}
           {%- endmacro -%}
           {{ speak_cleaning() }}
-    # - service: homeassistant.turn_on
-    #   entity_id: script.decrease_volume
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
 
 doorbell:
   sequence:
