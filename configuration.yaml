@@ -132,6 +132,11 @@ binary_sensor:
 
 camera:
   - platform: mjpeg
+    mjpeg_url: !secret cam1_url
+    name: cam1
+    username: !secret cam1_username
+    password: !secret cam1_password
+  - platform: mjpeg
     mjpeg_url: !secret cam2_url
     name: cam2
     username: !secret cam2_username
