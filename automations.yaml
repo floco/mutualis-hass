@@ -279,10 +279,10 @@
     entity_id: script.door_alert
 # Activated at night
 - id: A015a
-  alias: Activate Night Mode
+  alias: Trigger Night Scene
   trigger:
     platform: time
-    at: "23:30:00"
+    at: "23:59:00"
   action:
     - service: input_select.select_option
       data:
@@ -290,7 +290,7 @@
         option: Night
 # Activated in morning
 - id: A015b
-  alias: Activate active Mode
+  alias: Trigger Morning Scene
   trigger:
     platform: time
     at: "06:30:00"
@@ -312,7 +312,7 @@
       entity_id: switch.alarm_arm_home
 # Actions when in Day Mode
 - id: A016b
-  alias: Send notification when alarm triggered
+  alias: Activate Day Mode
   trigger:
   - entity_id: input_select.home_mode
     platform: state
@@ -321,3 +321,72 @@
   - service: homeassistant.turn_off
     data:
       entity_id: switch.alarm_arm_home
+  # Actions when in Vacation Mode
+- id: A016c
+  alias: Activate Day Mode
+  trigger:
+  - entity_id: input_select.home_mode
+    platform: state
+    to: 'Vacation'
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: switch.alarm_arm_away
+  # Presence Simulation Morning
+- id: A017a
+  alias: Presence Simulation Morning On
+  trigger:
+    platform: time
+    at: "16:45:00"
+  condition:
+    condition: state
+    entity_id: input_select.home_mode
+    state: 'Vacation'
+  action:
+  - service: homeassistant.turn_on
+    entity_id:  light.chambre_evy
+  - service: homeassistant.turn_on
+    entity_id:  light.chambre_parent
+- id: A017b
+  alias: Presence Simulation Morning Off
+  trigger:
+    platform: time
+    at: "16:50:00"
+  condition:
+    condition: state
+    entity_id: input_select.home_mode
+    state: 'Vacation'
+  action:
+  - service: homeassistant.turn_off
+    entity_id:  light.chambre_evy
+  - service: homeassistant.turn_off
+    entity_id:  light.chambre_parent
+  # Presence Simulation Night
+- id: A017c
+  alias: Presence Simulation Night On
+  trigger:
+    platform: time
+    at: "22:30:00"
+  condition:
+    condition: state
+    entity_id: input_select.home_mode
+    state: 'Vacation'
+  action:
+  - service: homeassistant.turn_on
+    entity_id:  light.chambre_evy
+  - service: homeassistant.turn_on
+    entity_id:  light.chambre_parent
+- id: A017d
+  alias: Presence Simulation Night Off
+  trigger:
+    platform: time
+    at: "23:55:00"
+  condition:
+    condition: state
+    entity_id: input_select.home_mode
+    state: 'Vacation'
+  action:
+  - service: homeassistant.turn_off
+    entity_id:  light.chambre_evy
+  - service: homeassistant.turn_off
+    entity_id:  light.chambre_parent
