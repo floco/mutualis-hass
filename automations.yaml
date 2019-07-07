@@ -337,12 +337,13 @@
   alias: Presence Simulation Morning On
   trigger:
     platform: time
-    at: "16:45:00"
+    at: "06:30:00"
   condition:
     condition: state
     entity_id: input_select.home_mode
     state: 'Vacation'
   action:
+  - delay: '00:{{ range(0,3) | random | int }}{{ range(0,9) | random | int }}:00'
   - service: homeassistant.turn_on
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_on
@@ -351,12 +352,13 @@
   alias: Presence Simulation Morning Off
   trigger:
     platform: time
-    at: "16:50:00"
+    at: "08:30:00"
   condition:
     condition: state
     entity_id: input_select.home_mode
     state: 'Vacation'
   action:
+  - delay: '00:{{ range(0,3) | random | int }}{{ range(0,9) | random | int }}:00'
   - service: homeassistant.turn_off
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_off
@@ -372,6 +374,7 @@
     entity_id: input_select.home_mode
     state: 'Vacation'
   action:
+  - delay: '00:{{ range(0,3) | random | int }}{{ range(0,9) | random | int }}:00'
   - service: homeassistant.turn_on
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_on
@@ -380,12 +383,13 @@
   alias: Presence Simulation Night Off
   trigger:
     platform: time
-    at: "23:55:00"
+    at: "23:30:00"
   condition:
     condition: state
     entity_id: input_select.home_mode
     state: 'Vacation'
   action:
+  - delay: '00:{{ range(0,3) | random | int }}{{ range(0,9) | random | int }}:00'
   - service: homeassistant.turn_off
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_off
