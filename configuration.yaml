@@ -88,8 +88,13 @@ tts:
 #    - switch
 
 light:
-  platform: hue
-  host: !secret hue_host
+  - platform: hue
+    host: !secret hue_host
+#  - platform: xiaomi_miio
+#    name: Xiaomi Philips E14
+#    host: !secret philips_e14_host
+#    token: !secret philips_e14_token
+#    model: philips.light.candle
 
 netatmo:
   api_key: !secret netatmo_api_key
