@@ -73,9 +73,6 @@ tts:
   - platform: google_translate
     service_name: google_say
 
-hacs:
-  token: !secret hacs_token
-
 netatmo:
   api_key: !secret netatmo_api_key
   secret_key: !secret netatmo_secret_key
@@ -184,6 +181,32 @@ speedtestdotnet:
     - ping
     - download
     - upload
+
+########### CUSTOM COMPONENTS ########### 
+
+hacs:
+  token: !secret hacs_token
+
+breaking_changes:
+
+edgeos:
+  host: !secret edge_os_host
+  ssl: !secret edge_os_ssl
+  username: !secret edge_os_username
+  password: !secret edge_os_password
+#  cert_file: !secret ssl_certificate
+  monitored_interfaces:
+    - eth0
+    - eth1
+    - eth2
+    - eth3
+    - eth4
+  monitored_devices:
+    - iphone-x
+    - iphone-5S
+    - lumia
+    - oneplus-onex
+  unit: 'M'
 
 ########### INCLUDES ########### 
 
