@@ -59,8 +59,8 @@ recorder:
       - sun.sun
 
 tts:
-  - platform: google
-    language: 'fr'
+  - platform: google_translate
+    service_name: google_say
 
 ########### PLATFORMS ########### 
 
