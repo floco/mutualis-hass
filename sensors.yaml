@@ -22,8 +22,8 @@
     name: 'Garage Motion'
   - platform: filesize
     file_paths:
-      - ./home-assistant_v2.db
-      - ./home-assistant.log
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
   - platform: alpha_vantage
     api_key: !secret alphavantage_api_key
     symbols:
