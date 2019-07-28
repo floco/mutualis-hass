@@ -1,10 +1,10 @@
-
 # Belgacom TV
 belgacom_tv:
   alias: Belgacom TV
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgCuAC8RFxEIF0ITBw0HEiQXFwALcy8RFxEIF0ITBw0HEiQXFwALdB8GCRIHBgkTBhcIBhcHCAYIFAUPBRQGCAcGCRcHBgkAC3UeBgkSBwYJEgcYBwYJBggGCQYIFAUPBRQGCAcGCRgGBwgAC3UeBgkSBwcIEwYYFgYJBQkGCRMHDQcSJRcGCAgAC3QuEhUTBxhCEgcMCBIlFxYAC3QuEhYSBxgzEwcSBw0HEiUYFQANBQAAAAAAAAAAAAA'
           - 'JgCgABEGCAYJEwYHCBMGGAcHCAYXBgkSBw4FFAYHCAYJGAYHCAALdS4SFhIIF0IRCA0HEiQYFgALdC4SFhIIF0ISBw0HEiUXFgALdC4SFhIIF0ISBw0HEiUXFgALdC4SFhIIF0ISCAwHEiUXFwALcy4SCAUJEggXQhIIDAgRJRcXAAtzLhMGCAgSBhgWBgkGCRIGFAYOBRQGCAgFCRgGCAcADQUAAAAAAAAAAA=='
@@ -14,22 +14,25 @@ belgacom_tv:
 source_ext4:
   alias: Source ext4
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgDMAAw6CxgLFwwXCzoKGQoYDDkLGAs6CzoLOws6DDkLFwsABYkMOgwXCxcLFws7CzoLOgsXCzoNFgsYChgLGAoYCzoLAAXPDDkMFwsXCxgLOgsXCxgLOgsXCzsMOQs6DDkLOgwXCwAFigw5CxcLGAsXCzoLOgs7DBYLOwwWDBcLFwsXCxgLOgwABc0MOgwXDBYMFws6CxgLFws6CxgLOgs6CzsLOgs6DBYLAAWJDDoMFwsWCxgLOws6DDkLFww5DRYLGAoYCxgLFws6CwANBQAAAAAAAAAAAAAAAA=='
 source_ext5:
   alias: Source ext5
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgDMAAs6CxcLGAsXCzoLOgsYCzsMFgw5DDkLOwo7CjwLFgsABWcNOAwXCxgLFws6CxgLOgsXCzoLGAsXCxgLFwsYCzoMAAXwCzsMFwsXCxcLOww5CxcMOQsYCzoLOgs7DDkMOQsYCgAFZww5CxgKGAsYCjsLFws7DBYLOwsXDBcLFwsXCxcKPAwABfEMOQsXCxgLFws6CzoLGAs6CxgKOww5DDoKOws6CxcLAAVmDDoMFwwXChgLOgsYCzoLFws6ChkLFwsYCxcLGAo7CwANBQAAAAAAAAAAAAAAAA=='
 source_ext6:
   alias: Source ext6
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgDMAA44DBcKGAwXCzoMFgsYCxgKOws6CD0KOwk9DDkLFwwABYgJPAoZCBoKGQg9CjwLOgk8ChgKGQkZCxgKGAwXCzoJAAXRCjsLFwkaCxcKOwwXCxcJGgk8CTwLOww5CzoLOgkaCwAFiQo8ChgKGQsXCzoKOwo7DDoMFwsWChkKGAwXCxcKPAoABc8NOQwXDBYMFgs7DBYMFwwWCzsLOgs6CzoMOg43DBYPAAWFETQMFwsXCxgKOww6DzYONwsXChkLFwsYDBYLGAs6CwANBQAAAAAAAAAAAAAAAA=='
 
@@ -37,40 +40,49 @@ source_ext6:
 portta:
   alias: Portta
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgBcABUACxYAASiQFBEVEBUQExEVEBUQExEVEBU0FTQUNRY0FTQUNRY0FTQUERUPFg8UERUPFhATERUPFjMWNBQ1FTQWNBQ1FjMWNBQABRMAASdIFQAMOwABKEcVAA0FAAAAAAAAAAAAAAAA'
+
 # chromecast input
 input1:
   alias: Input 1
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgBgAAABKJAWDhUQFRAVDxUQFRAVDxUQFTQWNBU0FTQXMxU0FTQWNBUPFRAVEBU0FRAUEBUQFRAVNBU0FTQVEBU0FjMVNRU0FQAFEgABKEcVAAw6AAEoRhYADDoAAShGFgANBQAAAAAAAAAA'
+
 # apple tv input
 input2:
   alias: Input 2
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgBgAAABKJAWDhUQFRAVDxUQFRAVDxUQFTQWNBU0FTQWNBQ1FTQVNRQQFTQVEBU0FRAVDxUQFRAVNBUQFDUVEBU0FTQVNBY0FQAFEgABKEYWAAw6AAEoRhYADDgAASpGFgANBQAAAAAAAAAA'
+
 # ps3 input
 input3:
   alias: Input 3
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgBgAAABJZMSEhQRFBESEhQRFBEQFBQREzYUNhE4FDUUNhI3FDUUNhISFRATNhQ0FREVDxMSFRAVNBU0FBEVEBU0FTQTNhY0FQAFEgABKEYWAAw6AAEnRxUADDoAAShGFgANBQAAAAAAAAAA'
+
 # tv input
 input4:
   alias: Input 4
   sequence:
-    - service: !secret broadlink_rm_send
+    - service: broadlink.send
       data:
+        host: !secret broadlink_rm_host 
         packet:
           - 'JgBgAAABKJAWDxQQFRAVEBQQFRAVEBQQFTQWNBU0FjMXMxU0FjMWNBUPFTUUNRU0Fg8VEBUPFRAVNBYPFRAUEBU0FjMWNBU0FQAFEgABKEcVAAw6AAEoRhYADDoAAShGFgANBQAAAAAAAAAA'
 
