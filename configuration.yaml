@@ -187,7 +187,7 @@ speedtestdotnet:
 hacs:
   token: !secret hacs_token
 
-breaking_changes:
+#breaking_changes:
 
 edgeos:
   host: !secret edge_os_host
