@@ -58,10 +58,6 @@ recorder:
     entities:
       - sun.sun
 
-tts:
-  - platform: google_translate
-    service_name: google_say
-
 ########### PLATFORMS ########### 
 
 #light:
@@ -72,6 +68,13 @@ tts:
 #    host: !secret philips_e14_host
 #    token: !secret philips_e14_token
 #    model: philips.light.candle
+
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+hacs:
+  token: 882cb4eb31c71429b43e5b60d472a6fe7961fcad
 
 netatmo:
   api_key: !secret netatmo_api_key
