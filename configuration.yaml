@@ -74,7 +74,7 @@ tts:
     service_name: google_say
 
 hacs:
-  token: 882cb4eb31c71429b43e5b60d472a6fe7961fcad
+  token: !secret hacs_token
 
 netatmo:
   api_key: !secret netatmo_api_key
