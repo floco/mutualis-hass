@@ -71,6 +71,7 @@ recorder:
 
 tts:
   - platform: google_translate
+    language: 'fr'
     service_name: google_say
 
 netatmo:
