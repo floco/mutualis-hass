@@ -7,11 +7,16 @@ homeassistant:
   unit_system: metric
   time_zone: Europe/Brussels
   customize: !include customize.yaml
+  customize_domain:
+    automation:
+      initial_state: 'on'
   whitelist_external_dirs:
     - /config
 
 http:
   base_url: !secret http_base_url
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
   # cors_allowed_origins:
   #   - https://google.com
   #   - https://home-assistant.io
@@ -19,8 +24,6 @@ http:
   # trusted_networks:
   #   - !secret trusted_ip
   #   - !secret trusted_ip_2
-  # ip_ban_enabled: True
-  # login_attempts_threshold: 5
 
 frontend:
 config:
@@ -33,10 +36,27 @@ system_health:
 updater:
 
 logger:
-  default: info
+  default: warn
+  logs:
+    homeassistant.components.recorder: debug
 
 recorder:
-  purge_days: 7
+  purge_interval: 1
+  purge_keep_days: 30
+  include:
+    entities:
+      - group.windows
+      - group.doors
+  exclude:
+    domains:
+      - updater
+      - automation
+      - device_tracker
+      - group
+      - scene
+      - script
+    entities:
+      - sun.sun
 
 tts:
   - platform: google
