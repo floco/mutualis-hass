@@ -532,3 +532,19 @@ door_alert:
         title: Main door opened ... 
         message: >         
           <b>door opened !</b>
+
+home_enter:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Welcome home ... 
+        message: >         
+          <b>Hello Julien</b>
+
+home_leave:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Bye bye ... 
+        message: >         
+          <b>Bye Julien</b>

@@ -400,3 +400,23 @@
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_off
     entity_id:  light.chambre_parent
+- id: A018a
+  alias: Presence Notification Home
+  trigger:
+    platform: zone
+    entity_id: device_tracker.edgeos_iphone_x
+    zone: zone.home
+    event: enter 
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.home_enter
+- id: A018b
+  alias: Presence Notification Leave
+  trigger:
+    platform: zone
+    entity_id: device_tracker.edgeos_iphone_x
+    zone: zone.home
+    event: leave 
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.home_leave
