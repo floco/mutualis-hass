@@ -25,6 +25,7 @@ http:
   #   - !secret trusted_ip
   #   - !secret trusted_ip_2
 
+system_health:
 frontend:
 config:
 conversation:
@@ -32,7 +33,6 @@ discovery:
 history:
 logbook:
 sun:
-system_health:
 updater:
 map:
 

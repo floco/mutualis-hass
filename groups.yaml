@@ -57,6 +57,8 @@
   bedrooms:
     - group.spots
     - light.evy_light
+    - binary_sensor.wall_switch_right_158d000237bae7      # Wall_Switch_Right
+    - binary_sensor.wall_switch_both_158d000237bae7       # Wall_Switch_Both
   weather:
     - sun.sun
     - sensor.yr_symbol
@@ -96,11 +98,7 @@
     - script.input4
   alarm:
     - alarm_control_panel.home_alarm
-    - script.alarm_on
-    - script.alarm_off
     - binary_sensor.wall_switch_left_158d000237bae7       # Wall_Switch_Left
-    - binary_sensor.wall_switch_right_158d000237bae7      # Wall_Switch_Right
-    - binary_sensor.wall_switch_both_158d000237bae7       # Wall_Switch_Both
     - light.gateway_light_7811dcb8f98a
     - sensor.illumination_7811dcb8f98a
   doors:
