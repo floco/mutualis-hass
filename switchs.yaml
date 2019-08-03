@@ -107,7 +107,7 @@
           data:
             entity_id: alarm_control_panel.home_alarm
             code: !secret alarm_code
-        - service: script.alarm_armed
+        - service: script.alarm_on_loud
       turn_off:
         - service: input_boolean.turn_off
           entity_id: input_boolean.alarm
@@ -115,8 +115,7 @@
           data:
             entity_id: alarm_control_panel.home_alarm
             code: !secret alarm_code
-        - service: homeassistant.turn_on
-          entity_id: script.alarm_off
+        - service: script.alarm_off_loud
     alarm_arm_home:
       value_template: "{{ is_state('input_boolean.alarm', 'on') }}"
       turn_on:
@@ -126,6 +125,7 @@
           data:
             entity_id: alarm_control_panel.home_alarm
             code: !secret alarm_code
+        - service: script.alarm_on_silent
       turn_off:
         - service: input_boolean.turn_off
           entity_id: input_boolean.alarm
@@ -133,6 +133,7 @@
           data:
             entity_id: alarm_control_panel.home_alarm
             code: !secret alarm_code
+        - service: script.alarm_off_silent
     chargeur:
       friendly_name: "chargeur"
       value_template: "{{ is_state('timer.charge', 'active') }}"

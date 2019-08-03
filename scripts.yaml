@@ -368,6 +368,11 @@ doorbell:
         media_content_type: music
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
+    - service: notify.ju
+      data_template:
+        title: Main door ringing ... 
+        message: >         
+          <b>Ding Dong</b>
 
 alarm_on:
   sequence:
@@ -411,7 +416,7 @@ alarm_on:
         brightness: 255
         rgb_color: [254,0,0]
 
-alarm_off:
+alarm_off_loud:
   sequence:
     - service: xiaomi_aqara.play_ringtone
       data:
@@ -419,8 +424,13 @@ alarm_off:
         ringtone_id: 10003
         ringtone_vol: 10     
     - service: script.blink_green
+    - service: notify.ju
+      data_template:
+        title: Alarm disarmed ... 
+        message: >         
+          "Info: Home is <b>not</b> in surveillance."
 
-alarm_armed:
+alarm_on_loud:
   sequence:
     - service: xiaomi_aqara.play_ringtone
       data:
@@ -428,6 +438,27 @@ alarm_armed:
         ringtone_id: 10002
         ringtone_vol: 10  
     - service: script.blink_orange
+    - service: notify.ju
+      data_template:
+        title: Alarm armed ... 
+        message: >         
+          "Info: Home is under surveillance."
+
+alarm_off_silent:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Alarm disarmed ... 
+        message: >         
+          "Info: Home is <b>not</b> in surveillance."
+
+alarm_on_silent:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Alarm armed ... 
+        message: >         
+          "Info: Home is under surveillance."
 
 smoke_alarm:
   sequence:
@@ -542,6 +573,14 @@ home_enter:
           <b>Hello Julien</b>
 
 home_leave:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Bye bye ... 
+        message: >         
+          <b>Bye Julien</b>
+
+door_ring:
   sequence:
     - service: notify.ju
       data_template:

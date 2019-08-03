@@ -134,6 +134,7 @@
   action:
   - service: homeassistant.turn_on
     entity_id: script.cleaning
+# When Doorbell rings
 - id: A008
   alias: Doorbell Ding
   trigger:
@@ -232,12 +233,6 @@
     event_data:
       entity_id: binary_sensor.wall_switch_left_158d000237bae7
       click_type: single
-  # - event_data:
-  #     click_type: single
-  #     entity_id: binary_sensor.wall_switch_left_158d000237bae7
-  #   event_type: click
-  #   platform: event
-  # condition: []
   action:
   - service: homeassistant.toggle
     data:
@@ -327,7 +322,7 @@
   - service: homeassistant.turn_off
     data:
       entity_id: switch.alarm_arm_home
-  # Actions when in Vacation Mode
+# Actions when in Vacation Mode
 - id: A016c
   alias: Activate Day Mode
   trigger:
@@ -338,7 +333,7 @@
   - service: homeassistant.turn_on
     data:
       entity_id: switch.alarm_arm_away
-  # Presence Simulation Morning
+# Presence Simulation Morning
 - id: A017a
   alias: Presence Simulation Morning On
   trigger:
@@ -400,6 +395,7 @@
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_off
     entity_id:  light.chambre_parent
+# Presence notification
 - id: A018a
   alias: Presence Notification Home
   trigger:

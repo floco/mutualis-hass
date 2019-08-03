@@ -203,20 +203,20 @@ edgeos:
     - eth2
     - eth3
     - eth4
-  monitored_devices:
-    - iphone-x
-    - iphone-5S
-    - lumia
-    - oneplus-onex
+  # monitored_devices:
+  #   - iphone-x
+  #   - iphone-5S
+  #   - lumia
+  #   - oneplus-onex
   unit: 'M'
 
-device_tracker:
-  - platform: edgeos
-    hosts:
-      - iphone-x
-      - iphone-5S
-      - lumia
-      - oneplus-onex
+# device_tracker:
+#   - platform: edgeos
+#     hosts:
+#       - iphone-x
+#       - iphone-5S
+#       - lumia
+#       - oneplus-onex
 
 ########### INCLUDES ########### 
 
