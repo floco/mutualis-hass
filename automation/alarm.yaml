@@ -72,13 +72,30 @@
     data:
       entity_id: switch.alarm_arm_away
 # Activated when the door is opened
-- id: A014
-  alias: Door Alert
+- id: A014a
+  alias: Door Alert Open
   trigger:
   - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
     from: 'off'
     platform: state
     to: 'on'
   action:
-  - service: homeassistant.turn_on
-    entity_id: script.door_alert
+  - service: notify.ju
+    data_template:
+      title: Main door opened ... 
+      message: >         
+        <b>door opened !</b>
+# Activated when the door is closed
+- id: A014a
+  alias: Door Alert Closed
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
+    from: 'on'
+    platform: state
+    to: 'off'
+  action:
+  - service: notify.ju
+    data_template:
+      title: Main door closed... 
+      message: >         
+        <b>door closed !</b>
