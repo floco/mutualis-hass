@@ -1,0 +1,176 @@
+alarm_on:
+  sequence:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomi_gw_mac
+        ringtone_id: 1
+        ringtone_vol: 100
+    - service: notify.ju
+      data_template:
+        title: Alarm Triggered... 
+        message: >         
+          {% if states('binary_sensor.door_window_sensor_158d000232b0ad') == "on" %} 
+          Fenetre_Parents
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d000237d1e8') == "on" %} 
+          Fenetre_Mia_Devant
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d000238c840') == "on" %} 
+            Fenetre_Mia_Laterale
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d00023295ce') == "on" %} 
+            Fenetre_Evy
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d000237d247') == "on" %} 
+            Velux_Evy
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d000238628c') == "on" %} 
+            Fenetre_Chambre_Amis
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d000237d1b8') == "on" %} 
+            Fenetre_Upstairs
+          {% endif %}
+          {% if states('binary_sensor.door_window_sensor_158d000243645e') == "on" %} 
+            Velux_Salle_de_bain
+          {% endif %}
+          <b>Opened</b>
+    - service: homeassistant.turn_on
+      entity_id: light.gateway_light_7811dcb8f98a
+      data:
+        brightness: 255
+        rgb_color: [254,0,0]
+
+alarm_off_loud:
+  sequence:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomi_gw_mac
+        ringtone_id: 10003
+        ringtone_vol: 10     
+    - service: script.blink_green
+    - service: notify.ju
+      data_template:
+        title: Alarm disarmed ... 
+        message: >         
+          "Info: Home is <b>not</b> in surveillance."
+
+alarm_on_loud:
+  sequence:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomi_gw_mac
+        ringtone_id: 10002
+        ringtone_vol: 10  
+    - service: script.blink_orange
+    - service: notify.ju
+      data_template:
+        title: Alarm armed ... 
+        message: >         
+          "Info: Home is under surveillance."
+
+alarm_off_silent:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Alarm disarmed ... 
+        message: >         
+          "Info: Home is <b>not</b> in surveillance."
+
+alarm_on_silent:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Alarm armed ... 
+        message: >         
+          "Info: Home is under surveillance."
+
+smoke_alarm:
+  sequence:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomi_gw_mac
+        ringtone_id: 2
+        ringtone_vol: 100
+    - service: notify.ju
+      data_template:
+        title: Smoke Alarm Triggered... 
+        message: >         
+          {% if states('binary_sensor.smoke_sensor_158d0001bbe483') == "on" %} 
+          Smoke_Sensor_Upstairs
+          {% endif %}
+          {% if states('binary_sensor.smoke_sensor_158d0001e581ee') == "on" %} 
+          Smoke_Sensor_Living
+          {% endif %}
+          <b>detected a fire !</b>
+    - service: homeassistant.turn_on
+      entity_id: light.gateway_light_7811dcb8f98a
+      data:
+        brightness: 255
+        rgb_color: [254,0,0]
+
+# Common scripts
+increase_volume_max:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.google_home
+        volume_level: 1.0
+
+increase_volume_doorbell:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.google_home
+        volume_level: 0.8
+
+
+
+blink_green:
+  sequence:
+    - service: script.light_green
+    - wait_template: "{{ is_state('script.light_green', 'off') }}"
+    - service: script.light_green
+    - wait_template: "{{ is_state('script.light_green', 'off') }}"
+
+light_green:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: light.gateway_light_7811dcb8f98a
+      data:
+        brightness: 255
+        rgb_color: [0,254,0]
+    - delay: 00:00:01
+    - service: homeassistant.turn_off
+      entity_id: light.gateway_light_7811dcb8f98a
+    - delay: 00:00:01
+
+blink_orange:
+  sequence:
+    - service: script.light_orange
+    - wait_template: "{{ is_state('script.light_orange', 'off') }}"
+    - service: script.light_orange
+    - wait_template: "{{ is_state('script.light_orange', 'off') }}"
+    - service: script.light_orange
+    - wait_template: "{{ is_state('script.light_orange', 'off') }}"
+    - service: script.light_orange
+    - wait_template: "{{ is_state('script.light_orange', 'off') }}"   
+
+light_orange:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: light.gateway_light_7811dcb8f98a
+      data:
+        brightness: 255
+        rgb_color: [0,0,254]
+    - delay: 00:00:01
+    - service: homeassistant.turn_off
+      entity_id: light.gateway_light_7811dcb8f98a
+    - delay: 00:00:01
+
+door_alert:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Main door opened ... 
+        message: >         
+          <b>door opened !</b>

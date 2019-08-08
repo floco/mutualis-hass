@@ -1,0 +1,87 @@
+- id: A005a
+  alias: Mettre la table
+  trigger:
+    platform: time
+    at: '18:55:00'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.table_up
+- id: A005b
+  alias: Debarasser la table
+  trigger:
+    platform: time
+    at: '19:55:00'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.table_down
+- id: A005c
+  alias: A qui le tour le week end
+  trigger:
+    platform: time
+    at: 08:30:00
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.table_up
+- id: A006
+  alias: Sortir la poubelle
+  trigger:
+    platform: state
+    entity_id: calendar.poubelle_waterloo
+    to: 'on'
+  #condition:
+  #  condition: template
+  #  value_template: "{{states.calendar.calendar_name.attributes.message == 'vacation' }}"
+  action:
+  # - service: script.announce
+  #   data_template:
+  #     no_say: "{{ no_say }}"
+  #         media_player: "{{ media_player }}"
+  #         message: "{{ message }}"
+  - service: homeassistant.turn_on
+    entity_id: script.garbage
+- id: A007
+  alias: Fatima
+  trigger:
+    platform: time
+    at: 08:10:00
+  condition:
+  - condition: time
+    weekday:
+    - mon
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.cleaning
+- id: A003a
+  alias: Sensor Info Week
+  trigger:
+    platform: time
+    at: 07:30:00
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.netatmo
+- id: A003b
+  alias: Sensor Info Weekend
+  trigger:
+    platform: time
+    at: 08:35:00
+  condition:
+  - condition: time
+    weekday:
+    - sat
+    - sun
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.netatmo

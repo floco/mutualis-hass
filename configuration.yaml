@@ -220,8 +220,8 @@ edgeos:
 
 ########### INCLUDES ########### 
 
-group: !include groups.yaml
-automation: !include automations.yaml
-script: !include scripts.yaml
+automation: !include_dir_merge_list automation
+script: !include_dir_merge_named script
 sensor: !include sensors.yaml
 switch: !include switchs.yaml
+group: !include groups.yaml

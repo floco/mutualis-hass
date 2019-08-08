@@ -1,0 +1,61 @@
+- id: A001a
+  alias: Turn on light when sun sets
+  trigger:
+    platform: sun
+    event: sunset
+    offset: +00:30:00
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.prise4
+  - service: homeassistant.turn_on
+    entity_id: light.lightstrip
+- id: A001b
+  alias: Turn off light after we go to bed
+  trigger:
+    platform: time
+    at: '23:00:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.prise4
+  - service: homeassistant.turn_off
+    entity_id: light.lightstrip
+  - service: homeassistant.turn_off
+    entity_id: switch.prise4
+# - id: A002a
+#   alias: Turn on lights evy before bed
+#   trigger:
+#     platform: time
+#     at: '20:00:00'
+#   action:
+#   - service: homeassistant.turn_on
+#     entity_id: switch.prise3
+# - id: A002b
+#   alias: Turn off lights evy in the morning
+#   trigger:
+#     platform: time
+#     at: 07:00:00
+#   action:
+#   - service: homeassistant.turn_off
+#     entity_id: switch.prise3
+#   - service: homeassistant.turn_off
+#     entity_id: switch.prise3
+
+# Activated by parent switch right
+- id: A011
+  alias: Toggle Light in parents room
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_right_158d000237bae7
+      click_type: single
+  # - event_data:
+  #     click_type: single
+  #     entity_id: binary_sensor.wall_switch_right_158d000237bae7
+  #   event_type: click
+  #   platform: event
+  # condition: []
+  action:
+  - service: homeassistant.toggle
+    data:
+      entity_id: group.spots

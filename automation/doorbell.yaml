@@ -1,0 +1,11 @@
+# When Doorbell rings
+- id: A008
+  alias: Doorbell Ding
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.ring_porte_de_devant_ding
+    from: 'off'
+    to: 'on'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.doorbell

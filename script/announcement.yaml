@@ -1,0 +1,128 @@
+#Inspiration: https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/script/speech_engine.yaml
+netatmo:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
+      data_template:
+        message: "Il fait {{states('sensor.netatmo_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_inside_co2')}} ppm. Bonne journée !"
+        # cache: false
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
+    - service: notify.ju
+      data_template:
+        title: "Netatmo Info"
+        message: "Il fait <b>{{states('sensor.netatmo_outside_temperature')}}</b> degrés à l'extérieur et <b>{{states('sensor.netatmo_inside_temperature')}}</b> degré à l'interieur. Le niveau de CO2 est de <b>{{states('sensor.netatmo_inside_co2')}}</b> ppm. Bonne journée !"
+
+table_up:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: script.table
+      data:
+        variables:
+          action: 'mettre'
+
+table_down:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: script.table
+      data:
+        variables:
+          action: 'débarasser'
+
+table:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
+      data_template:
+        message: >
+          {%- macro speak_table(person,action) -%}
+            {{ [
+            "Allez on se bouge, cette semaine c'est a " + person + " de " + action + " la table ! Merci " + person + "!",
+            "Cette semaine c'est a " + person + " de " + action + " la table ! Merci " + person + "!",
+            person + ", c'est a ton tour de " + action + " la table ! Merci " + person + "!",
+            "Dis donc " + person + " ce serait pas a toi de " + action + " la table par hasard ? Merci " + person + "!",
+            "Alors ma grande, t'a oubliée de" + action + " la table." + person + ", on se depeche ! Allez " + person
+            ] | random }}
+          {%- endmacro -%}
+          {% if now().strftime("%W")|int % 2 != 0 %}
+            {% if action == "mettre" %}
+              {% set person = "Evy" %}
+            {% else %}
+              {% set person = "Mia" %}
+            {%endif%}
+          {% else %}
+            {% if action == "mettre" %}
+              {% set person = "Mia" %}
+            {% else %}
+              {% set person = "Evy" %}
+            {%endif%}
+          {%endif%}
+          {{ speak_table(person,action) }}
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
+
+garbage:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
+      data_template:
+        message: >
+          {%- macro speak_garbage() -%}
+            {{ [
+            "Oublies pas de sortir la poubelle, merci !",
+            "C'est le jour des poubelles, merci !"
+            ] | random }}
+          {%- endmacro -%}
+          {{ speak_garbage() }}
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
+
+cleaning:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id: script.increase_volume
+    - service: tts.google_say
+      entity_id: media_player.google_home
+    #- service: notify.google_assistant
+      data_template:
+        message: >
+          {%- macro speak_cleaning() -%}
+            {{ [
+            "Prepares tout ce qu'il faut pour Fatima !",
+            "Oublies pas Fatima !"
+            ] | random }}
+          {%- endmacro -%}
+          {{ speak_cleaning() }}
+    - service: homeassistant.turn_on
+      entity_id: script.decrease_volume
+
+increase_volume_max:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.google_home
+        volume_level: 1.0
+
+increase_volume:
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.google_home
+        volume_level: 0.5
+
+decrease_volume:
+  sequence:
+    - delay: 00:00:15
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.google_home
+        volume_level: 0.4

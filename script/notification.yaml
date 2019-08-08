@@ -1,0 +1,27 @@
+notify_all:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: "{{ title }}"
+        message: "{{ message }}"
+    - service: notify.mo
+      data_template:
+        title: "{{ title }}"
+        message: "{{ message }}"
+
+
+home_enter:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Welcome home ... 
+        message: >         
+          <b>Hello Julien</b>
+
+home_leave:
+  sequence:
+    - service: notify.ju
+      data_template:
+        title: Bye bye ... 
+        message: >         
+          <b>Bye Julien</b>

@@ -1,0 +1,84 @@
+# Activated when one of the sensors are opened and alarm is armed
+- id: A009a
+  alias: Windows Alarm
+  trigger:
+  - entity_id: group.windows
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_home
+  action:
+  - service: alarm_control_panel.alarm_trigger
+    entity_id: alarm_control_panel.home_alarm
+# Activated when alarm is trigerred
+- id: A009b
+  alias: Send notification when alarm triggered
+  trigger:
+  - entity_id: alarm_control_panel.home_alarm
+    platform: state
+    to: 'triggered'
+  action:
+  - service: script.alarm_on
+# Activated when alarm is armed
+#- id: A009c
+#  alias: indicator alarm is armed away
+#  trigger:
+#  - entity_id: alarm_control_panel.home_alarm
+#    platform: state
+#    from: 'disarmed'
+#    to: 'pending'
+#  action:
+#  - service: script.alarm_armed
+# Activated when alarm is disarmed
+# - id: A009d
+#   alias: restore alarm to initial state
+#   trigger:
+#   - entity_id: alarm_control_panel.home_alarm
+#     platform: state
+#     to: 'disarmed'
+#   action:
+#   - service: homeassistant.turn_on
+#     entity_id: script.alarm_off
+# Activated when smoke is detected
+- id: A010
+  alias: Send notification on fire alarm
+  trigger:
+  - entity_id: group.smoke
+    platform: state
+    from: 'off'
+    to: 'on'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.smoke_alarm
+# Activated by parent switch left
+- id: A012
+  alias: Toggle Alarm
+  trigger:
+    platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.wall_switch_left_158d000237bae7
+      click_type: single
+  action:
+  - service: homeassistant.toggle
+    data:
+      entity_id: switch.alarm_arm_away
+# Activated when the door is opened
+- id: A014
+  alias: Door Alert
+  trigger:
+  - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: script.door_alert
