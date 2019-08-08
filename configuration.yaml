@@ -203,25 +203,26 @@ edgeos:
     - eth2
     - eth3
     - eth4
-  # monitored_devices:
-  #   - iphone-x
-  #   - iphone-5S
-  #   - lumia
-  #   - oneplus-onex
+  monitored_devices:
+    - iphone-x
+    - iphone-5S
+    - lumia
+    - oneplus-onex
   unit: 'M'
 
-# device_tracker:
-#   - platform: edgeos
-#     hosts:
-#       - iphone-x
-#       - iphone-5S
-#       - lumia
-#       - oneplus-onex
+device_tracker:
+  - platform: edgeos
+    hosts:
+      - iphone-x
+      - iphone-5S
+      - lumia
+      - oneplus-onex
 
 ########### INCLUDES ########### 
 
-automation: !include_dir_merge_list automation
-script: !include_dir_merge_named script
+automation: !include_dir_merge_list automations
+script: !include_dir_merge_named scripts
 sensor: !include sensors.yaml
 switch: !include switchs.yaml
 group: !include groups.yaml
+person: !include persons.yaml

@@ -1,0 +1,17 @@
+- name: Julien
+  id: julien
+  user_id: 09702289c33b4ba9896a2ee566181ef9
+  device_trackers:
+    - device_tracker.edgeos-iphone-x
+- name: Mojca
+  id: mojca
+  device_trackers:
+    - device_tracker.edgeos-oneplus-onex
+- name: Mia
+  id: mia
+  device_trackers:
+    - device_tracker.edgeos-iphone-5s
+- name: Evy
+  id: evy
+  device_trackers:
+    - device_tracker.edgeos-lumia
