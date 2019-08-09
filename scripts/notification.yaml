@@ -10,18 +10,27 @@ notify_all:
         message: "{{ message }}"
 
 
-home_enter:
+announce_presence:
   sequence:
     - service: notify.ju
       data_template:
-        title: Welcome home ... 
-        message: >         
-          <b>Hello Julien</b>
-
-home_leave:
-  sequence:
-    - service: notify.ju
-      data_template:
-        title: Bye bye ... 
-        message: >         
-          <b>Bye Julien</b>
+        title: 'Presence Notification'
+        message: >
+          {%- macro notify_presence(person,action,state) -%}
+            {{ [
+            person + " est " + state + "!"
+            ] | random }}
+          {%- endmacro -%}
+          {% if states('person.julien') == state %} 
+            {% set person = "Julien" %}
+          {% endif %}
+          {% if states('person.mojca') == state %} 
+            {% set person = "Mojca" %}
+          {% endif %}
+          {% if states('person.mia') == state %} 
+            {% set person = "Mia" %}
+          {% endif %}
+          {% if states('person.evy') == state %} 
+            {% set person = "Evy" %}
+          {% endif %}          
+          {{ notify_presence(person,action,state) }}

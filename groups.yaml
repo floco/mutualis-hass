@@ -119,7 +119,11 @@
     - binary_sensor.smoke_sensor_158d0001e581ee           # Smoke_Sensor_Living
     - binary_sensor.smoke_sensor_158d00024e8f68
     - binary_sensor.smoke_sensor_158d00028f4032
-
+  all_persons:
+    - person.julien
+    - person.mojca
+    - person.mia
+    - person.evy
 
 
 

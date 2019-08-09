@@ -2,20 +2,49 @@
 - id: A018a
   alias: Presence Notification Home
   trigger:
-    platform: zone
-    entity_id: device_tracker.edgeos_iphone_x
-    zone: zone.home
-    event: enter 
+    platform: state
+    entity_id: person.julien, person.mojca, person.mia, person.evy
+    to: 'home'
   action:
   - service: homeassistant.turn_on
-    entity_id: script.home_enter
+    entity_id: script.notify_presence
+    data:
+      variables:
+        action: 'Bienvenue'
+        state: 'home' 
+  - service: homeassistant.turn_on
+    entity_id: script.announce_presence
+    data:
+      variables:
+        action: 'Bienvenue'
+        state: 'home'
+
 - id: A018b
   alias: Presence Notification Leave
   trigger:
-    platform: zone
-    entity_id: device_tracker.edgeos_iphone_x
-    zone: zone.home
-    event: leave 
+    platform: state
+    entity_id: person.julien, person.mojca, person.mia, person.evy
+    to: 'away'
   action:
   - service: homeassistant.turn_on
-    entity_id: script.home_leave
+    entity_id: script.notify_presence
+    data:
+      variables:
+        action: 'Au revoir'
+        state: 'away'
+  - service: homeassistant.turn_on
+    entity_id: script.announce_presence
+    data:
+      variables:
+        action: 'Au revoir'
+        state: 'away'
+
+
+# - alias: Turn off air purifier when everyone leaves
+#   trigger: 
+#     platform: state
+#     entity_id: group.allpersons
+#     to: 'not_home'
+#   action:
+#     entity_id: fan.air_purifier
+#     service: fan.turn_off
