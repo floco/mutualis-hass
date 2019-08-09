@@ -9,28 +9,3 @@ notify_all:
         title: "{{ title }}"
         message: "{{ message }}"
 
-
-announce_presence:
-  sequence:
-    - service: notify.ju
-      data_template:
-        title: 'Presence Notification'
-        message: >
-          {%- macro notify_presence(person,action,state) -%}
-            {{ [
-            person + " est " + state + "!"
-            ] | random }}
-          {%- endmacro -%}
-          {% if states('person.julien') == state %} 
-            {% set person = "Julien" %}
-          {% endif %}
-          {% if states('person.mojca') == state %} 
-            {% set person = "Mojca" %}
-          {% endif %}
-          {% if states('person.mia') == state %} 
-            {% set person = "Mia" %}
-          {% endif %}
-          {% if states('person.evy') == state %} 
-            {% set person = "Evy" %}
-          {% endif %}          
-          {{ notify_presence(person,action,state) }}

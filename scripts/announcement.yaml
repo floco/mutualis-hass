@@ -105,38 +105,6 @@ cleaning:
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
 
-announce_presence:
-  sequence:
-    - service: homeassistant.turn_on
-      entity_id: script.increase_volume
-    - service: tts.google_say
-      entity_id: media_player.google_home
-    #- service: notify.google_assistant
-      data_template:
-        message: >
-          {%- macro speak_presence(person,action,state) -%}
-            {{ [
-            action + person + " !",
-            action + " à toi " + person + " !",
-            person + " est " + state + "!"
-            ] | random }}
-          {%- endmacro -%}
-          {% if states('person.julien') == state %} 
-            {% set person = "Julien" %}
-          {% endif %}
-          {% if states('person.mojca') == state %} 
-            {% set person = "Mojca" %}
-          {% endif %}
-          {% if states('person.mia') == state %} 
-            {% set person = "Mia" %}
-          {% endif %}
-          {% if states('person.evy') == state %} 
-            {% set person = "Evy" %}
-          {% endif %}          
-          {{ speak_presence(person,action,state) }}
-    - service: homeassistant.turn_on
-      entity_id: script.decrease_volume
-
 increase_volume_max:
   sequence:
     - service: media_player.volume_set
