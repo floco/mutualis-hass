@@ -6,12 +6,11 @@
     entity_id: person.julien, person.mojca, person.mia, person.evy
     to: 'home'
   action:
-  - service: homeassistant.turn_on
-    entity_id: script.notify_presence
-    data:
-      variables:
-        action: 'Bienvenue'
-        state: 'home' 
+  - service: notify.ju
+    data_template:
+      title: 'Presence Notification'
+      message: >
+        {{ trigger.from_state.attributes.friendly_name }} est à la maison.
   - service: homeassistant.turn_on
     entity_id: script.announce_presence
     data:
@@ -26,12 +25,11 @@
     entity_id: person.julien, person.mojca, person.mia, person.evy
     to: 'away'
   action:
-  - service: homeassistant.turn_on
-    entity_id: script.notify_presence
-    data:
-      variables:
-        action: 'Au revoir'
-        state: 'away'
+  - service: notify.ju
+    data_template:
+      title: 'Presence Notification'
+      message: >
+        {{ trigger.from_state.attributes.friendly_name }} est parti.
   - service: homeassistant.turn_on
     entity_id: script.announce_presence
     data:
@@ -39,6 +37,7 @@
         action: 'Au revoir'
         state: 'away'
 
+#
 
 # - alias: Turn off air purifier when everyone leaves
 #   trigger: 
