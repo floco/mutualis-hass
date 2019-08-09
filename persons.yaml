@@ -1,7 +1,6 @@
 - name: Julien
   id: julien
   user_id: 09702289c33b4ba9896a2ee566181ef9
-  entity_picture: 'https://www.gravatar.com/avatar/a0e8cc41f74108f00f3cea92f3ed1286.jpg?s=80&d=wavatar'
   device_trackers:
     - device_tracker.edgeos_iphone_x
 - name: Mojca
