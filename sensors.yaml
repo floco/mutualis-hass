@@ -33,21 +33,5 @@
     - name: USD_EUR
       from: USD
       to: EUR
-  - platform: template
-    sensors:
-      parents_window:
-        friendly_name: "Parents Window"
-        value_template: >-
-          {% if is_state('binary_sensor.door_window_sensor_158d000232b0ad', 'on') %}
-            Open
-          {% else %}
-            Closed
-          {% endif %}
-        icon_template: >
-          {% if is_state('binary_sensor.door_window_sensor_158d000232b0ad', 'on') %}
-            mdi:door-open
-          {% else %}
-            mdi:door-closed
-          {% endif %}
 
  

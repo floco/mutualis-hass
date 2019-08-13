@@ -1,2 +1,29 @@
 person.julien:
   entity_picture: 'https://www.gravatar.com/avatar/a0e8cc41f74108f00f3cea92f3ed1286.jpg?s=80&d=wavatar'
+binary_sensor.door_window_sensor_158d000232b0ad:  # Fenetre_Parents
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d000237d1e8:  # Fenetre_Mia_Devant
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d000238c840:  # Fenetre_Mia_Laterale
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d00023295ce:  # Fenetre_Evy
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d000237d247:  # Velux_Evy
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d000238628c:  # Fenetre_Chambre_Amis
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d000237d1b8:  # Fenetre_Upstairs
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d000243645e:  # Velux_Salle_de_bain
+  if (state === 'on') return 'mdi:window-open';
+  return 'mdi:window-closed';
+binary_sensor.door_window_sensor_158d0002c9c949 :  # Door
+  if (state === 'on') return 'mdi:door-open';
+  return 'mdi:door-closed';
