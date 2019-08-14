@@ -35,6 +35,8 @@ logbook:
 sun:
 updater:
 map:
+lovelace:
+  mode: yaml
 
 panel_iframe:
   mdiindex:
