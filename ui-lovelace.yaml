@@ -1,4 +1,4 @@
-title: Home Assistant
+title: Home Assistant 
 resources:
   - type: module
     url: /community_plugin/compact-custom-header/compact-custom-header.js
