@@ -13,3 +13,5 @@ resources:
 views:
   - !include ui-lovelace/010_home.yaml
   - !include ui-lovelace/020_security.yaml
+  - !include ui-lovelace/030_weather.yaml
+  - !include ui-lovelace/040_weather.yaml

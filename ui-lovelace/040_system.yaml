@@ -1,0 +1,23 @@
+  - title: Network
+    icon: 'mdi:lan'
+    path: network
+    badges:
+      - sensor.speedtest_download
+      - sensor.speedtest_ping
+      - sensor.speedtest_upload
+      - sensor.google
+      
+    cards:
+      - card:
+          title: Low Battery Devices
+          type: glance
+        filter:
+          include:
+            - entity_id: '*battery_level*'
+              state: < 25
+            - attributes:
+                battery: < 25
+            - attributes:
+                battery_level: < 25
+        show_empty: false
+        type: 'custom:monster-card'

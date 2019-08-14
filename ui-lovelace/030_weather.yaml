@@ -1,0 +1,99 @@
+  - title: Weather
+    icon: 'mdi:temperature-celsius'
+    badges: []
+
+    cards:
+      - entity: weather.dark_sky
+        name: W
+        type: 'custom:weather-card'
+      - entities:
+          - entity: sensor.netatmo_outside_temperature
+          - entity: sensor.netatmo_outside_humidity
+        show_header_toggle: false
+        title: Outside
+        type: entities
+      - entities:
+          - entity: sensor.netatmo_inside_humidity
+          - entity: sensor.netatmo_inside_temperature
+          - entity: sensor.netatmo_inside_co2
+          - entity: sensor.netatmo_inside_pressure
+        show_header_toggle: false
+        title: Inside
+        type: entities
+      - cards:
+          - content: ' '
+            title: Inside
+            type: markdown
+          - cards:
+              - entities:
+                  - sensor.netatmo_inside_temperature
+                font_size: 75
+                line_color: blue
+                line_width: 8
+                name: Temp
+                type: 'custom:mini-graph-card'
+              - entity: sensor.netatmo_inside_humidity
+                graph: line
+                hours_to_show: 24
+                name: Hum
+                type: sensor
+              - entity: sensor.netatmo_inside_pressure
+                graph: line
+                hours_to_show: 24
+                name: Pres
+                type: sensor
+            type: horizontal-stack
+          - cards:
+              - entity: sensor.netatmo_inside_co2
+                graph: line
+                hours_to_show: 24
+                name: CO2
+                type: sensor
+              - entity: sensor.netatmo_inside_humidity
+                graph: line
+                hours_to_show: 24
+                name: Hum
+                type: sensor
+              - entity: sensor.netatmo_inside_pressure
+                graph: line
+                hours_to_show: 24
+                name: Pres
+                type: sensor
+            type: horizontal-stack
+          - content: ' '
+            title: Outside
+            type: markdown
+          - cards:
+              - entity: sensor.netatmo_outside_temperature
+                graph: line
+                hours_to_show: 24
+                name: Temp
+                type: sensor
+              - entity: sensor.netatmo_outside_humidity
+                graph: line
+                hours_to_show: 24
+                name: Hum
+                type: sensor
+              - entity: sensor.netatmo_outside_humidity
+                graph: line
+                hours_to_show: 24
+                name: Pres
+                type: sensor
+            type: horizontal-stack
+          - entities:
+              - entity: sensor.netatmo_outside_temperature
+                name: Outside
+              - entity: sensor.netatmo_inside_temperature
+                name: Inside
+              - color: gray
+                entity: input_number.nighttime
+                name: Night
+                show_legend: false
+                show_line: false
+                show_points: false
+                y_axis: secondary
+            show:
+              labels: true
+              labels_secondary: true
+            type: 'custom:mini-graph-card'
+        type: vertical-stack
