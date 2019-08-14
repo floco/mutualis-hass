@@ -3,10 +3,15 @@ icon: 'mdi:home-variant'
 badges: []
 
 cards:
-  - cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        template: header_red
+        name: My Test Header
       - content: '**CHAMBRE EVY**'
         type: markdown
-      - cards:
+      - type: horizontal-stack
+        cards:
           - entity: light.evy_light
             hold_action:
               action: more-info
@@ -30,8 +35,8 @@ cards:
             show_icon: true
             show_name: true
             type: entity-button
-        type: horizontal-stack
-    type: vertical-stack
+        
+
   - cards:
       - content: '**CHAMBRE MIA**'
         type: markdown
