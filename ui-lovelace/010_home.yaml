@@ -1,130 +1,130 @@
-  - title: Home    
-    icon: 'mdi:home-variant'
-    badges: []
+title: Home    
+icon: 'mdi:home-variant'
+badges: []
 
-    cards:
+cards:
+  - cards:
+      - content: '**CHAMBRE EVY**'
+        type: markdown
       - cards:
-          - content: '**CHAMBRE EVY**'
-            type: markdown
-          - cards:
-              - entity: light.evy_light
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                tap_action:
-                  action: toggle
-                type: entity-button
-              - entity: binary_sensor.door_window_sensor_158d00023295ce
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-              - entity: binary_sensor.door_window_sensor_158d000237d247
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-            type: horizontal-stack
-        type: vertical-stack
+          - entity: light.evy_light
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: binary_sensor.door_window_sensor_158d00023295ce
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+          - entity: binary_sensor.door_window_sensor_158d000237d247
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - cards:
+      - content: '**CHAMBRE MIA**'
+        type: markdown
       - cards:
-          - content: '**CHAMBRE MIA**'
-            type: markdown
-          - cards:
-              - entity: binary_sensor.door_window_sensor_158d000237d1e8
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-              - entity: binary_sensor.door_window_sensor_158d000238c840
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-            type: horizontal-stack
-        type: vertical-stack
+          - entity: binary_sensor.door_window_sensor_158d000237d1e8
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+          - entity: binary_sensor.door_window_sensor_158d000238c840
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - cards:
+      - content: '**SALLE DE BAIN**'
+        type: markdown
       - cards:
-          - content: '**SALLE DE BAIN**'
-            type: markdown
-          - cards:
-              - entity: binary_sensor.door_window_sensor_158d000243645e
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-            type: horizontal-stack
-        type: vertical-stack
+          - entity: binary_sensor.door_window_sensor_158d000243645e
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - cards:
+      - content: '**CHAMBRE PARENTS**'
+        type: markdown
       - cards:
-          - content: '**CHAMBRE PARENTS**'
-            type: markdown
-          - cards:
-              - entity: group.spots
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                tap_action:
-                  action: toggle
-                type: entity-button
-              - entity: binary_sensor.door_window_sensor_158d000232b0ad
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-            type: horizontal-stack
-        type: vertical-stack
+          - entity: group.spots
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: binary_sensor.door_window_sensor_158d000232b0ad
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - cards:
+      - content: '**CHAMBRE AMIS**'
+        type: markdown
       - cards:
-          - content: '**CHAMBRE AMIS**'
-            type: markdown
-          - cards:
-              - entity: switch.prise2
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                tap_action:
-                  action: toggle
-                type: entity-button
-              - entity: binary_sensor.door_window_sensor_158d000238628c
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-            type: horizontal-stack
-        type: vertical-stack
+          - entity: switch.prise2
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: binary_sensor.door_window_sensor_158d000238628c
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
+  - cards:
+      - content: '**MEZZANINE**'
+        type: markdown
       - cards:
-          - content: '**MEZZANINE**'
-            type: markdown
-          - cards:
-              - entity: binary_sensor.motion_sensor_158d000276d4da
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-              - entity: binary_sensor.door_window_sensor_158d000237d1b8
-                hold_action:
-                  action: more-info
-                icon_height: 50px
-                show_icon: true
-                show_name: true
-                type: entity-button
-            type: horizontal-stack
-        type: vertical-stack
+          - entity: binary_sensor.motion_sensor_158d000276d4da
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+          - entity: binary_sensor.door_window_sensor_158d000237d1b8
+            hold_action:
+              action: more-info
+            icon_height: 50px
+            show_icon: true
+            show_name: true
+            type: entity-button
+        type: horizontal-stack
+    type: vertical-stack
 
