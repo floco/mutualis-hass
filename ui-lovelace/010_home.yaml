@@ -7,7 +7,7 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:button-card
-        template: header
+        template: header_group
         name: RDC
 
       - type: vertical-stack
@@ -19,31 +19,13 @@ cards:
             cards:
               - type: custom:button-card
                 template: light
-                entity: light.evy_light
+                entity: light.main_light
               - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d00023295ce
+                template: light
+                entity: light.lightstrip
               - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d000237d247
-              - type: custom:button-card
-                color_type: blank-card
-
-      - type: vertical-stack
-        cards:
-          - type: custom:button-card
-            template: header
-            name: GARAGE
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d000237d1e8
-              - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d000238c840
-              - type: custom:button-card
-                color_type: blank-card
+                template: smoke
+                entity: binary_sensor.smoke_sensor_158d0001e581ee 
               - type: custom:button-card
                 color_type: blank-card
 
@@ -55,10 +37,27 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d000243645e
+                color_type: blank-card
               - type: custom:button-card
                 color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: GARAGE
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: light
+                entity: light.garage_light
+              - type: custom:button-card
+                template: motion
+                entity: binary_sensor.garage_sensor_motion
               - type: custom:button-card
                 color_type: blank-card
               - type: custom:button-card
@@ -72,6 +71,30 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
+                template: door
+                entity: binary_sensor.door_window_sensor_158d0002c9c949 
+              - type: custom:button-card
+                template: motion
+                entity: binary_sensor.ring_porte_de_devant_motion
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        template: header_group
+        name: ETAGE
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: CHAMBRE PARENTS
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
                 template: light
                 entity: group.spots
               - type: custom:button-card
@@ -79,33 +102,6 @@ cards:
                 entity: binary_sensor.door_window_sensor_158d000232b0ad
               - type: custom:button-card
                 color_type: blank-card
-              - type: custom:button-card
-                color_type: blank-card
-
-
-
-  - type: vertical-stack
-    cards:
-      - type: custom:button-card
-        template: header
-        name: ETAGE
-
-      - type: vertical-stack
-        cards:
-          - type: custom:button-card
-            template: header
-            name: CHAMBRE EVY
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                template: light
-                entity: light.evy_light
-              - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d00023295ce
-              - type: custom:button-card
-                template: velux
-                entity: binary_sensor.door_window_sensor_158d000237d247
               - type: custom:button-card
                 color_type: blank-card
 
@@ -131,34 +127,18 @@ cards:
         cards:
           - type: custom:button-card
             template: header
-            name: SALLE DE BAIN
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                template: velux
-                entity: binary_sensor.door_window_sensor_158d000243645e
-              - type: custom:button-card
-                color_type: blank-card
-              - type: custom:button-card
-                color_type: blank-card
-              - type: custom:button-card
-                color_type: blank-card
-
-      - type: vertical-stack
-        cards:
-          - type: custom:button-card
-            template: header
-            name: CHAMBRE PARENTS
+            name: CHAMBRE EVY
           - type: horizontal-stack
             cards:
               - type: custom:button-card
                 template: light
-                entity: group.spots
+                entity: light.evy_light
               - type: custom:button-card
                 template: window
-                entity: binary_sensor.door_window_sensor_158d000232b0ad
+                entity: binary_sensor.door_window_sensor_158d00023295ce
               - type: custom:button-card
-                color_type: blank-card
+                template: velux
+                entity: binary_sensor.door_window_sensor_158d000237d247
               - type: custom:button-card
                 color_type: blank-card
 
@@ -175,6 +155,23 @@ cards:
               - type: custom:button-card
                 template: window
                 entity: binary_sensor.door_window_sensor_158d000238628c
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: SALLE DE BAIN
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: velux
+                entity: binary_sensor.door_window_sensor_158d000243645e
+              - type: custom:button-card
+                color_type: blank-card
               - type: custom:button-card
                 color_type: blank-card
               - type: custom:button-card

@@ -9,6 +9,10 @@ button_card_templates:
       card:
         - padding: 5px 15px
 
+  header_group:
+    color_type: label-card
+    color: rgb(44, 109, 255)
+
   window:
     icon: mdi:window-closed
     styles:
