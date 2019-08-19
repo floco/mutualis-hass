@@ -7,9 +7,7 @@ cards:
     cards:
       - type: custom:button-card
         template: header_red
-        name: My Test Header
-      - content: '**CHAMBRE EVY**'
-        type: markdown
+        name: CHAMBRE EVY
       - type: horizontal-stack
         cards:
           - entity: light.evy_light
