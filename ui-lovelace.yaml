@@ -5,9 +5,15 @@ button_card_templates:
   header:
     color_type: label-card
     color: rgb(44, 109, 214)
+    styles:
+      card:
+        - padding: 5px 15px
 
   window:
     icon: mdi:window-closed
+    styles:
+      icon:
+        - transform: rotate(270deg)
     tap_action:
       action: more-info
     state:
@@ -18,9 +24,18 @@ button_card_templates:
           icon:
             - animation: blink 2s ease infinite 
             - transform: rotate(270deg)
-    # styles:
-    #   img_cell:
-    #     transform: rotate(270deg)
+
+  velux:
+    icon: mdi:window-closed
+    tap_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: orange 
+        icon: mdi:window-open  
+        styles:
+          icon:
+            - animation: blink 2s ease infinite 
 
   door:
     icon: mdi:door-closed
@@ -31,27 +46,29 @@ button_card_templates:
         color: orange 
         icon: mdi:door-open  
         styles:
-          card:
+          icon:
             - animation: blink 2s ease infinite 
 
   motion:
+    icon: mdi:run
     tap_action:
       action: more-info
     state:
       - value: "on"
         color: orange 
         styles:
-          card:
+          icon:
             - animation: blink 2s ease infinite 
 
   smoke:
+    icon: mdi:fire
     tap_action:
       action: more-info
     state:
       - value: "on"
         color: orange 
         styles:
-          card:
+          icon:
             - animation: blink 2s ease infinite 
 
   light:

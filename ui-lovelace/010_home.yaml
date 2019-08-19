@@ -104,7 +104,7 @@ cards:
                 template: window
                 entity: binary_sensor.door_window_sensor_158d00023295ce
               - type: custom:button-card
-                template: window
+                template: velux
                 entity: binary_sensor.door_window_sensor_158d000237d247
               - type: custom:button-card
                 color_type: blank-card
@@ -135,7 +135,7 @@ cards:
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                template: window
+                template: velux
                 entity: binary_sensor.door_window_sensor_158d000243645e
               - type: custom:button-card
                 color_type: blank-card
