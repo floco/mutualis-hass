@@ -8,102 +8,194 @@ cards:
     cards:
       - type: custom:button-card
         template: header
-        name: CHAMBRE EVY
-      - type: horizontal-stack
+        name: RDC
+
+      - type: vertical-stack
         cards:
           - type: custom:button-card
-            template: light
-            entity: light.evy_light
+            template: header
+            name: LIVING
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: light
+                entity: light.evy_light
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d00023295ce
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000237d247
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
           - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d00023295ce
+            template: header
+            name: GARAGE
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000237d1e8
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000238c840
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
           - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000237d247
+            template: header
+            name: VERANDA
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000243645e
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
           - type: custom:button-card
-            color_type: blank-card
+            template: header
+            name: VESTIBULE
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: light
+                entity: group.spots
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000232b0ad
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+
 
   - type: vertical-stack
     cards:
       - type: custom:button-card
         template: header
-        name: CHAMBRE MIA
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000237d1e8
-          - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000238c840
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
+        name: ETAGE
 
-  - type: vertical-stack
-    cards:
-      - type: custom:button-card
-        template: header
-        name: SALLE DE BAIN
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
           - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000243645e
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
+            template: header
+            name: CHAMBRE EVY
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: light
+                entity: light.evy_light
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d00023295ce
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000237d247
+              - type: custom:button-card
+                color_type: blank-card
 
-  - type: vertical-stack
-    cards:
-      - type: custom:button-card
-        template: header
-        name: CHAMBRE PARENTS
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
           - type: custom:button-card
-            template: light
-            entity: group.spots
-          - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000232b0ad
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
+            template: header
+            name: CHAMBRE MIA
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000237d1e8
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000238c840
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
 
-  - type: vertical-stack
-    cards:
-      - type: custom:button-card
-        template: header
-        name: CHAMBRE AMIS
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
           - type: custom:button-card
-            template: plug
-            entity: switch.prise2
-          - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000238628c
-          - type: custom:button-card
-            color_type: blank-card
-          - type: custom:button-card
-            color_type: blank-card
+            template: header
+            name: SALLE DE BAIN
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000243645e
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
 
-  - type: vertical-stack
-    cards:
-      - type: custom:button-card
-        template: header
-        name: MEZZANINE
-      - type: horizontal-stack
+      - type: vertical-stack
         cards:
           - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.motion_sensor_158d000276d4da
+            template: header
+            name: CHAMBRE PARENTS
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: light
+                entity: group.spots
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000232b0ad
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
           - type: custom:button-card
-            template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000237d1b8
+            template: header
+            name: CHAMBRE AMIS
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: plug
+                entity: switch.prise2
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000238628c
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: MEZZANINE
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: motion
+                entity: binary_sensor.motion_sensor_158d000276d4da
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000237d1b8
+              - type: custom:button-card
+                template: smoke
+                entity: binary_sensor.smoke_sensor_158d0001bbe483 
+              - type: custom:button-card
+                color_type: blank-card
+                

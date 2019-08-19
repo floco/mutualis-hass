@@ -6,7 +6,7 @@ button_card_templates:
     color_type: label-card
     color: rgb(44, 109, 214)
 
-  window_sensor:
+  window:
     icon: mdi:window-closed
     tap_action:
       action: more-info
@@ -17,7 +17,39 @@ button_card_templates:
         styles:
           card:
             - animation: blink 2s ease infinite 
-  
+
+   door:
+    icon: mdi:door-closed
+    tap_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: orange 
+        icon: mdi:door-open  
+        styles:
+          card:
+            - animation: blink 2s ease infinite 
+
+   motion:
+    tap_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: orange 
+        styles:
+          card:
+            - animation: blink 2s ease infinite 
+
+   smoke:
+    tap_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: orange 
+        styles:
+          card:
+            - animation: blink 2s ease infinite 
+
   light:
     icon: mdi:lightbulb-outline
     tap_action:
