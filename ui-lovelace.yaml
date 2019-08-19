@@ -1,27 +1,10 @@
 title: Home Assistant 
 
 button_card_templates:
-  header:
-    styles:
-      card:
-        - padding: 5px 15px
-        - background-color: var(--paper-item-icon-active-color)
-      name:
-        - text-transform: uppercase
-        - color: var(--primary-background-color)
-        - justify-self: start
-        - font-weight: bold
-      label:
-        - text-transform: uppercase
-        - color: var(--primary-background-color)
-        - justify-self: start
-        - font-weight: bold
 
-  header_red:
-    template: header
-    styles:
-      card:
-        - background-color: '#FF0000'
+  header:
+    color_type: label-card
+    color: rgb(44, 109, 214)
 
   window_sensor:
     icon: mdi:window-closed
@@ -34,6 +17,27 @@ button_card_templates:
         styles:
           card:
             - animation: blink 2s ease infinite 
+  
+  light:
+    icon: mdi:lightbulb-outline
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: yellow 
+        icon: mdi:lightbulb-on-outline
+
+  plug:
+    icon: mdi:power-plug
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: yellow 
 
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js

@@ -3,147 +3,107 @@ icon: 'mdi:home-variant'
 badges: []
 
 cards:
+
   - type: vertical-stack
     cards:
       - type: custom:button-card
-        template: header_red
+        template: header
         name: CHAMBRE EVY
       - type: horizontal-stack
         cards:
-          - entity: light.evy_light
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-            type: entity-button
-          - type: "custom:button-card"
-            entity: binary_sensor.door_window_sensor_158d00023295ce
-            icon: mdi:window-closed
-            tap_action:
-              action: more-info
-            state:
-              - value: "on"
-                color: orange 
-                icon: mdi:window-open  
-                styles:
-                  card:
-                    - animation: blink 2s ease infinite 
+          - type: custom:button-card
+            template: light
+            entity: light.evy_light
           - type: custom:button-card
             template: window_sensor
-            entity: binary_sensor.door_window_sensor_158d000237d247         
-          - entity: binary_sensor.door_window_sensor_158d000237d247
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-        
-  - cards:
+            entity: binary_sensor.door_window_sensor_158d00023295ce
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000237d247
+          - type: custom:button-card
+            color_type: blank-card
+
+  - type: vertical-stack
+    cards:
       - type: custom:button-card
-        template: header_red
+        template: header
         name: CHAMBRE MIA
-      - cards:
-          - entity: binary_sensor.door_window_sensor_158d000237d1e8
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-          - entity: binary_sensor.door_window_sensor_158d000238c840
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-        type: horizontal-stack
-    type: vertical-stack
- 
-  - cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000237d1e8
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000238c840
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+
+  - type: vertical-stack
+    cards:
       - type: custom:button-card
-        template: header_red
+        template: header
         name: SALLE DE BAIN
-      - cards:
-          - entity: binary_sensor.door_window_sensor_158d000243645e
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-        type: horizontal-stack
-    type: vertical-stack
-  
-  - cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000243645e
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
+
+  - type: vertical-stack
+    cards:
       - type: custom:button-card
-        template: header_red
+        template: header
         name: CHAMBRE PARENTS
-      - cards:
-          - entity: group.spots
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-            type: entity-button
-          - entity: binary_sensor.door_window_sensor_158d000232b0ad
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-        type: horizontal-stack
-    type: vertical-stack
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: light
+            entity: group.spots
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000232b0ad
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
 
-  - cards:
+  - type: vertical-stack
+    cards:
       - type: custom:button-card
-        template: header_red
+        template: header
         name: CHAMBRE AMIS
-      - cards:
-          - entity: switch.prise2
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-            type: entity-button
-          - entity: binary_sensor.door_window_sensor_158d000238628c
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-        type: horizontal-stack
-    type: vertical-stack
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: plug
+            entity: switch.prise2
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000238628c
+          - type: custom:button-card
+            color_type: blank-card
+          - type: custom:button-card
+            color_type: blank-card
 
-  - cards:
+  - type: vertical-stack
+    cards:
       - type: custom:button-card
-        template: header_red
+        template: header
         name: MEZZANINE
-      - cards:
-          - entity: binary_sensor.motion_sensor_158d000276d4da
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-          - entity: binary_sensor.door_window_sensor_158d000237d1b8
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
-        type: horizontal-stack
-    type: vertical-stack
-
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.motion_sensor_158d000276d4da
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000237d1b8
