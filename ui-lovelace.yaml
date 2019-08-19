@@ -23,6 +23,18 @@ button_card_templates:
       card:
         - background-color: '#FF0000'
 
+  window_sensor:
+    icon: mdi:window-closed
+    tap_action:
+      action: more-info
+    state:
+      - value: "on"
+        color: orange 
+        icon: mdi:window-open  
+        styles:
+          card:
+            - animation: blink 2s ease infinite 
+
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module

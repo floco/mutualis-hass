@@ -22,18 +22,18 @@ cards:
           - type: "custom:button-card"
             entity: binary_sensor.door_window_sensor_158d00023295ce
             icon: mdi:window-closed
-            show_state: true
+            tap_action:
+              action: more-info
             state:
               - value: "on"
-                color: rgb(189, 255, 5)  
-                icon: mdi:window-open         
-          - entity: binary_sensor.door_window_sensor_158d00023295ce
-            hold_action:
-              action: more-info
-            icon_height: 50px
-            show_icon: true
-            show_name: true
-            type: entity-button
+                color: orange 
+                icon: mdi:window-open  
+                styles:
+                  card:
+                    - animation: blink 2s ease infinite 
+          - type: custom:button-card
+            template: window_sensor
+            entity: binary_sensor.door_window_sensor_158d000237d247         
           - entity: binary_sensor.door_window_sensor_158d000237d247
             hold_action:
               action: more-info
