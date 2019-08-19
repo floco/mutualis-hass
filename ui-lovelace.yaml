@@ -18,7 +18,7 @@ button_card_templates:
           card:
             - animation: blink 2s ease infinite 
 
-   door:
+  door:
     icon: mdi:door-closed
     tap_action:
       action: more-info
@@ -30,7 +30,7 @@ button_card_templates:
           card:
             - animation: blink 2s ease infinite 
 
-   motion:
+  motion:
     tap_action:
       action: more-info
     state:
@@ -40,7 +40,7 @@ button_card_templates:
           card:
             - animation: blink 2s ease infinite 
 
-   smoke:
+  smoke:
     tap_action:
       action: more-info
     state:
