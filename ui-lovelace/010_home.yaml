@@ -19,6 +19,14 @@ cards:
             tap_action:
               action: toggle
             type: entity-button
+          - type: "custom:button-card"
+            entity: binary_sensor.door_window_sensor_158d00023295ce
+            icon: mdi:window-closed
+            show_state: true
+            state:
+              - value: "on"
+                color: rgb(189, 255, 5)  
+                icon: mdi:window-open         
           - entity: binary_sensor.door_window_sensor_158d00023295ce
             hold_action:
               action: more-info

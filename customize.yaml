@@ -1,74 +1,74 @@
 person.julien:
   entity_picture: 'https://www.gravatar.com/avatar/a0e8cc41f74108f00f3cea92f3ed1286.jpg?s=80&d=wavatar'
-binary_sensor.door_window_sensor_158d000232b0ad:  # Fenetre_Parents
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d000237d1e8:  # Fenetre_Mia_Devant
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d000238c840:  # Fenetre_Mia_Laterale
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d00023295ce:  # Fenetre_Evy
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d000237d247:  # Velux_Evy
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d000238628c:  # Fenetre_Chambre_Amis
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d000237d1b8:  # Fenetre_Upstairs
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d000243645e:  # Velux_Salle_de_bain
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
-binary_sensor.door_window_sensor_158d0002c9c949 :  # Door
-  templates:
-    icon: >
-      if (state === 'on') return 'mdi:window-open';
-      return 'mdi:window-closed';
-    icon_color: >
-      if (state === 'on') return 'yellow';
-      return 'green';
+# binary_sensor.door_window_sensor_158d000232b0ad:  # Fenetre_Parents
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d000237d1e8:  # Fenetre_Mia_Devant
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d000238c840:  # Fenetre_Mia_Laterale
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d00023295ce:  # Fenetre_Evy
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d000237d247:  # Velux_Evy
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d000238628c:  # Fenetre_Chambre_Amis
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d000237d1b8:  # Fenetre_Upstairs
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d000243645e:  # Velux_Salle_de_bain
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
+# binary_sensor.door_window_sensor_158d0002c9c949 :  # Door
+#   templates:
+#     icon: >
+#       if (state === 'on') return 'mdi:window-open';
+#       return 'mdi:window-closed';
+#     icon_color: >
+#       if (state === 'on') return 'yellow';
+#       return 'green';
