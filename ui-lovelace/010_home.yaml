@@ -34,10 +34,10 @@ cards:
             show_name: true
             type: entity-button
         
-
   - cards:
-      - content: '**CHAMBRE MIA**'
-        type: markdown
+      - type: custom:button-card
+        template: header_red
+        name: CHAMBRE MIA
       - cards:
           - entity: binary_sensor.door_window_sensor_158d000237d1e8
             hold_action:
@@ -55,9 +55,11 @@ cards:
             type: entity-button
         type: horizontal-stack
     type: vertical-stack
+ 
   - cards:
-      - content: '**SALLE DE BAIN**'
-        type: markdown
+      - type: custom:button-card
+        template: header_red
+        name: SALLE DE BAIN
       - cards:
           - entity: binary_sensor.door_window_sensor_158d000243645e
             hold_action:
@@ -68,9 +70,11 @@ cards:
             type: entity-button
         type: horizontal-stack
     type: vertical-stack
+  
   - cards:
-      - content: '**CHAMBRE PARENTS**'
-        type: markdown
+      - type: custom:button-card
+        template: header_red
+        name: CHAMBRE PARENTS
       - cards:
           - entity: group.spots
             hold_action:
@@ -90,9 +94,11 @@ cards:
             type: entity-button
         type: horizontal-stack
     type: vertical-stack
+
   - cards:
-      - content: '**CHAMBRE AMIS**'
-        type: markdown
+      - type: custom:button-card
+        template: header_red
+        name: CHAMBRE AMIS
       - cards:
           - entity: switch.prise2
             hold_action:
@@ -112,9 +118,11 @@ cards:
             type: entity-button
         type: horizontal-stack
     type: vertical-stack
+
   - cards:
-      - content: '**MEZZANINE**'
-        type: markdown
+      - type: custom:button-card
+        template: header_red
+        name: MEZZANINE
       - cards:
           - entity: binary_sensor.motion_sensor_158d000276d4da
             icon_height: 50px
