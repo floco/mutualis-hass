@@ -7,7 +7,7 @@ button_card_templates:
     color: rgb(44, 109, 214)
 
   window:
-    icon: mdi:window-closed
+    icon: mdi:window-closed mdi-rotate-270
     tap_action:
       action: more-info
     state:
@@ -17,9 +17,9 @@ button_card_templates:
         styles:
           icon:
             - animation: blink 2s ease infinite 
-    styles:
-      img_cell:
-        transform: rotate(270deg)
+    # styles:
+    #   img_cell:
+    #     transform: rotate(270deg)
 
   door:
     icon: mdi:door-closed
