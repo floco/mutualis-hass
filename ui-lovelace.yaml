@@ -15,8 +15,11 @@ button_card_templates:
         color: orange 
         icon: mdi:window-open  
         styles:
-          card:
+          icon:
             - animation: blink 2s ease infinite 
+    styles:
+      icon:
+        transform: rotate(270deg)
 
   door:
     icon: mdi:door-closed
