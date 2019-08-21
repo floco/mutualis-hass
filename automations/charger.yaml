@@ -3,7 +3,7 @@
   alias: Turn on prise3
   trigger:
     platform: time
-    at: "22:30:00"
+    at: "02:00:00"
   action:
   - service: timer.start
     entity_id: timer.charge
