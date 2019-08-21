@@ -118,6 +118,7 @@ binary_sensor:
 
 cast:
   media_player:
+    - host: !secret nest_hub_host
     - host: !secret google_home_host
     - host: !secret chromecast_video_host
 
