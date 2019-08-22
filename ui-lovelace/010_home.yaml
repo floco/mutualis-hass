@@ -195,4 +195,12 @@ cards:
                 entity: binary_sensor.smoke_sensor_158d0001bbe483 
               - type: custom:button-card
                 color_type: blank-card
-                
+      
+      # cast
+      - type: entities
+        entities:
+          - type: cast
+            name: Security
+            # The path of the view (or number)
+            view: security
+            hide_if_unavailable: true
