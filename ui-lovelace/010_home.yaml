@@ -4,6 +4,16 @@ badges: []
 
 cards:
 
+  # cast
+  - type: entities
+    entities:
+      - type: cast
+        name: Security
+        view: security
+      - type: cast
+        name: Home
+        view: home
+
   - type: vertical-stack
     cards:
       - type: custom:button-card
@@ -196,11 +206,3 @@ cards:
               - type: custom:button-card
                 color_type: blank-card
       
-      # cast
-      - type: entities
-        entities:
-          - type: cast
-            name: Security
-            # The path of the view (or number)
-            view: security
-            hide_if_unavailable: true
