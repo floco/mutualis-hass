@@ -12,7 +12,7 @@
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est à la maison.
   - service: tts.google_say
-    entity_id: media_player.nest_hub
+    entity_id: media_player.cuisine
     data_template:
       message: >
         {%- macro speak_presence(person) -%}
@@ -38,7 +38,7 @@
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est parti.
   - service: tts.google_say
-    entity_id: media_player.nest_hub
+    entity_id: media_player.cuisine
     data_template:
       message: >
         {%- macro speak_presence(person) -%}

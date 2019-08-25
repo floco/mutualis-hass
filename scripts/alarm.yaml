@@ -67,23 +67,6 @@ smoke_alarm:
         brightness: 255
         rgb_color: [254,0,0]
 
-# Common scripts
-increase_volume_max:
-  sequence:
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.google_home
-        volume_level: 1.0
-
-increase_volume_doorbell:
-  sequence:
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.google_home
-        volume_level: 0.8
-
-
-
 blink_green:
   sequence:
     - service: script.light_green
