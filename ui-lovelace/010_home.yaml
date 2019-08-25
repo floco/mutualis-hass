@@ -69,13 +69,16 @@ cards:
             cards:
               - type: custom:button-card
                 template: plug
-                entity: switch.prise3
+                entity: switch.mp1_atv
               - type: custom:button-card
-                color_type: blank-card
+                template: plug
+                entity: switch.mp1_btv
               - type: custom:button-card
-                color_type: blank-card
+                template: plug
+                entity: switch.mp1_sha
               - type: custom:button-card
-                color_type: blank-card
+                template: plug
+                entity: switch.mp1_ps3
 
       - type: vertical-stack
         cards:
