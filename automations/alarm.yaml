@@ -86,6 +86,27 @@
             {% endif %}
           {% endfor %}
 
+- alias: 'Notify if door/window opened for 60 minutes'                                                                                                   
+  trigger:
+    - platform: state
+      entity_id: group.doors, group.windows
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 60
+        seconds: 0
+  action:
+    - service: notify.ju
+      data_template:
+        title: 'Window or Door Opened Too Long'
+        message: >-
+          {% for entity in trigger.to_state.attributes.entity_id %}
+            {% if states(entity) == 'on' %}
+              <p>{{ state_attr(entity, 'friendly_name') }} has been opened for 60 minutes</p><br>
+            {% endif %}
+          {% endfor %}
+
+
 # Activated when alarm is armed
 #- id: A009c
 #  alias: indicator alarm is armed away

@@ -30,7 +30,7 @@
   trigger:
     platform: state
     entity_id: person.julien, person.mojca, person.mia, person.evy
-    to: 'away'
+    from: 'home'
   action:
   - service: notify.ju
     data_template:
