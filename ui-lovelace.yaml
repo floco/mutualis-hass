@@ -1,10 +1,10 @@
 title: Home Assistant 
 
 button_card_templates:
-
+#02A9F4
   header:
     color_type: label-card
-    color: rgb(44, 109, 214)
+    color: rgb(2, 169, 244)
     styles:
       card:
         - padding: 5px 15px

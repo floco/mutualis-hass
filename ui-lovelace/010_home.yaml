@@ -4,52 +4,25 @@ badges: []
 
 cards:
 
-  # cast
-  - type: entities
-    entities:
-      - type: cast
-        name: Security
-        view: security
-      - type: cast
-        name: Home
-        view: home
-
   - type: vertical-stack
     cards:
-      - type: custom:button-card
-        template: header_group
-        name: RDC
+      # - type: custom:button-card
+      #   template: header_group
+      #   name: RDC
 
       - type: vertical-stack
         cards:
           - type: custom:button-card
             template: header
-            name: LIVING
+            name: VESTIBULE
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                template: light
-                entity: light.main_light
+                template: door
+                entity: binary_sensor.door_window_sensor_158d0002c9c949 
               - type: custom:button-card
-                template: light
-                entity: light.lightstrip
-              - type: custom:button-card
-                template: smoke
-                entity: binary_sensor.smoke_sensor_158d0001e581ee 
-              - type: custom:button-card
-                color_type: blank-card
-
-      - type: vertical-stack
-        cards:
-          - type: custom:button-card
-            template: header
-            name: VERANDA
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                color_type: blank-card
-              - type: custom:button-card
-                color_type: blank-card
+                template: motion
+                entity: binary_sensor.ring_porte_de_devant_motion
               - type: custom:button-card
                 color_type: blank-card
               - type: custom:button-card
@@ -77,15 +50,61 @@ cards:
         cards:
           - type: custom:button-card
             template: header
-            name: VESTIBULE
+            name: LIVING
           - type: horizontal-stack
             cards:
               - type: custom:button-card
-                template: door
-                entity: binary_sensor.door_window_sensor_158d0002c9c949 
+                template: light
+                entity: light.main_light
               - type: custom:button-card
-                template: motion
-                entity: binary_sensor.ring_porte_de_devant_motion
+                template: light
+                entity: light.lightstrip
+              - type: custom:button-card
+                template: smoke
+                entity: binary_sensor.smoke_sensor_158d0001e581ee 
+              - type: custom:button-card
+                template: plug
+                entity: switch.prise1
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: plug
+                entity: switch.prise3
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: VERANDA
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+              - type: custom:button-card
+                color_type: blank-card
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: JARDIN
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: plug
+                entity: switch.prise4
+              - type: custom:button-card
+                color_type: blank-card
               - type: custom:button-card
                 color_type: blank-card
               - type: custom:button-card
@@ -93,9 +112,9 @@ cards:
 
   - type: vertical-stack
     cards:
-      - type: custom:button-card
-        template: header_group
-        name: ETAGE
+      # - type: custom:button-card
+      #   template: header_group
+      #   name: ETAGE
 
       - type: vertical-stack
         cards:
@@ -206,3 +225,12 @@ cards:
               - type: custom:button-card
                 color_type: blank-card
       
+  # cast
+  - type: entities
+    entities:
+      - type: cast
+        name: Home
+        view: home
+      - type: cast
+        name: Security
+        view: security
