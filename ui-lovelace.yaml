@@ -96,6 +96,13 @@ button_card_templates:
       - value: "on"
         color: yellow 
 
+  person:
+    hold_action:
+      action: more-info
+    state:
+      - value: "home"
+        color: green 
+
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
@@ -115,3 +122,4 @@ views:
   - !include ui-lovelace/020_security.yaml
   - !include ui-lovelace/030_weather.yaml
   - !include ui-lovelace/040_system.yaml
+  - !include ui-lovelace/050_people.yaml  

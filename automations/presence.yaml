@@ -11,19 +11,19 @@
       title: 'Presence Notification'
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est à la maison.
-  - service: tts.google_say
-    entity_id: media_player.cuisine
-    data_template:
-      message: >
-        {%- macro speak_presence(person) -%}
-          {{ [
-          "Bienvenue " + person + " !",
-          "Salut à toi " + person + " !",
-          "Bonjour " + person + " !"
-          ] | random }}
-        {%- endmacro -%}
-        {% set person = trigger.from_state.attributes.friendly_name %}       
-        {{ speak_presence(person) }}
+  # - service: tts.google_say
+  #   entity_id: media_player.cuisine
+  #   data_template:
+  #     message: >
+  #       {%- macro speak_presence(person) -%}
+  #         {{ [
+  #         "Bienvenue " + person + " !",
+  #         "Salut à toi " + person + " !",
+  #         "Bonjour " + person + " !"
+  #         ] | random }}
+  #       {%- endmacro -%}
+  #       {% set person = trigger.from_state.attributes.friendly_name %}       
+  #       {{ speak_presence(person) }}
 
 - id: A018b
   alias: Presence Notification Leave
@@ -37,19 +37,19 @@
       title: 'Presence Notification'
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est parti.
-  - service: tts.google_say
-    entity_id: media_player.cuisine
-    data_template:
-      message: >
-        {%- macro speak_presence(person) -%}
-          {{ [
-          "A bientot " + person + " !",
-          person + "est parti !",
-          person + "n'est plus la !"
-          ] | random }}
-        {%- endmacro -%}
-        {% set person = trigger.from_state.attributes.friendly_name %}       
-        {{ speak_presence(person) }}
+  # - service: tts.google_say
+  #   entity_id: media_player.cuisine
+  #   data_template:
+  #     message: >
+  #       {%- macro speak_presence(person) -%}
+  #         {{ [
+  #         "A bientot " + person + " !",
+  #         person + "est parti !",
+  #         person + "n'est plus la !"
+  #         ] | random }}
+  #       {%- endmacro -%}
+  #       {% set person = trigger.from_state.attributes.friendly_name %}       
+  #       {{ speak_presence(person) }}
 
 #
 

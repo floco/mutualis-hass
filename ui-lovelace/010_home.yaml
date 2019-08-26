@@ -238,7 +238,28 @@ cards:
                 entity: binary_sensor.smoke_sensor_158d0001bbe483 
               - type: custom:button-card
                 color_type: blank-card
-      
+
+  # person
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        template: header
+        name: PERSONNE
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: person
+            entity: person.julien
+          - type: custom:button-card
+            template: person
+            entity: person.mojca
+          - type: custom:button-card
+            template: person
+            entity: person.mia
+          - type: custom:button-card
+            template: person
+            entity: person.evy
+
   # cast
   - type: entities
     entities:
