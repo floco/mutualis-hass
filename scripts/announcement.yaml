@@ -67,7 +67,7 @@ table:
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
 
-garbage:
+calendar:
   sequence:
     - service: homeassistant.turn_on
       entity_id: script.increase_volume
@@ -76,13 +76,14 @@ garbage:
     #- service: notify.google_assistant
       data_template:
         message: >
-          {%- macro speak_garbage() -%}
+          {%- macro speak_calendar(message) -%}
             {{ [
-            "Oublies pas de sortir la poubelle, merci !",
-            "C'est le jour des poubelles, merci !"
+            "Il y a quelque chose à faire " + message + " merci !",
+            "Votre attention, il faut " + message + " merci !",
+            "C'est le jour de " + message + " merci !"
             ] | random }}
           {%- endmacro -%}
-          {{ speak_garbage() }}
+          {{ speak_calendar(message) }}
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
 

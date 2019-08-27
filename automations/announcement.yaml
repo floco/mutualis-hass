@@ -28,7 +28,7 @@
   - service: homeassistant.turn_on
     entity_id: script.table_up
 - id: A006
-  alias: Sortir la poubelle
+  alias: Evenement du calendrier
   trigger:
     platform: state
     entity_id: calendar.poubelle_waterloo
@@ -43,7 +43,11 @@
   #         media_player: "{{ media_player }}"
   #         message: "{{ message }}"
   - service: homeassistant.turn_on
-    entity_id: script.garbage
+    entity_id: script.calendar
+    data:
+      variables:
+        action: '{{ states.calendar.calendar_name.attributes.message }}'
+
 - id: A007
   alias: Fatima
   trigger:
