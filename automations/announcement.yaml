@@ -46,7 +46,7 @@
     entity_id: script.calendar
     data:
       variables:
-        action: '{{ states.calendar.calendar_name.attributes.message }}'
+        message: '{{ trigger.from_state.attributes.message }}'
 
 - id: A007
   alias: Fatima
