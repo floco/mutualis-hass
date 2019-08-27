@@ -1,6 +1,6 @@
 # Calendar
 - id: CAL001
-  alias: Calendar Event
+  alias: Calendar Event All
   trigger:
     platform: state
     entity_id: calendar.holidays_in_belgium, calendar.home_status, calendar.poubelle_waterloo

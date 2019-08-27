@@ -1,21 +1,23 @@
-- id: A005a
-  alias: Mettre la table
+- id: AN001
+  alias: Anounce Chores Week Put Table
   trigger:
     platform: time
     at: '18:55:00'
   action:
   - service: homeassistant.turn_on
     entity_id: script.table_up
-- id: A005b
-  alias: Debarasser la table
+
+- id: AN002
+  alias: Anounce Chores Week Clean Table
   trigger:
     platform: time
     at: '19:55:00'
   action:
   - service: homeassistant.turn_on
     entity_id: script.table_down
-- id: A005c
-  alias: A qui le tour le week end
+
+- id: AN003
+  alias: Anounce Chores Week End
   trigger:
     platform: time
     at: 09:30:00
@@ -27,8 +29,9 @@
   action:
   - service: homeassistant.turn_on
     entity_id: script.table_up
-- id: A006
-  alias: Evenement du calendrier
+
+- id: AN004
+  alias: Anounce Calendar Event
   trigger:
     platform: state
     entity_id: calendar.poubelle_waterloo
@@ -46,22 +49,10 @@
     entity_id: script.calendar
     data_template:
       variables:
-        message: '{{ trigger.from_state.attributes.message }}'
+        message: '{{ states.calendar.poubelle_waterloo.attributes.message }}'
 
-- id: A007
-  alias: Fatima
-  trigger:
-    platform: time
-    at: 08:25:00
-  condition:
-  - condition: time
-    weekday:
-    - mon
-  action:
-  - service: homeassistant.turn_on
-    entity_id: script.cleaning
-- id: A003a
-  alias: Sensor Info Week
+- id: AN005
+  alias: Anounce Sensor Info Week
   trigger:
     platform: time
     at: 08:30:00
@@ -76,8 +67,9 @@
   action:
   - service: homeassistant.turn_on
     entity_id: script.netatmo
-- id: A003b
-  alias: Sensor Info Weekend
+
+- id: AN006
+  alias: Anounce Sensor Info Weekend
   trigger:
     platform: time
     at: 09:35:00
