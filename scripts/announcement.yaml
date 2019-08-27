@@ -1,9 +1,9 @@
 #Inspiration: https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/script/speech_engine.yaml
 netatmo:
   sequence:
-    - service: homeassistant.turn_on
-      entity_id: switch.send_text_to_nest_hub
-    - delay: 00:00:05
+    # - service: homeassistant.turn_on
+    #   entity_id: switch.send_text_to_nest_hub
+    # - delay: 00:00:05
     - service: homeassistant.turn_on
       entity_id: script.increase_volume
     - service: tts.google_say
@@ -14,8 +14,8 @@ netatmo:
         # cache: false
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
-    - service: homeassistant.turn_off
-      entity_id: switch.send_text_to_nest_hub
+    # - service: homeassistant.turn_off
+    #   entity_id: switch.send_text_to_nest_hub
     - service: notify.ju
       data_template:
         title: "Netatmo Info"
