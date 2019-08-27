@@ -2,6 +2,8 @@
 netatmo:
   sequence:
     - service: homeassistant.turn_on
+      entity_id: switch.send_text_to_nest_hub
+    - service: homeassistant.turn_on
       entity_id: script.increase_volume
     - service: tts.google_say
       entity_id: media_player.cuisine, media_player.google_home
@@ -11,6 +13,8 @@ netatmo:
         # cache: false
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
+    - service: homeassistant.turn_off
+      entity_id: switch.send_text_to_nest_hub
     - service: notify.ju
       data_template:
         title: "Netatmo Info"
@@ -87,24 +91,6 @@ calendar:
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
 
-cleaning:
-  sequence:
-    - service: homeassistant.turn_on
-      entity_id: script.increase_volume
-    - service: tts.google_say
-      entity_id: media_player.cuisine, media_player.google_home
-    #- service: notify.google_assistant
-      data_template:
-        message: >
-          {%- macro speak_cleaning() -%}
-            {{ [
-            "Prepares tout ce qu'il faut pour Fatima !",
-            "Oublies pas Fatima !"
-            ] | random }}
-          {%- endmacro -%}
-          {{ speak_cleaning() }}
-    - service: homeassistant.turn_on
-      entity_id: script.decrease_volume
 
 increase_volume_max:
   sequence:

@@ -8,4 +8,3 @@ notify_all:
       data_template:
         title: "{{ title }}"
         message: "{{ message }}"
-
