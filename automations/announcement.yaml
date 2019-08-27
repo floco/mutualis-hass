@@ -44,7 +44,7 @@
   #         message: "{{ message }}"
   - service: homeassistant.turn_on
     entity_id: script.calendar
-    data:
+    data_template:
       variables:
         message: '{{ trigger.from_state.attributes.message }}'
 
