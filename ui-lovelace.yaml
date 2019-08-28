@@ -123,3 +123,4 @@ views:
   - !include ui-lovelace/030_weather.yaml
   - !include ui-lovelace/040_system.yaml
   - !include ui-lovelace/050_people.yaml  
+  - !include ui-lovelace/060_finance.yaml  

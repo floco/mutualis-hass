@@ -1,0 +1,27 @@
+title: Finance
+icon: 'mdi:calculator'
+badges: []
+
+cards:
+ 
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        template: header
+        name: INSIDE
+      - type: horizontal-stack
+        cards:
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.google
+            font_size: 75
+            line_color: blue
+            line_width: 8
+            name: Google
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.usd_eur
+            font_size: 75
+            line_color: blue
+            line_width: 8
+            name: USD_EUR
