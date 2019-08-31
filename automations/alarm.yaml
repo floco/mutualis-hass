@@ -72,15 +72,25 @@
       entity_id: group.all_persons
       to: 'not_home' 
   condition:
-    - condition: state
-      entity_id: group.doors, group.windows
-      state: 'on'
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: group.doors
+        state: 'on'
+      - condition: state
+        entity_id: group.windows
+        state: 'on'
   action:
     - service: notify.ju
       data_template:
         title: 'ALERT: Window or Door left opened while noone is home'
         message: >-
-          {% for entity in trigger.to_state.attributes.entity_id %}
+          {% for entity in states.group.doors.attributes.entity_id %}
+            {% if states(entity) == 'on' %}
+              {{ state_attr(entity, 'friendly_name') }} is opened
+            {% endif %}
+          {% endfor %}
+          {% for entity in states.group.windows.attributes.entity_id %}
             {% if states(entity) == 'on' %}
               {{ state_attr(entity, 'friendly_name') }} is opened
             {% endif %}
