@@ -13,6 +13,7 @@ cards:
     card:
       title: Low Battery Devices
       type: glance
+      attribute: battery_level
     filter:
       include:
         - entity_id: '*battery_level*'
@@ -29,6 +30,7 @@ cards:
       show_header_toggle: false
       title: Low Battery Devices
       type: entities
+      attribute: battery_level
     filter:
       # exclude:
       #   - entity_id: sensor.some_sensor_name_here
