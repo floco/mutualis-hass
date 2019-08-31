@@ -8,16 +8,38 @@ badges:
   - sensor.google
 
 cards:
-  - card:
+  - type: 'custom:monster-card'
+    show_empty: false
+    card:
       title: Low Battery Devices
       type: glance
     filter:
       include:
         - entity_id: '*battery_level*'
-          state: < 25
+          state: < 50
         - attributes:
-            battery: < 25
+            battery: < 50
         - attributes:
-            battery_level: < 25
-    show_empty: false
-    type: 'custom:monster-card'
+            battery_level: < 50
+
+
+  - type: 'custom:monster-card'
+    show_empty: true
+    card:
+      show_header_toggle: false
+      title: Low Battery Devices
+      type: entities
+    filter:
+      # exclude:
+      #   - entity_id: sensor.some_sensor_name_here
+      #   - entity_id: sensor.some_sensor_name_here
+      #   - entity_id: sensor.some_sensor_name_here_etc
+      include:
+        - entity_id: '*battery*'
+          state: < 50
+        - attributes:
+            battery: < 50
+        - attributes:
+            battery_level: < 50
+    
+    

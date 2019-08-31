@@ -33,11 +33,11 @@
     - name: USD_EUR
       from: USD
       to: EUR
-  - platform: fitbit
-    clock_format: 24H
-    unit_system: metric
-    monitored_resources:
-      - "activities/tracker/steps"
-      - "activities/tracker/distance"
+  # - platform: fitbit
+  #   clock_format: 24H
+  #   unit_system: metric
+  #   monitored_resources:
+  #     - "activities/tracker/steps"
+  #     - "activities/tracker/distance"
 
  

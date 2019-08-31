@@ -116,6 +116,8 @@ resources:
     type: module
   - url: /community_plugin/button-card/button-card.js
     type: module
+  - url: /community_plugin/lovelace-battery-entity/battery-entity.js
+    type: module
 
 views:
   - !include ui-lovelace/010_home.yaml

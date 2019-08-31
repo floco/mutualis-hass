@@ -72,7 +72,7 @@
       entity_id: group.all_persons
       to: 'not_home' 
   condition:
-    - platform: state
+    - condition: state
       entity_id: group.doors, group.windows
       state: 'on'
   action:
