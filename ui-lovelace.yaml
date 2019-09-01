@@ -107,6 +107,7 @@ button_card_templates:
     icon: mdi:battery
     color_type: icon
     show_state: true
+    name: 'entity.state.attributes.battery_level'
     state:
     - value: 10
       operator: '<'
@@ -159,10 +160,12 @@ resources:
     type: js
   - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
-  - url: /community_plugin/monster-card/monster-card.js
-    type: module
   - url: /community_plugin/button-card/button-card.js
     type: module
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
+    type: js
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    type: js
 
 views:
   - !include ui-lovelace/010_home.yaml

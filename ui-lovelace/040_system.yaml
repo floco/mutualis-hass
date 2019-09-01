@@ -8,26 +8,16 @@ badges:
   - sensor.google
 
 cards:
-  - type: 'custom:monster-card'
-    show_empty: false
+
+  - type: "custom:button-card"
+    template: battery
+    entity: binary_sensor.door_window_sensor_158d0002c9c949 
+
+  - type: custom:auto-entities
     card:
       title: Low Battery Devices
-      type: custom:button-card
-    filter:
-      include:
-        - entity_id: '*battery_level*'
-          state: < 100
-        - attributes:
-            battery: < 100
-        - attributes:
-            battery_level: < 100
-
-
-  - type: 'custom:monster-card'
-    show_empty: true
-    card:
-      title: Low Battery Devices Custom
       type: "custom:button-card"
+      template: battery
     filter:
       # exclude:
       #   - entity_id: sensor.some_sensor_name_here
@@ -37,8 +27,8 @@ cards:
         - entity_id: '*battery*'
           state: < 100
         - attributes:
-            battery: < 100
+          battery: < 100
         - attributes:
-            battery_level: < 100
+          battery_level: < 100
     
     
