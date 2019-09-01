@@ -17,11 +17,11 @@ cards:
     filter:
       include:
         - entity_id: '*battery_level*'
-          state: < 50
+          state: < 100
         - attributes:
-            battery: < 50
+            battery: < 100
         - attributes:
-            battery_level: < 50
+            battery_level: < 100
 
 
   - type: 'custom:monster-card'
@@ -38,10 +38,10 @@ cards:
       #   - entity_id: sensor.some_sensor_name_here_etc
       include:
         - entity_id: '*battery*'
-          state: < 50
+          state: < 100
         - attributes:
-            battery: < 50
+            battery: < 100
         - attributes:
-            battery_level: < 50
+            battery_level: < 100
     
     
