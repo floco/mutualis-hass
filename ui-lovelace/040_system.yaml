@@ -27,10 +27,8 @@ cards:
   - type: 'custom:monster-card'
     show_empty: true
     card:
-      show_header_toggle: false
-      title: Low Battery Devices
+      title: Low Battery Devices Custom
       type: "custom:button-card"
-      template: battery
     filter:
       # exclude:
       #   - entity_id: sensor.some_sensor_name_here
