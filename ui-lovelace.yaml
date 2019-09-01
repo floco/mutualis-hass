@@ -107,7 +107,7 @@ button_card_templates:
     icon: mdi:battery
     color_type: icon
     show_state: true
-    name: 'entity.state.attributes.battery_level'
+    name: '{{ entity.state.attributes.battery_level }}'
     state:
     - value: 10
       operator: '<'

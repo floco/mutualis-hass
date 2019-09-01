@@ -15,8 +15,7 @@ cards:
 
   - type: custom:auto-entities
     card:
-      title: Low Battery Devices
-      type: "custom:button-card"
+      type: custom:button-card
       template: battery
     filter:
       # exclude:
