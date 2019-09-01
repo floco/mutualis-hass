@@ -9,25 +9,25 @@ badges:
 
 cards:
 
-  - type: "custom:button-card"
-    template: battery
-    entity: binary_sensor.door_window_sensor_158d0002c9c949 
+  # - type: "custom:button-card"
+  #   template: battery
+  #   entity: binary_sensor.door_window_sensor_158d0002c9c949 
 
-  - type: custom:auto-entities
-    card:
-      type: custom:button-card
-      template: battery
-    filter:
-      # exclude:
-      #   - entity_id: sensor.some_sensor_name_here
-      #   - entity_id: sensor.some_sensor_name_here
-      #   - entity_id: sensor.some_sensor_name_here_etc
-      include:
-        - entity_id: '*battery*'
-          state: < 100
-        - attributes:
-          battery: < 100
-        - attributes:
-          battery_level: < 100
+  # - type: custom:auto-entities
+  #   card:
+  #     type: custom:button-card
+  #     template: battery
+  #   filter:
+  #     # exclude:
+  #     #   - entity_id: sensor.some_sensor_name_here
+  #     #   - entity_id: sensor.some_sensor_name_here
+  #     #   - entity_id: sensor.some_sensor_name_here_etc
+  #     include:
+  #       - entity_id: '*battery*'
+  #         state: < 100
+  #       - attributes:
+  #         battery: < 100
+  #       - attributes:
+  #         battery_level: < 100
     
     
