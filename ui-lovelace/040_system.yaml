@@ -12,8 +12,7 @@ cards:
     show_empty: false
     card:
       title: Low Battery Devices
-      type: glance
-      attribute: battery_level
+      type: custom:button-card
     filter:
       include:
         - entity_id: '*battery_level*'
