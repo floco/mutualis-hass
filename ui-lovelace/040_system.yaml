@@ -29,8 +29,8 @@ cards:
     card:
       show_header_toggle: false
       title: Low Battery Devices
-      type: entities
-      attribute: battery_level
+      type: "custom:button-card"
+      template: battery
     filter:
       # exclude:
       #   - entity_id: sensor.some_sensor_name_here

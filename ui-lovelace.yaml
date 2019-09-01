@@ -103,6 +103,53 @@ button_card_templates:
       - value: "home"
         color: green 
 
+  battery:
+    icon: mdi:battery
+    color_type: icon
+    show_state: true
+    state:
+    - value: 10
+      operator: '<'
+      color: "#FF0000" #red
+      icon: "mdi:battery-10"
+    - value: 20
+      operator: '<='
+      color: "#ff6600" #red orange
+      icon: "mdi:battery-20"
+    - value: 30
+      operator: '<='
+      color: "#ff9933" #dark orange
+      icon: "mdi:battery-30"
+    - value: 40
+      operator: '<='
+      color: "#ffcc00" #light orange
+      icon: "mdi:battery-40"
+    - value: 50
+      operator: '<='
+      color: "#FFFF00" #yellow
+      icon: "mdi:battery-50"
+    - value: 60
+      operator: '<='
+      color: "#FFFF00" #yellow
+      icon: "mdi:battery-60"
+    - value: 70
+      operator: '<='
+      color: "#FFFF00" #yellow
+      icon: "mdi:battery-70"
+    - value: 80
+      operator: '<='
+      color: "#CCFF33" #yellow green
+      icon: "mdi:battery-80"
+    - value: 90
+      operator: '<='
+      color: "#66FF33" #light green
+      icon: "mdi:battery-90"
+    - value: 100
+      operator: '<='
+      color: "#279b37" #dark green
+      icon: "mdi:battery"
+
+
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
@@ -115,8 +162,6 @@ resources:
   - url: /community_plugin/monster-card/monster-card.js
     type: module
   - url: /community_plugin/button-card/button-card.js
-    type: module
-  - url: /community_plugin/lovelace-battery-entity/battery-entity.js
     type: module
 
 views:

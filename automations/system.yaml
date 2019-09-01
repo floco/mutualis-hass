@@ -1,0 +1,91 @@
+# TODO: find ways to combine the too
+
+- id: SY001
+  alias: 'Battery Alert'
+  trigger:
+    - platform: time
+      at: '12:05:00'
+  condition:
+    condition: or
+    conditions:
+      - condition: template
+        value_template: >-
+          {%- set threshold = 10 -%}
+          {%- for item in states.light if ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
+          {%- if loop.first -%}
+          {{ true }}
+          {%- endif -%}
+          {%- endfor -%}
+      - condition: template
+        value_template: >-
+          {%- set threshold = 10 -%}
+          {%- for item in states.switch if ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
+          {%- if loop.first -%}
+          {{ true }}
+          {%- endif -%}
+          {%- endfor -%}
+      - condition: template
+        value_template: >-
+          {%- set threshold = 10 -%}
+          {%- for item in states.sensor if ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
+          {%- if loop.first -%}
+          {{ true }}
+          {%- endif -%}
+          {%- endfor -%}
+      - condition: template
+        value_template: >-
+          {%- set threshold = 10 -%}
+          {%- for item in states.zwave if ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
+          {%- if loop.first -%}
+          {{ true }}
+          {%- endif -%}
+          {%- endfor -%}
+      - condition: template
+        value_template: >-
+          {%- set threshold = 10 -%}
+          {%- for item in states.lock if ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
+          {%- if loop.first -%}
+          {{ true }}
+          {%- endif -%}
+          {%- endfor -%}
+  action:
+    - service: notify.ju
+      data_template:
+        message: >-
+          {%- set threshold = 10 -%}
+          {%- set domains = [states.light, states.switch, states.sensor, states.zwave, states.lock ] -%}
+          {%- for domain in domains -%}
+          {%- if loop.first -%}
+          The following devices have low battery levels:
+          {%- endif -%}
+          {%- for item in domain if ("battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown")) -%}
+          {%- if "battery" in item.name | lower and ((item.state | int < threshold and item.state|int != 0) or item.state | lower == "low" or item.state | lower == "unknown") -%}
+          {{ item.name }} ({{ item.state }}),
+          {% endif -%}
+          {%- endfor -%}
+          {%- endfor -%}
+
+- id: SY002
+  alias: battery notifier
+  trigger:
+    - platform: time
+      at: '12:00:00'
+  condition:
+    - condition: template
+      value_template: >
+        # this is the threshold, if the battery goes below 10, the alert will occur.
+        {% set battery_alert_threshold = 10 %}
+        # the next templateline is complicated.  It selects
+        # any objects that have the battery attribute.  Then compares the battery
+        # attribute to the battery_alert_threshold.  If the battery is less than the threshold
+        # it adds the item to a list.  If the list is greater than or equal to 1 item, 
+        # the template will return True, otherwise false.
+        {{ states | selectattr('attributes.battery_level', 'defined') | selectattr('attributes.battery_level','<', battery_alert_threshold ) | list | length >= 1 }}
+  action:
+    - service: notify.ju
+      data_template:
+        title: "ALERT: Batteries low"
+        message: >
+          {% set low_batteries = states | selectattr('attributes.battery_level', 'defined') | selectattr('attributes.battery_level','<', battery_alert_threshold ) | map(attribute='name') | list | join(', ') %}
+          Low batteries in the following devices: {{ low_batteries }}
+
