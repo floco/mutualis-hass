@@ -19,4 +19,6 @@ phue.conf
 configurator.py
 emulated_hue_ids.json
 .*
+*.old
+/custom_components/**
 !/.gitignore
