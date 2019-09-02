@@ -6,9 +6,6 @@ cards:
 
   - type: vertical-stack
     cards:
-      # - type: custom:button-card
-      #   template: header_group
-      #   name: RDC
 
       - type: vertical-stack
         cards:
