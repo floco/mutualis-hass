@@ -39,5 +39,16 @@
   #   monitored_resources:
   #     - "activities/tracker/steps"
   #     - "activities/tracker/distance"
-
+  # - platform: template
+  #   sensors:
+  #     walkway_motion_sensor_batt:
+  #       friendly_name: "Walkway Motion Sensor Battery"
+  #       value_template: '{{ states.zwave.zooz_unknown_type_0001_id_0005.attributes.battery_level}}'
+  #       unit_of_measurement: '%'
+  #       device_class: battery
+  #     front_door_sensor_batt:
+  #       friendly_name: "Front Door Sensor Battery"
+  #       value_template: '{{ states.zwave.aeon_labs_zw120_door_window_sensor_gen5.attributes.battery_level}}'
+  #       unit_of_measurement: '%'
+  #       device_class: battery
  
