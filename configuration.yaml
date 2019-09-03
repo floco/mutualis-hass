@@ -52,7 +52,7 @@ logger:
 
 recorder:
   purge_interval: 1
-  purge_keep_days: 30
+  purge_keep_days: 15
   include:
     entities:
       - group.windows
@@ -158,7 +158,7 @@ xiaomi_aqara:
 input_boolean:
   alarm:
     name: Track alarm state
-    icon: mdi:mdi-alarm-light
+    icon: mdi:alarm-bell
 
 input_select:
   home_mode:

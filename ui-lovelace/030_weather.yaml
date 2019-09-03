@@ -20,7 +20,8 @@ cards:
             font_size: 75
             line_color: blue
             line_width: 8
-            name: Temp
+            name: Living
+            hours_to_show: 168
           - type: 'custom:mini-graph-card'
             entities:
               - sensor.netatmo_inside_humidity
@@ -44,13 +45,16 @@ cards:
             line_color: blue
             line_width: 8
             name: CO2
-          - type: custom:button-card
-            color_type: blank-card
+          - type: 'custom:mini-graph-card'
+            entities:
+              - sensor.garage_temperature
+            font_size: 75
+            line_color: blue
+            line_width: 8
+            name: Garage
           - type: custom:button-card
             color_type: blank-card
 
-  - type: vertical-stack
-    cards:
       - type: custom:button-card
         template: header
         name: OUTSIDE
@@ -94,4 +98,4 @@ cards:
         show:
           labels: true
           labels_secondary: true
-        
+

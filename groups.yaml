@@ -77,8 +77,8 @@
   smoke:
     - binary_sensor.smoke_sensor_158d0001bbe483           # Smoke_Sensor_Upstairs
     - binary_sensor.smoke_sensor_158d0001e581ee           # Smoke_Sensor_Living
-    - binary_sensor.smoke_sensor_158d00024e8f68
-    - binary_sensor.smoke_sensor_158d00028f4032
+    - binary_sensor.smoke_sensor_158d00024e8f68           # Smoke_Sensor_Mia
+    - binary_sensor.smoke_sensor_158d00028f4032           # Smoke_Sensor_evy
   all_persons:
     - person.julien
     - person.mojca
