@@ -166,6 +166,8 @@ resources:
     type: js
   - url: /community_plugin/lovelace-auto-entities/auto-entities.js
     type: js
+  - url: /community_plugin/decluttering-card/decluttering-card.js
+    type: module
 
 views:
   - !include ui-lovelace/010_home.yaml
