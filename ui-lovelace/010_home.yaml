@@ -159,7 +159,8 @@ cards:
                 template: window
                 entity: binary_sensor.door_window_sensor_158d000238c840
               - type: custom:button-card
-                color_type: blank-card
+                template: smoke
+                entity: binary_sensor.smoke_sensor_158d00024e8f68
               - type: custom:button-card
                 color_type: blank-card
 
@@ -180,7 +181,8 @@ cards:
                 template: velux
                 entity: binary_sensor.door_window_sensor_158d000237d247
               - type: custom:button-card
-                color_type: blank-card
+                template: smoke
+                entity: binary_sensor.smoke_sensor_158d00028f4032
 
       - type: vertical-stack
         cards:
