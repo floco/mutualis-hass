@@ -38,11 +38,11 @@ cards:
         template: sensors_graph
         variables:
           - entity1: sensor.netatmo_outside_temperature
-          - name1: Living
+          - name1: Temp
           - entity2: sensor.netatmo_outside_humidity
           - name2: Hum
-          - entity3: sensor.netatmo_outside_pressure
-          - name3: Pres
+          - entity3:  sensor.netatmo_outside_battery_percent
+          - name3: Bat
 
       - type: 'custom:mini-graph-card'
         entities:
