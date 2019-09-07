@@ -12,75 +12,37 @@ cards:
       - type: custom:button-card
         template: header
         name: INSIDE
-      - type: horizontal-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_inside_temperature
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Living
-            hours_to_show: 168
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_inside_humidity
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Hum
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_inside_pressure
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Pres
-      - type: horizontal-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_inside_co2
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: CO2
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.garage_temperature
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Garage
-          - type: custom:button-card
-            color_type: blank-card
+      - type: custom:decluttering-card
+        template: sensors_graph
+        variables:
+          - entity1: sensor.netatmo_inside_temperature
+          - name1: Living
+          - entity2: sensor.netatmo_inside_humidity
+          - name2: Hum
+          - entity3: sensor.netatmo_inside_pressure
+          - name3: Pres
+      - type: custom:decluttering-card
+        template: sensors_graph
+        variables:
+          - entity1: sensor.netatmo_inside_co2
+          - name1: CO2
+          - entity2: sensor.garage_temperature
+          - name2: Garage
+          - entity3: sensor.broadlink_sensor_temperature
+          - name3: TV
 
       - type: custom:button-card
         template: header
         name: OUTSIDE
-      - type: horizontal-stack
-        cards:
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_outside_temperature
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Temp
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_outside_humidity
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Hum
-          - type: 'custom:mini-graph-card'
-            entities:
-              - sensor.netatmo_outside_pressure
-            font_size: 75
-            line_color: blue
-            line_width: 8
-            name: Pres
+      - type: custom:decluttering-card
+        template: sensors_graph
+        variables:
+          - entity1: sensor.netatmo_outside_temperature
+          - name1: Living
+          - entity2: sensor.netatmo_outside_humidity
+          - name2: Hum
+          - entity3: sensor.netatmo_outside_pressure
+          - name3: Pres
 
       - type: 'custom:mini-graph-card'
         entities:

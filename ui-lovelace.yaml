@@ -150,7 +150,38 @@ button_card_templates:
       color: "#279b37" #dark green
       icon: "mdi:battery"
 
+decluttering_templates:
 
+  sensor_graph:    
+    card:
+      type: custom:mini-graph-card
+      entities:
+        - '[[entity]]'
+      font_size: 75
+      line_color: blue
+      line_width: 8
+      name: '[[name]]'
+
+  sensors_graph:    
+    card:
+      type: horizontal-stack
+      cards:
+        - type: custom:decluttering-card
+          template: sensor_graph
+          variables:
+            - entity: '[[entity1]]'
+            - name: '[[name1]]'
+        - type: custom:decluttering-card
+          template: sensor_graph
+          variables:
+            - entity: '[[entity2]]'
+            - name: '[[name2]]'
+        - type: custom:decluttering-card
+          template: sensor_graph
+          variables:
+            - entity: '[[entity3]]'
+            - name: '[[name3]]'
+    
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
