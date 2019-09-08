@@ -22,3 +22,5 @@ emulated_hue_ids.json
 *.old
 /custom_components/**
 !/.gitignore
+*-shm
+*-wal
