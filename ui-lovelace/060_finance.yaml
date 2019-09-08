@@ -25,3 +25,19 @@ cards:
             line_color: blue
             line_width: 8
             name: USD_EUR
+  
+  - type: vertical-stack
+    cards:
+      - type: custom:button-card
+        template: header
+        name: INSIDE
+      - type: custom:decluttering-card
+        template: sensors_graph
+        variables:
+          - entity1: sensor.servicenow
+          - name1: SNOW
+          - entity2: sensor.lyxorcac40
+          - name2: CAC40
+          - entity3: sensor.apple
+          - name3: APPLE
+
