@@ -1,2 +1,8 @@
 person.julien:
-  entity_picture: 'https://www.gravatar.com/avatar/a0e8cc41f74108f00f3cea92f3ed1286.jpg?s=80&d=wavatar'
+  entity_picture: /local/images/person.julien_home.png
+person.mojca:
+  entity_picture: /local/images/person.mojca_home.png
+person.mia:
+  entity_picture: /local/images/person.mia_home.png
+person.evy:
+  entity_picture: /local/images/person.evy_home.png

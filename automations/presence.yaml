@@ -1,5 +1,5 @@
 # Presence notification
-- id: A018a
+- id: PRE001
   alias: Presence Notification Home
   trigger:
     platform: state
@@ -11,21 +11,8 @@
       title: 'Presence Notification'
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est à la maison.
-  # - service: tts.google_say
-  #   entity_id: media_player.cuisine
-  #   data_template:
-  #     message: >
-  #       {%- macro speak_presence(person) -%}
-  #         {{ [
-  #         "Bienvenue " + person + " !",
-  #         "Salut à toi " + person + " !",
-  #         "Bonjour " + person + " !"
-  #         ] | random }}
-  #       {%- endmacro -%}
-  #       {% set person = trigger.from_state.attributes.friendly_name %}       
-  #       {{ speak_presence(person) }}
 
-- id: A018b
+- id: PRE002
   alias: Presence Notification Leave
   trigger:
     platform: state
@@ -37,6 +24,7 @@
       title: 'Presence Notification'
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est parti.
+
   # - service: tts.google_say
   #   entity_id: media_player.cuisine
   #   data_template:
@@ -50,8 +38,6 @@
   #       {%- endmacro -%}
   #       {% set person = trigger.from_state.attributes.friendly_name %}       
   #       {{ speak_presence(person) }}
-
-#
 
 # - alias: Turn off air purifier when everyone leaves
 #   trigger: 

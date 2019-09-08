@@ -10,19 +10,11 @@ cards:
       - type: custom:button-card
         template: header
         name: PERSONNE
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            template: person
-            entity: person.julien
-          - type: custom:button-card
-            template: person
-            entity: person.mojca
-          - type: custom:button-card
-            template: person
-            entity: person.mia
-          - type: custom:button-card
-            template: person
-            entity: person.evy
-
+      - type: custom:decluttering-card
+        template: persons
+        variables:
+          - entity1: person.julien
+          - entity2: person.mojca
+          - entity3: person.mia
+          - entity4: person.evy
 

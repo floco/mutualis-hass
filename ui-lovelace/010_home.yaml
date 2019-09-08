@@ -238,26 +238,40 @@ cards:
               - type: custom:button-card
                 color_type: blank-card
 
+  - type: 'custom:home-feed-card'
+    title: Home Feed
+    show_empty: false
+    calendars:
+      - calendar.holidays_in_belgium
+      - calendar.home_status
+      - calendar.poubelle_waterloo
+    id_filter: ^home_feed_.*
+    more_info_on_tap: true
+    entities:
+        - binary_sensor.door_window_sensor_158d0002c9c949
+        # - entity: sensor.bin_collection
+        #   name: Next Bin Collection
+        #   more_info_on_tap: false
+        # - entity: sensor.reddit_help
+        #   multiple_items: true
+        #   list_attribute: posts
+        #   timestamp_property: created_
+        #   max_items: 5
+        #   content_template: '[{{title}}]({{url}})'
+
   # person
   - type: vertical-stack
     cards:
       - type: custom:button-card
         template: header
         name: PERSONNE
-      - type: horizontal-stack
-        cards:
-          - type: custom:button-card
-            template: person
-            entity: person.julien
-          - type: custom:button-card
-            template: person
-            entity: person.mojca
-          - type: custom:button-card
-            template: person
-            entity: person.mia
-          - type: custom:button-card
-            template: person
-            entity: person.evy
+      - type: custom:decluttering-card
+        template: persons
+        variables:
+          - entity1: person.julien
+          - entity2: person.mojca
+          - entity3: person.mia
+          - entity4: person.evy
 
   # cast
   - type: entities

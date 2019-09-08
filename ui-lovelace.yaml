@@ -96,13 +96,6 @@ button_card_templates:
       - value: "on"
         color: yellow 
 
-  person:
-    hold_action:
-      action: more-info
-    state:
-      - value: "home"
-        color: green 
-
   battery:
     icon: mdi:battery
     color_type: icon
@@ -151,7 +144,6 @@ button_card_templates:
       icon: "mdi:battery"
 
 decluttering_templates:
-
   sensor_graph:    
     card:
       type: custom:mini-graph-card
@@ -181,13 +173,53 @@ decluttering_templates:
           variables:
             - entity: '[[entity3]]'
             - name: '[[name3]]'
-    
+          
+  person:
+    card:
+      type: custom:button-card
+      entity: '[[entity]]'
+      tap_action:
+        action: more-info
+      hold_action:
+        action: more-info
+      show_entity_picture: true
+      size: 80%
+      color_type: card
+      state:
+        - value: "home"
+          entity_picture: /local/images/[[entity]]_home.png
+          color: white
+        - value: "not_home"
+          entity_picture: /local/images/[[entity]]_not_home.png
+          color: lightgray
+
+  persons:
+    card:
+      type: horizontal-stack
+      cards:
+        - type: custom:decluttering-card
+          template: person
+          variables:
+            - entity: '[[entity1]]'
+        - type: custom:decluttering-card
+          template: person
+          variables:
+            - entity: '[[entity2]]'
+        - type: custom:decluttering-card
+          template: person
+          variables:
+            - entity: '[[entity3]]'    
+        - type: custom:decluttering-card
+          template: person
+          variables:
+            - entity: '[[entity4]]' 
+
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
   - url: /community_plugin/weather-card/weather-card.js
     type: module
-  - url: /community_plugin/lovelace-home-feed-card/home-feed-card.js
+  - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
     type: js
   - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
@@ -199,6 +231,8 @@ resources:
     type: js
   - url: /community_plugin/decluttering-card/decluttering-card.js
     type: module
+  - url: /community_plugin/fitbit-card/fitbit-card.js
+    type: js
 
 views:
   - !include ui-lovelace/010_home.yaml

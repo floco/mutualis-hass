@@ -24,3 +24,4 @@ emulated_hue_ids.json
 !/.gitignore
 *-shm
 *-wal
+*.png

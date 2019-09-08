@@ -2,16 +2,22 @@
   id: julien
   user_id: 09702289c33b4ba9896a2ee566181ef9
   device_trackers:
-    - device_tracker.edgeos_iphone_x
+    - device_tracker.b0_19_c6_b4_82_2f
+
 - name: Mojca
   id: mojca
   device_trackers:
-    - device_tracker.edgeos_oneplus_onex
+    - device_tracker.c0_ee_fb_58_e2_20
+    # - device_tracker.edgeos_oneplus_onex
+
 - name: Mia
   id: mia
   device_trackers:
-    - device_tracker.edgeos_iphone_5s
+    - device_tracker.54_e4_3a_28_fe_75
+    # - device_tracker.edgeos_iphone_5s
+
 - name: Evy
   id: evy
   device_trackers:
-    - device_tracker.edgeos_lumia
+    - device_tracker.38_f2_3e_23_af_30
+    # - device_tracker.edgeos_lumia
