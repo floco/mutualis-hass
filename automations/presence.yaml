@@ -25,6 +25,27 @@
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est parti.
 
+- id: PRE003
+  alias: Presence Workaround to prevent device to be away if door not opened
+  trigger:
+    platform: state
+    entity_id: device_tracker.b0_19_c6_b4_82_2f
+    from: 'home'
+  condition:
+  - condition: template
+    value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d0002c9c949.attributes.last_triggered) | int > 600 }}'
+  action:
+  - service: device_tracker.see
+    data:
+      dev_id: device_tracker.b0_19_c6_b4_82_2f
+      location_name: 'home'
+  - service: notify.ju
+    data_template:
+      title: 'Presence Workaround'
+      message: >
+        {{ trigger.from_state.attributes.friendly_name }} est remis en home car porte pas ouverte recemment
+
+
   # - service: tts.google_say
   #   entity_id: media_player.cuisine
   #   data_template:

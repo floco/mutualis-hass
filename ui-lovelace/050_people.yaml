@@ -5,16 +5,21 @@ badges: []
 cards:
 
   # person
-  - type: vertical-stack
-    cards:
-      - type: custom:button-card
-        template: header
-        name: PERSONNE
-      - type: custom:decluttering-card
-        template: persons
-        variables:
-          - entity1: person.julien
-          - entity2: person.mojca
-          - entity3: person.mia
-          - entity4: person.evy
+  - type: custom:decluttering-card
+    template: health
+    variables:
+      - entity: julien
+  - type: custom:decluttering-card
+    template: health
+    variables:
+      - entity: mojca
+  - type: custom:decluttering-card
+    template: health
+    variables:
+      - entity: mia
+  - type: custom:decluttering-card
+    template: health
+    variables:
+      - entity: evy
+      
 

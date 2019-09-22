@@ -49,6 +49,7 @@ logger:
   default: warn
   logs:
     custom_components.hacs: debug
+    homeassistant.components.withings: critical
 
 recorder:
   purge_interval: 1
@@ -83,6 +84,7 @@ tts:
   - platform: google_translate
     language: 'fr'
     service_name: google_say
+    base_url: !secret tts_base_url
 
 netatmo:
   api_key: !secret netatmo_api_key
@@ -205,6 +207,18 @@ mqtt:
   password: !secret mqtt_password
   client_id: home-assistant
 
+withings:
+  client_id: !secret withings_client_id
+  client_secret: !secret withings_client_secret
+  profiles:
+    - Julien
+    - Mojca
+    - Mia 
+    - Evy
+  # measures:
+  #   - weight_kg
+  #   - fat_mass_kg
+
 ########### CUSTOM COMPONENTS ########### 
 
 hacs:
@@ -244,7 +258,9 @@ device_tracker:
     username: !secret edge_os_admin_username
     password: !secret edge_os_admin_password
     interval_seconds: 60
-    track_new_devices: false
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
 
 ########### INCLUDES ########### 
 

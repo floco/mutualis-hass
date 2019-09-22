@@ -60,4 +60,6 @@ cards:
         show:
           labels: true
           labels_secondary: true
+        hours_to_show: 336
+        points_per_hour: 0.1
 

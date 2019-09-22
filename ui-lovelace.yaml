@@ -153,6 +153,8 @@ decluttering_templates:
       line_color: blue
       line_width: 8
       name: '[[name]]'
+      hours_to_show: 168
+      points_per_hour: 0.1
 
   sensors_graph:    
     card:
@@ -213,6 +215,23 @@ decluttering_templates:
           template: person
           variables:
             - entity: '[[entity4]]' 
+
+  health:
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: header
+          name: '[[entity]]'
+        - type: custom:decluttering-card
+          template: sensors_graph
+          variables:
+            - entity1: sensor.withings_weight_kg_[[entity]]
+            - name1: Weight
+            - entity2: sensor.withings_fat_ratio_pct_[[entity]]
+            - name2: Fat Ratio
+            - entity3: sensor.withings_systolic_blood_pressure_mmhg_[[entity]]
+            - name3: Blood P
 
 resources:
   - url: /community_plugin/compact-custom-header/compact-custom-header.js
