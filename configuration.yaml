@@ -25,17 +25,21 @@ http:
   #   - !secret trusted_ip
   #   - !secret trusted_ip_2
 
-system_health:
-frontend:
+browser_mod:
 config:
 conversation:
 discovery:
+frontend:
 history:
 logbook:
 sun:
+system_health:
 updater:
 map:
-browser_mod:
+mobile_app:
+ssdp:
+zeroconf:
+
 lovelace:
   mode: yaml
 
