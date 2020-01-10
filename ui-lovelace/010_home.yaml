@@ -19,11 +19,13 @@ cards:
                 entity: binary_sensor.door_window_sensor_158d0002c9c949 
               - type: custom:button-card
                 template: motion
+                entity: binary_sensor.motion_sensor_158d00042026f7
+              - type: custom:button-card
+                template: light
+                entity: switch.shelly_shsw_1_c499ba
+              - type: custom:button-card
+                template: motion
                 entity: binary_sensor.ring_porte_de_devant_motion
-              - type: custom:button-card
-                color_type: blank-card
-              - type: custom:button-card
-                color_type: blank-card
 
       - type: vertical-stack
         cards:
@@ -47,7 +49,7 @@ cards:
         cards:
           - type: custom:button-card
             template: header
-            name: LIVING
+            name: SALON
           - type: horizontal-stack
             cards:
               - type: custom:button-card
@@ -126,6 +128,26 @@ cards:
       # - type: custom:button-card
       #   template: header_group
       #   name: ETAGE
+
+      - type: vertical-stack
+        cards:
+          - type: custom:button-card
+            template: header
+            name: MEZZANINE
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                template: window
+                entity: binary_sensor.door_window_sensor_158d000237d1b8
+              - type: custom:button-card
+                template: motion
+                entity: binary_sensor.motion_sensor_158d000276d4da
+              - type: custom:button-card
+                template: light
+                entity: switch.shelly_shsw_1_c495de
+              - type: custom:button-card
+                template: smoke
+                entity: binary_sensor.smoke_sensor_158d0001bbe483 
 
       - type: vertical-stack
         cards:
@@ -216,25 +238,6 @@ cards:
                 color_type: blank-card
               - type: custom:button-card
                 color_type: blank-card
-              - type: custom:button-card
-                color_type: blank-card
-
-      - type: vertical-stack
-        cards:
-          - type: custom:button-card
-            template: header
-            name: MEZZANINE
-          - type: horizontal-stack
-            cards:
-              - type: custom:button-card
-                template: motion
-                entity: binary_sensor.motion_sensor_158d000276d4da
-              - type: custom:button-card
-                template: window
-                entity: binary_sensor.door_window_sensor_158d000237d1b8
-              - type: custom:button-card
-                template: smoke
-                entity: binary_sensor.smoke_sensor_158d0001bbe483 
               - type: custom:button-card
                 color_type: blank-card
 

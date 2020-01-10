@@ -149,9 +149,9 @@
           entity_id: switch.prise3
 
 # PS3
-- platform: wake_on_lan
-  name: "PS3 WOL"
-  mac_address: !secret ps3_mac
+# - platform: wake_on_lan
+#   name: "PS3 WOL"
+#   mac_address: !secret ps3_mac
 
 - platform: command_line
   switches:

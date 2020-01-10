@@ -59,3 +59,55 @@
   - service: homeassistant.toggle
     data:
       entity_id: group.spots
+
+- id: A012
+  alias: Switch on Vestibule Light                                                                                                 
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00042026f7
+      to: 'on'
+      # for:
+      #   hours: 0
+      #   minutes: 60
+      #   seconds: 0
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.shelly_shsw_1_c499ba
+
+- id: A013
+  alias: Switch off Vestibule Light                                                                                                 
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d00042026f7
+      to: 'off'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.shelly_shsw_1_c499ba
+
+- id: A014
+  alias: Switch on Mezzanine Light                                                                                                 
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d000276d4da
+      to: 'on'
+      # for:
+      #   hours: 0
+      #   minutes: 60
+      #   seconds: 0
+  condition:
+    condition: time
+    after: '06:30:00'
+    before: '23:30:00'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: switch.shelly_shsw_1_c495de
+
+- id: A015
+  alias: Switch off Mezzanine Light                                                                                                 
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d000276d4da
+      to: 'off'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: switch.shelly_shsw_1_c495de

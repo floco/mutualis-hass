@@ -112,9 +112,9 @@ notify:
   - name: mo
     platform: telegram
     chat_id: !secret telegram_chat_id_mo
-  - name: Google Assistant
-    platform: rest
-    resource: !secret google_msg_url
+  # - name: Google Assistant
+  #   platform: rest
+  #   resource: !secret google_msg_url
 
 ring:
   username: !secret ring_username
@@ -144,6 +144,8 @@ camera:
 google_assistant:
   project_id: !secret google_project_id
   api_key: !secret google_api_key
+  service_account: !include google.conf
+  report_state: true
   exposed_domains:
     - switch
     - light
@@ -151,6 +153,25 @@ google_assistant:
 google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_client_secret
+
+rest_command:
+  assistant_broadcast:
+    url: !secret google_assistant_url
+    method: POST
+    content_type: 'application/json'
+    payload: !secret google_assistant_payload_broadcast
+    
+  assistant_converse:
+    url: !secret google_assistant_url
+    method: POST
+    content_type: 'application/json'
+    payload: !secret google_assistant_payload_converse
+
+  assistant_relay:
+    url: !secret google_assistant_url
+    method: POST
+    content_type: 'application/json'
+    payload: !secret google_assistant_payload_relay
 
 timer:
   charge:
@@ -229,6 +250,8 @@ hacs:
   token: !secret hacs_token
 
 #breaking_changes:
+
+shelly:
 
 edgeos:
   host: !secret edge_os_host

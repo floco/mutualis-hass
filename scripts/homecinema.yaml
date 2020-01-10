@@ -198,6 +198,8 @@ watch_video:
     - service: homeassistant.turn_on
       entity_id: switch.bose_system
 
+#TODO: for ps3, notify must switch off ps3 first 
+
 stop_watching:
   sequence:
     - service: homeassistant.turn_off

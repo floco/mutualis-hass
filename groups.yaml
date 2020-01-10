@@ -74,6 +74,7 @@
     - binary_sensor.door_window_sensor_158d000243645e     # Velux_Salle_de_bain
   motion:
     - binary_sensor.motion_sensor_158d000276d4da          # Motion_Upstairs
+    - binary_sensor.motion_sensor_158d00042026f7          # Motion_Entree
   smoke:
     - binary_sensor.smoke_sensor_158d0001bbe483           # Smoke_Sensor_Upstairs
     - binary_sensor.smoke_sensor_158d0001e581ee           # Smoke_Sensor_Living

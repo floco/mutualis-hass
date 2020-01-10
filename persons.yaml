@@ -7,17 +7,14 @@
 - name: Mojca
   id: mojca
   device_trackers:
-    - device_tracker.c0_ee_fb_58_e2_20
-    # - device_tracker.edgeos_oneplus_onex
+    - device_tracker.a8_9c_ed_d7_df_16 
 
 - name: Mia
   id: mia
   device_trackers:
-    - device_tracker.54_e4_3a_28_fe_75
-    # - device_tracker.edgeos_iphone_5s
+    - device_tracker.e0_dc_ff_f7_84_e9 
 
 - name: Evy
   id: evy
   device_trackers:
-    - device_tracker.38_f2_3e_23_af_30
-    # - device_tracker.edgeos_lumia
+    - device_tracker.54_e4_3a_28_fe_75
