@@ -89,3 +89,12 @@
           {% set low_batteries = states | selectattr('attributes.battery_level', 'defined') | selectattr('attributes.battery_level','<', battery_alert_threshold ) | map(attribute='name') | list | join(', ') %}
           Low batteries in the following devices: {{ low_batteries }}
 
+# - id: SY003
+#   alias: 'Set theme at startup'
+#   trigger:
+#     - platform: homeassistant
+#       event: start
+#   action:
+#     service: frontend.set_theme
+#     data:
+#       name: happy

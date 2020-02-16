@@ -38,8 +38,51 @@
     name: ServiceNow
     shares: 15
     monitored_conditions:
+      - change
       - changePercent
+      - country
+      - currency
+      - description
+      - directYield
+      - dividends
+      - flagCode
+      - hasInvestmentFees
+      - highestPrice
+      - id
+      - isin
       - lastPrice
+      - lastPriceUpdated
+      - loanFactor
+      - lowestPrice
+      - marketCapital
+      - marketList
+      - marketMakerExpected
+      - marketPlace
+      - marketTrades
+      - morningStarFactSheetUrl
+      - name
+      - numberOfOwners
+      - orderDepthReceivedTime
+      - priceAtStartOfYear
+      - priceEarningsRatio
+      - priceFiveYearsAgo
+      - priceOneMonthAgo
+      - priceOneWeekAgo
+      - priceOneYearAgo
+      - priceSixMonthsAgo
+      - priceThreeMonthsAgo
+      - priceThreeYearsAgo
+      - pushPermitted
+      - quoteUpdated
+      - sector
+      - shortSellable
+      - superLoan
+      - tickerSymbol
+      - totalNumberOfShares
+      - totalValueTraded
+      - totalVolumeTraded
+      - tradable
+      - volatility
   - platform: avanza_stock
     stock: 972536
     name: LyxorCAC40

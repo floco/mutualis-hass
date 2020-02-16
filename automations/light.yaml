@@ -60,54 +60,72 @@
     data:
       entity_id: group.spots
 
-- id: A012
-  alias: Switch on Vestibule Light                                                                                                 
+# Motion and Timer for light downstairs
+- id: A013a
+  alias: Start Timer Down when motion detected downstairs                                                                                                 
   trigger:
     - platform: state
       entity_id: binary_sensor.motion_sensor_158d00042026f7
       to: 'on'
-      # for:
-      #   hours: 0
-      #   minutes: 60
-      #   seconds: 0
+  action:
+  - service: timer.start
+    entity_id: timer.light_down
+
+- id: A013b
+  alias: Switch ON Hall Light at start of timer
+  trigger: 
+  - platform: event
+    event_type: timer.started
+    event_data: 
+      entity_id: timer.light_down
   action:
   - service: homeassistant.turn_on
     entity_id: switch.shelly_shsw_1_c499ba
 
-- id: A013
-  alias: Switch off Vestibule Light                                                                                                 
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d00042026f7
-      to: 'off'
+- id: A013c
+  alias: Switch OFF Hall Light at start of timer
+  trigger: 
+  - platform: event
+    event_type: timer.finished
+    event_data: 
+      entity_id: timer.light_down
   action:
   - service: homeassistant.turn_off
     entity_id: switch.shelly_shsw_1_c499ba
 
-- id: A014
-  alias: Switch on Mezzanine Light                                                                                                 
+# Motion and Timer for light upstairs
+- id: A014a
+  alias: Start Timer Up when motion detected upstairs                                                                                                 
   trigger:
     - platform: state
       entity_id: binary_sensor.motion_sensor_158d000276d4da
       to: 'on'
-      # for:
-      #   hours: 0
-      #   minutes: 60
-      #   seconds: 0
   condition:
     condition: time
     after: '06:30:00'
-    before: '23:30:00'
+    before: '23:00:00'
+  action:
+  - service: timer.start
+    entity_id: timer.light_up
+
+- id: A014b
+  alias: Switch ON Mezzanine Light at start of timer
+  trigger: 
+  - platform: event
+    event_type: timer.started
+    event_data: 
+      entity_id: timer.light_up
   action:
   - service: homeassistant.turn_on
     entity_id: switch.shelly_shsw_1_c495de
 
-- id: A015
-  alias: Switch off Mezzanine Light                                                                                                 
-  trigger:
-    - platform: state
-      entity_id: binary_sensor.motion_sensor_158d000276d4da
-      to: 'off'
+- id: A014c
+  alias: Switch OFF Mezzanine Light at start of timer
+  trigger: 
+  - platform: event
+    event_type: timer.finished
+    event_data: 
+      entity_id: timer.light_up
   action:
   - service: homeassistant.turn_off
     entity_id: switch.shelly_shsw_1_c495de
