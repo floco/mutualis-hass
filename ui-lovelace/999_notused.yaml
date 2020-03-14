@@ -92,8 +92,8 @@
     path: home
     title: Home
   - badges:
-      - binary_sensor.ring_porte_de_devant_ding
-      - binary_sensor.ring_porte_de_devant_motion
+      - binary_sensor.porte_de_devant_ding
+      - binary_sensor.porte_de_devant_motion
       - binary_sensor.garage_sensor_motion
       - binary_sensor.edgeos_device_iphone_5s
       - binary_sensor.edgeos_device_iphone_x

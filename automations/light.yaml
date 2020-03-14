@@ -41,7 +41,7 @@
 #     entity_id: switch.prise3
 
 # Activated by parent switch right
-- id: A011
+- id: LI001
   alias: Toggle Light in parents room
   trigger:
     platform: event
@@ -61,7 +61,7 @@
       entity_id: group.spots
 
 # Motion and Timer for light downstairs
-- id: A013a
+- id: LI002
   alias: Start Timer Down when motion detected downstairs                                                                                                 
   trigger:
     - platform: state
@@ -71,7 +71,7 @@
   - service: timer.start
     entity_id: timer.light_down
 
-- id: A013b
+- id: LI003
   alias: Switch ON Hall Light at start of timer
   trigger: 
   - platform: event
@@ -82,7 +82,7 @@
   - service: homeassistant.turn_on
     entity_id: switch.shelly_shsw_1_c499ba
 
-- id: A013c
+- id: LI004
   alias: Switch OFF Hall Light at start of timer
   trigger: 
   - platform: event
@@ -94,7 +94,7 @@
     entity_id: switch.shelly_shsw_1_c499ba
 
 # Motion and Timer for light upstairs
-- id: A014a
+- id: LI005
   alias: Start Timer Up when motion detected upstairs                                                                                                 
   trigger:
     - platform: state
@@ -108,7 +108,7 @@
   - service: timer.start
     entity_id: timer.light_up
 
-- id: A014b
+- id: LI006
   alias: Switch ON Mezzanine Light at start of timer
   trigger: 
   - platform: event
@@ -119,7 +119,7 @@
   - service: homeassistant.turn_on
     entity_id: switch.shelly_shsw_1_c495de
 
-- id: A014c
+- id: LI007
   alias: Switch OFF Mezzanine Light at start of timer
   trigger: 
   - platform: event

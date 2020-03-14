@@ -1,5 +1,5 @@
 # Calendar
-- id: CAL001
+- id: CA001
   alias: Calendar Event All
   trigger:
     platform: state

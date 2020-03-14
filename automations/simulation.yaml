@@ -1,5 +1,5 @@
 # Presence Simulation Morning
-- id: A017a
+- id: SI001
   alias: Presence Simulation Morning On
   trigger:
     platform: time
@@ -14,7 +14,7 @@
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_on
     entity_id:  light.chambre_parent
-- id: A017b
+- id: SI002
   alias: Presence Simulation Morning Off
   trigger:
     platform: time
@@ -30,7 +30,7 @@
   - service: homeassistant.turn_off
     entity_id:  light.chambre_parent
   # Presence Simulation Night
-- id: A017c
+- id: SI003
   alias: Presence Simulation Night On
   trigger:
     platform: time
@@ -45,7 +45,7 @@
     entity_id:  light.chambre_evy
   - service: homeassistant.turn_on
     entity_id:  light.chambre_parent
-- id: A017d
+- id: SI004
   alias: Presence Simulation Night Off
   trigger:
     platform: time

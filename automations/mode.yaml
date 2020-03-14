@@ -1,5 +1,5 @@
 # Actions when in Night Mode
-- id: A016a
+- id: MO001
   alias: Activate Night Mode
   trigger:
   - entity_id: input_select.home_mode
@@ -10,7 +10,7 @@
     data:
       entity_id: switch.alarm_arm_home
 # Actions when in Day Mode
-- id: A016b
+- id: MO002
   alias: Activate Day Mode
   trigger:
   - entity_id: input_select.home_mode
@@ -21,7 +21,7 @@
     data:
       entity_id: switch.alarm_arm_home
 # Actions when in Vacation Mode
-- id: A016c
+- id: MO003
   alias: Activate Day Mode
   trigger:
   - entity_id: input_select.home_mode

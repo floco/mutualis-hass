@@ -1,5 +1,5 @@
 # Activated when one of the sensors are opened and alarm is armed
-- id: A009a
+- id: AL001
   alias: Windows Alarm
   trigger:
   - entity_id: group.windows
@@ -19,7 +19,7 @@
   - service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.home_alarm
 # Activated when alarm is trigerred
-- id: A009b
+- id: AL002
   alias: Send notification when alarm triggered
   trigger:
   - entity_id: alarm_control_panel.home_alarm
@@ -66,7 +66,8 @@
         brightness: 255
         rgb_color: [254,0,0]
 
-- alias: 'Notify if door/window opened and no one is home'                                                                                                   
+- id: AL003
+  alias: 'Notify if door/window opened and no one is home'                                                                                                   
   trigger:
     - platform: state
       entity_id: group.all_persons
@@ -96,7 +97,8 @@
             {% endif %}
           {% endfor %}
 
-- alias: 'Notify if door/window opened for 60 minutes'                                                                                                   
+- id: AL004
+  alias: 'Notify if door/window opened for 60 minutes'                                                                                                   
   trigger:
     - platform: state
       entity_id: group.doors, group.windows
@@ -138,7 +140,7 @@
 #   - service: homeassistant.turn_on
 #     entity_id: script.alarm_off
 # Activated when smoke is detected
-- id: A010
+- id: AL005
   alias: Send notification on fire alarm
   trigger:
   - entity_id: group.smoke
@@ -149,7 +151,7 @@
   - service: homeassistant.turn_on
     entity_id: script.smoke_alarm
 # Activated by parent switch left
-- id: A012
+- id: AL006
   alias: Toggle Alarm
   trigger:
     platform: event
@@ -162,7 +164,7 @@
     data:
       entity_id: switch.alarm_arm_away
 # Activated when the door is opened
-- id: A014a
+- id: AL007
   alias: Door Alert Open
   trigger:
   - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
@@ -176,7 +178,7 @@
       message: >         
         <b>door opened !</b>
 # Activated when the door is closed
-- id: A014a
+- id: AL008
   alias: Door Alert Closed
   trigger:
   - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 

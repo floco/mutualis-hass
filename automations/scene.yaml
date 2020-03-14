@@ -1,5 +1,5 @@
 # Activated at night
-- id: A015a
+- id: SC001
   alias: Trigger Night Scene
   trigger:
     platform: time
@@ -13,7 +13,7 @@
         entity_id: input_select.home_mode
         option: Night
 # Activated in morning
-- id: A015b
+- id: SC002
   alias: Trigger Morning Scene
   trigger:
     platform: time

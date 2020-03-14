@@ -1,4 +1,4 @@
-- id: A004
+- id: HO001
   alias: Turn off Home Cinema in the evening
   trigger:
     platform: time

@@ -1,5 +1,5 @@
 # Presence notification
-- id: PRE001
+- id: PR001
   alias: Presence Notification Home
   trigger:
     platform: state
@@ -12,7 +12,7 @@
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est à la maison.
 
-- id: PRE002
+- id: PR002
   alias: Presence Notification Leave
   trigger:
     platform: state
@@ -25,7 +25,7 @@
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est parti.
 
-- id: PRE003
+- id: PR003
   alias: Presence Workaround to prevent device to be away if door not opened
   trigger:
     platform: state

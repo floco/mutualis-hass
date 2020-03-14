@@ -25,7 +25,7 @@ cards:
                 entity: switch.shelly_shsw_1_c499ba
               - type: custom:button-card
                 template: motion
-                entity: binary_sensor.ring_porte_de_devant_motion
+                entity: binary_sensor.porte_de_devant_motion
 
       - type: vertical-stack
         cards:

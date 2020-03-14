@@ -1,9 +1,9 @@
 # When Doorbell rings
-- id: A008
+- id: DO001
   alias: Doorbell Ding
   trigger:
   - platform: state
-    entity_id: binary_sensor.ring_porte_de_devant_ding
+    entity_id: binary_sensor.porte_de_devant_ding
     from: 'off'
     to: 'on'
   action:

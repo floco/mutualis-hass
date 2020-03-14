@@ -1,5 +1,4 @@
   - platform: yr
-  - platform: ring
   - platform: broadlink
     scan_interval: 60
     host: !secret broadlink_rm_host

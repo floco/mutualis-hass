@@ -24,3 +24,4 @@ emulated_hue_ids.json
 *-wal
 *.png
 *_secret.yaml
+ip_bans.yaml

@@ -92,10 +92,8 @@ tts:
     base_url: !secret tts_base_url
 
 netatmo:
-  api_key: !secret netatmo_api_key
-  secret_key: !secret netatmo_secret_key
-  username: !secret netatmo_username
-  password: !secret netatmo_password
+  client_id: !secret netatmo_client_id
+  client_secret: !secret netatmo_client_secret
 
 # curl -X GET https://api.telegram.org/botYOUR_API_TOKEN/getUpdates
 telegram_bot:
@@ -117,12 +115,12 @@ notify:
   #   platform: rest
   #   resource: !secret google_msg_url
 
-ring:
-  username: !secret ring_username
-  password: !secret ring_password
+# ring:
+#   username: !secret ring_username
+#   password: !secret ring_password
 
-binary_sensor:
-  - platform: ring
+# binary_sensor:
+#   - platform: ring
 
 cast:
   media_player:
@@ -144,7 +142,7 @@ camera:
 
 google_assistant:
   project_id: !secret google_project_id
-  api_key: !secret google_api_key
+#  api_key: !secret google_api_key
   service_account: !include google.conf
   report_state: true
   exposed_domains:
