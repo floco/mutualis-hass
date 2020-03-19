@@ -25,3 +25,4 @@ emulated_hue_ids.json
 *.png
 *_secret.yaml
 ip_bans.yaml
+/esphome/**
