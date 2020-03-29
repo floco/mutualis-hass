@@ -2,7 +2,7 @@
     - light.lightstrip
     - light.garage_light
     - light.main_light
-    - switch.prise1
+    - switch.powerstrip1_plug1
     - switch.prise2
     - switch.prise3
     - switch.prise4

@@ -90,7 +90,7 @@ input4:
 watch_tv:
   sequence:
     - service: homeassistant.turn_off
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
       entity_id: switch.mp1_sha
     - service: homeassistant.turn_on
@@ -100,7 +100,7 @@ watch_tv:
     - service: homeassistant.turn_off
       entity_id: switch.mp1_ps3
     - service: homeassistant.turn_on
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -117,7 +117,7 @@ watch_tv:
 watch_movies:
   sequence:
     - service: homeassistant.turn_off
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
       entity_id: switch.mp1_sha
     - service: homeassistant.turn_on
@@ -125,7 +125,7 @@ watch_movies:
     - service: homeassistant.turn_off
       entity_id: switch.mp1_ps3
     - service: homeassistant.turn_on
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -142,7 +142,7 @@ watch_movies:
 watch_ps3:
   sequence:
     - service: homeassistant.turn_off
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
       entity_id: switch.mp1_sha
     - service: homeassistant.turn_off
@@ -150,7 +150,7 @@ watch_ps3:
     - service: homeassistant.turn_on
       entity_id: switch.mp1_ps3
     - service: homeassistant.turn_on
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -169,11 +169,11 @@ watch_ps3:
 listen_audio:
   sequence:
     - service: homeassistant.turn_off
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_off
       entity_id: switch.mp1_sha
     - service: homeassistant.turn_on
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: script.input1
@@ -183,11 +183,11 @@ listen_audio:
 watch_video:
   sequence:
     - service: homeassistant.turn_off
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
       entity_id: switch.mp1_sha
     - service: homeassistant.turn_on
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -217,4 +217,4 @@ stop_watching:
     - service: homeassistant.turn_off
       entity_id: switch.mp1_ps3
     - service: homeassistant.turn_off
-      entity_id: switch.prise1
+      entity_id: switch.powerstrip1_plug1

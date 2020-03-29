@@ -63,7 +63,7 @@ cards:
                 entity: binary_sensor.smoke_sensor_158d0001e581ee 
               - type: custom:button-card
                 template: plug
-                entity: switch.prise1
+                entity: switch.powerstrip1_plug1
           - type: horizontal-stack
             cards:
               - type: custom:button-card
