@@ -94,13 +94,13 @@ netatmo:
   client_secret: !secret netatmo_client_secret
 
 # curl -X GET https://api.telegram.org/botYOUR_API_TOKEN/getUpdates
-telegram_bot:
-  - platform: polling
-    api_key: !secret telegram_api_key
-    parse_mode: html
-    allowed_chat_ids:
-      - !secret telegram_chat_id_ju
-      - !secret telegram_chat_id_mo
+# telegram_bot:
+#   - platform: polling
+#     api_key: !secret telegram_api_key
+#     parse_mode: html
+#     allowed_chat_ids:
+#       - !secret telegram_chat_id_ju
+#       - !secret telegram_chat_id_mo
 
 notify:
   # - name: ju
