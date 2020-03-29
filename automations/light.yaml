@@ -19,8 +19,16 @@
     entity_id: switch.prise4
   - service: homeassistant.turn_off
     entity_id: light.lightstrip
+  - delay: '00:01:00'
   - service: homeassistant.turn_off
     entity_id: switch.prise4
+  - delay: '00:01:00'
+  - service: homeassistant.turn_off
+    entity_id: switch.prise4
+  - delay: '00:01:00'
+  - service: homeassistant.turn_off
+    entity_id: switch.prise4
+
 # - id: A002a
 #   alias: Turn on lights evy before bed
 #   trigger:
