@@ -67,6 +67,15 @@
     - platform: state
       entity_id: binary_sensor.motion_sensor_158d00042026f7
       to: 'on'
+  condition:
+    condition: and
+    conditions:
+      # - condition: time
+      #   after: '06:30:00'
+      #   before: '23:00:00'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
   action:
   - service: timer.start
     entity_id: timer.light_down
@@ -83,7 +92,7 @@
     entity_id: switch.shelly_shsw_1_c499ba
 
 - id: LI004
-  alias: Switch OFF Hall Light at start of timer
+  alias: Switch OFF Hall Light at stop of timer
   trigger: 
   - platform: event
     event_type: timer.finished
@@ -101,9 +110,14 @@
       entity_id: binary_sensor.motion_sensor_158d000276d4da
       to: 'on'
   condition:
-    condition: time
-    after: '06:30:00'
-    before: '23:00:00'
+    condition: and
+    conditions:
+      - condition: time
+        after: '06:30:00'
+        before: '23:00:00'
+      - condition: state
+        entity_id: sun.sun
+        state: 'below_horizon'
   action:
   - service: timer.start
     entity_id: timer.light_up

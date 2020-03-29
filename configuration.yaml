@@ -41,18 +41,11 @@ mobile_app:
 ssdp:
 zeroconf:
 
-lovelace:
-  mode: yaml
-
 panel_iframe:
   mdiindex:
     title: MDI Icon Index
     icon: mdi:vector-square
     url: https://cdn.rawgit.com/james-fry/home-assistant-mdi/efd95d7a/home-assistant-mdi.html
-  ubnt:
-    title: ubnt
-    icon: mdi:lan
-    url: https://ubnt.mutualis.com
 
 logger:
   default: warn
@@ -61,6 +54,7 @@ logger:
     homeassistant.components.withings: critical
 
 recorder:
+  db_url: !secret mariadb_url
   purge_interval: 1
   purge_keep_days: 15
   include:
@@ -109,12 +103,16 @@ telegram_bot:
       - !secret telegram_chat_id_mo
 
 notify:
-  - name: ju
-    platform: telegram
-    chat_id: !secret telegram_chat_id_ju
-  - name: mo
-    platform: telegram
-    chat_id: !secret telegram_chat_id_mo
+  # - name: ju
+  #   platform: telegram
+  #   chat_id: !secret telegram_chat_id_ju
+  # - name: mo
+  #   platform: telegram
+  #   chat_id: !secret telegram_chat_id_mo
+  - name: signal
+    platform: rest
+    resource: !secret signal_url 
+    method: POST_JSON
   # - name: Google Assistant
   #   platform: rest
   #   resource: !secret google_msg_url
@@ -304,6 +302,8 @@ device_tracker:
     consider_home: 180
     new_device_defaults:
       track_new_devices: false
+
+########### LOVELACE ########### 
 
 lovelace:
   mode: yaml

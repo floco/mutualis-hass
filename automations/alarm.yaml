@@ -31,10 +31,10 @@
         gw_mac: !secret xiaomi_gw_mac
         ringtone_id: 1
         ringtone_vol: 100
-    - service: notify.ju
+    - service: notify.signal
       data_template:
-        title: Alarm Triggered... 
-        message: >         
+        message: >  
+          Alarm Triggered...        
           {% if states('binary_sensor.door_window_sensor_158d000232b0ad') == "on" %} 
           Fenetre_Parents
           {% endif %}
@@ -59,7 +59,7 @@
           {% if states('binary_sensor.door_window_sensor_158d000243645e') == "on" %} 
             Velux_Salle_de_bain
           {% endif %}
-          <b>Opened</b>
+          Opened
     - service: homeassistant.turn_on
       entity_id: light.gateway_light_7811dcb8f98a
       data:
@@ -82,10 +82,10 @@
         entity_id: group.windows
         state: 'on'
   action:
-    - service: notify.ju
+    - service: notify.signal
       data_template:
-        title: 'ALERT: Window or Door left opened while noone is home'
         message: >-
+          ALERT: Window or Door left opened while noone is home
           {% for entity in states.group.doors.attributes.entity_id %}
             {% if states(entity) == 'on' %}
               {{ state_attr(entity, 'friendly_name') }} is opened
@@ -108,13 +108,13 @@
         minutes: 60
         seconds: 0
   action:
-    - service: notify.ju
+    - service: notify.signal
       data_template:
-        title: 'Window or Door Opened Too Long'
         message: >-
+          Window or Door Opened Too Long.
           {% for entity in trigger.to_state.attributes.entity_id %}
             {% if states(entity) == 'on' %}
-              <p>{{ state_attr(entity, 'friendly_name') }} has been opened for 60 minutes</p><br>
+              {{ state_attr(entity, 'friendly_name') }} has been opened for 60 minutes
             {% endif %}
           {% endfor %}
 
@@ -172,11 +172,10 @@
     platform: state
     to: 'on'
   action:
-  - service: notify.ju
+  - service: notify.signal
     data_template:
-      title: Main door opened ... 
       message: >         
-        <b>door opened !</b>
+        Main door opened !
 # Activated when the door is closed
 - id: AL008
   alias: Door Alert Closed
@@ -186,8 +185,7 @@
     platform: state
     to: 'off'
   action:
-  - service: notify.ju
+  - service: notify.signal
     data_template:
-      title: Main door closed... 
       message: >         
-        <b>door closed !</b>
+        Main door closed !

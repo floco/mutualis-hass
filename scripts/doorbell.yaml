@@ -14,11 +14,10 @@ doorbell:
         media_content_type: music
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume_doorbell
-    - service: notify.ju
+    - service: notify.signal
       data_template:
-        title: Main door ringing ... 
         message: >         
-          <b>Ding Dong</b>
+          Ding Dong
 
 increase_volume_doorbell:
   sequence:

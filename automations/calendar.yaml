@@ -6,8 +6,7 @@
     entity_id: calendar.holidays_in_belgium, calendar.home_status, calendar.poubelle_waterloo
     to: 'on'
   action:
-  - service: notify.ju
+  - service: notify.signal
     data_template:
-      title: 'Calendrier'
       message: >
-        'Evenement du calendrier {{ trigger.from_state.attributes.friendly_name }}: {{ trigger.from_state.attributes.message }}'
+        Evenement du calendrier {{ trigger.from_state.attributes.friendly_name }}: {{ trigger.from_state.attributes.message }}

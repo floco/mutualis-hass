@@ -355,7 +355,6 @@
           - script.light_green
           - script.alarm_on_silent
           - script.listen_audio
-          - script.notify_all
           - script.table
           - script.alarm_on_loud
           - script.blink_green

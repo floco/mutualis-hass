@@ -6,7 +6,7 @@
     entity_id: person.julien, person.mojca, person.mia, person.evy
     to: 'home'
   action:
-  - service: notify.ju
+  - service: notify.signal
     data_template:
       title: 'Presence Notification'
       message: >
@@ -19,11 +19,10 @@
     entity_id: person.julien, person.mojca, person.mia, person.evy
     from: 'home'
   action:
-  - service: notify.ju
+  - service: notify.signal
     data_template:
-      title: 'Presence Notification'
       message: >
-        {{ trigger.from_state.attributes.friendly_name }} est parti.
+        Presence Notification: {{ trigger.from_state.attributes.friendly_name }} est parti.
 
 - id: PR003
   alias: Presence Workaround to prevent device to be away if door not opened
@@ -39,11 +38,10 @@
     data:
       dev_id: device_tracker.b0_19_c6_b4_82_2f
       location_name: 'home'
-  - service: notify.ju
+  - service: notify.signal
     data_template:
-      title: 'Presence Workaround'
       message: >
-        {{ trigger.from_state.attributes.friendly_name }} est remis en home car porte pas ouverte recemment
+        {{ trigger.from_state.attributes.friendly_name }} est remis en home car porte pas ouverte recemment.
 
 
   # - service: tts.google_say
