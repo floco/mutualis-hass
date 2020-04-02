@@ -16,10 +16,10 @@ netatmo:
       entity_id: script.decrease_volume
     # - service: homeassistant.turn_off
     #   entity_id: switch.send_text_to_nest_hub
-    - service: notify.signal
+    - service: script.notify
       data_template:
-        message: >
-          Netatmo Info: Il fait {{states('sensor.netatmo_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_inside_co2')}} ppm. Bonne journée !
+        type: Info
+        message: Il fait {{states('sensor.netatmo_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_inside_co2')}} ppm. Bonne journée !
 
 table_up:
   sequence:

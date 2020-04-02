@@ -155,6 +155,16 @@ google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_client_secret
 
+grocy:
+  url: !secret grocy_api_host
+  api_key: !secret grocy_api_key
+  verify_ssl: false
+  port: 9192
+  sensor:
+    - enabled: true
+  binary_sensor:
+    - enabled : true
+
 rest_command:
   assistant_broadcast:
     url: !secret google_assistant_url
@@ -173,6 +183,16 @@ rest_command:
     method: POST
     content_type: 'application/json'
     payload: !secret google_assistant_payload_relay
+
+  grocy_add_task:
+    url: !secret grocy_addtask_url
+    method: POST
+    headers:
+      GROCY-API-KEY: !secret grocy_api_key
+      accept: 'application/json'
+    payload: '{"name":"{{ task_name }}","description":"{{ task_description }}","due_date":"{{ task_due }}","category_id":"","assigned_to_user_id":"1"}'
+    content_type:  'application/json'
+    verify_ssl: false
 
 timer:
   charge:
@@ -231,11 +251,11 @@ weather:
     api_key: !secret darksky_api_key
     mode: daily
 
-mqtt:
-  broker: a0d7b954-mqtt
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  client_id: home-assistant
+# mqtt:
+#   broker: a0d7b954-mqtt
+#   username: !secret mqtt_username
+#   password: !secret mqtt_password
+#   client_id: home-assistant
 
 influxdb:
   host: a0d7b954-influxdb

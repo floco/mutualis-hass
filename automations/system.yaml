@@ -49,8 +49,9 @@
           {%- endif -%}
           {%- endfor -%}
   action:
-    - service: notify.signal
+    - service: script.notify
       data_template:
+        type: Warning
         message: >-
           {%- set threshold = 10 -%}
           {%- set domains = [states.light, states.switch, states.sensor, states.zwave, states.lock ] -%}
@@ -82,10 +83,11 @@
         # the template will return True, otherwise false.
         {{ states | selectattr('attributes.battery_level', 'defined') | selectattr('attributes.battery_level','<', battery_alert_threshold ) | list | length >= 1 }}
   action:
-    - service: notify.signal
+    - service: script.notify
       data_template:
+        type: Warning
         message: >
-          ALERT: Batteries low !
+          Batteries low !
           {% set low_batteries = states | selectattr('attributes.battery_level', 'defined') | selectattr('attributes.battery_level','<', battery_alert_threshold ) | map(attribute='name') | list | join(', ') %}
           Low batteries in the following devices: {{ low_batteries }}
 

@@ -31,35 +31,11 @@
         gw_mac: !secret xiaomi_gw_mac
         ringtone_id: 1
         ringtone_vol: 100
-    - service: notify.signal
+    - service: script.notify
       data_template:
+        type: Alert
         message: >  
-          Alarm Triggered...        
-          {% if states('binary_sensor.door_window_sensor_158d000232b0ad') == "on" %} 
-          Fenetre_Parents
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d000237d1e8') == "on" %} 
-          Fenetre_Mia_Devant
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d000238c840') == "on" %} 
-            Fenetre_Mia_Laterale
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d00023295ce') == "on" %} 
-            Fenetre_Evy
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d000237d247') == "on" %} 
-            Velux_Evy
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d000238628c') == "on" %} 
-            Fenetre_Chambre_Amis
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d000237d1b8') == "on" %} 
-            Fenetre_Upstairs
-          {% endif %}
-          {% if states('binary_sensor.door_window_sensor_158d000243645e') == "on" %} 
-            Velux_Salle_de_bain
-          {% endif %}
-          Opened
+          Alarm Triggered... {% if states('binary_sensor.door_window_sensor_158d000232b0ad') == "on" %}Fenetre_Parents {% endif %}{% if states('binary_sensor.door_window_sensor_158d000237d1e8') == "on" %}Fenetre_Mia_Devant {% endif %}{% if states('binary_sensor.door_window_sensor_158d000238c840') == "on" %}Fenetre_Mia_Laterale {% endif %}{% if states('binary_sensor.door_window_sensor_158d00023295ce') == "on" %}Fenetre_Evy {% endif %}{% if states('binary_sensor.door_window_sensor_158d000237d247') == "on" %}Velux_Evy {% endif %}{% if states('binary_sensor.door_window_sensor_158d000238628c') == "on" %}Fenetre_Chambre_Amis {% endif %}{% if states('binary_sensor.door_window_sensor_158d000237d1b8') == "on" %}Fenetre_Upstairs {% endif %}{% if states('binary_sensor.door_window_sensor_158d000243645e') == "on" %}Velux_Salle_de_bain {% endif %}Opened
     - service: homeassistant.turn_on
       entity_id: light.gateway_light_7811dcb8f98a
       data:
@@ -82,10 +58,11 @@
         entity_id: group.windows
         state: 'on'
   action:
-    - service: notify.signal
+    - service: script.notify
       data_template:
+        type: Alert
         message: >-
-          ALERT: Window or Door left opened while noone is home
+          Window or Door left opened while noone is home
           {% for entity in states.group.doors.attributes.entity_id %}
             {% if states(entity) == 'on' %}
               {{ state_attr(entity, 'friendly_name') }} is opened
@@ -108,15 +85,11 @@
         minutes: 60
         seconds: 0
   action:
-    - service: notify.signal
+    - service: script.notify
       data_template:
+        type: Warning
         message: >-
-          Window or Door Opened Too Long.
-          {% for entity in trigger.to_state.attributes.entity_id %}
-            {% if states(entity) == 'on' %}
-              {{ state_attr(entity, 'friendly_name') }} has been opened for 60 minutes
-            {% endif %}
-          {% endfor %}
+          Window or Door Opened Too Long.{% for entity in trigger.to_state.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }} has been opened for 60 minutes{% endif %}{% endfor %}
 
 
 # Activated when alarm is armed
@@ -172,8 +145,9 @@
     platform: state
     to: 'on'
   action:
-  - service: notify.signal
+  - service: script.notify
     data_template:
+      type: Info
       message: >         
         Main door opened !
 # Activated when the door is closed
@@ -185,7 +159,8 @@
     platform: state
     to: 'off'
   action:
-  - service: notify.signal
+  - service: script.notify
     data_template:
+      type: Info
       message: >         
         Main door closed !

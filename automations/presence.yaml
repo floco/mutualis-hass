@@ -6,9 +6,9 @@
     entity_id: person.julien, person.mojca, person.mia, person.evy
     to: 'home'
   action:
-  - service: notify.signal
+  - service: script.notify
     data_template:
-      title: 'Presence Notification'
+      type: Info
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est à la maison.
 
@@ -19,8 +19,9 @@
     entity_id: person.julien, person.mojca, person.mia, person.evy
     from: 'home'
   action:
-  - service: notify.signal
+  - service: script.notify
     data_template:
+      type: Info
       message: >
         Presence Notification: {{ trigger.from_state.attributes.friendly_name }} est parti.
 
@@ -38,8 +39,9 @@
     data:
       dev_id: device_tracker.b0_19_c6_b4_82_2f
       location_name: 'home'
-  - service: notify.signal
+  - service: script.notify
     data_template:
+      type: Info
       message: >
         {{ trigger.from_state.attributes.friendly_name }} est remis en home car porte pas ouverte recemment.
 

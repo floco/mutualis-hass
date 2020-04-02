@@ -1,0 +1,14 @@
+notify:
+  description: 'Send a notification to signal'
+  fields:
+    type:
+      description: 'The type of the notification'
+      example: 'Info, Warning, Alert'
+    message:
+      description: 'The message content'
+      example: 'Something happened'
+  sequence:
+    - service: notify.signal
+      data_template:
+        message: >         
+          {{type}}: {{message}} ({{ now().strftime('%Y/%m/%d-%H:%M') }})
