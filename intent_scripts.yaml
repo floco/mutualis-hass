@@ -1,0 +1,26 @@
+Temperature:
+  speech:
+    text: La température à la maison est de {{states('sensor.netatmo_living_room_inside_temperature')}} degrés.
+Table:
+  speech:
+    text: >
+        {%- macro speak_table(person,action) -%}
+          {{ [
+          "c'est a " + person + " de " + action + " la table."
+          ] | random }}
+        {%- endmacro -%}
+        {% set action = "mettre" %}
+        {% if now().strftime("%W")|int % 2 != 0 %}
+          {% if action == "mettre" %}
+            {% set person = "Evy" %}
+          {% else %}
+            {% set person = "Mia" %}
+          {%endif%}
+        {% else %}
+          {% if action == "mettre" %}
+            {% set person = "Mia" %}
+          {% else %}
+            {% set person = "Evy" %}
+          {%endif%}
+        {%endif%}
+        {{ speak_table(person,action) }}

@@ -23,7 +23,7 @@
     data_template:
       type: Info
       message: >
-        Presence Notification: {{ trigger.from_state.attributes.friendly_name }} est parti.
+        {{ trigger.from_state.attributes.friendly_name }} est parti.
 
 - id: PR003
   alias: Presence Workaround to prevent device to be away if door not opened

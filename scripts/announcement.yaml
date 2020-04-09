@@ -10,7 +10,7 @@ netatmo:
     #   entity_id: media_player.cuisine, media_player.google_home
     - service: rest_command.assistant_broadcast
       data_template:
-        command: "Il fait {{states('sensor.netatmo_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_inside_co2')}} ppm. Bonne journée !"
+        command: "Il fait {{states('sensor.netatmo_living_room_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_living_room_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_living_room_inside_co2')}} ppm. Bonne journée !"
         # cache: false
     - service: homeassistant.turn_on
       entity_id: script.decrease_volume
@@ -19,7 +19,7 @@ netatmo:
     - service: script.notify
       data_template:
         type: Info
-        message: Il fait {{states('sensor.netatmo_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_inside_co2')}} ppm. Bonne journée !
+        message: Il fait {{states('sensor.netatmo_living_room_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_living_room_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_living_room_inside_co2')}} ppm. Bonne journée !
 
 table_up:
   sequence:

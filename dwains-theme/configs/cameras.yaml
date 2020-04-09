@@ -1,0 +1,5 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/cameras.html
+
+cameras:
+  - entity: camera.cam1
+  - entity: camera.cam2

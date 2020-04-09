@@ -1,5 +1,6 @@
 ########### DEFAULT CONFIG ########### 
 homeassistant:
+  packages: !include_dir_named packages/ # Comment this whole line if you want to disable Dwains Theme
   name: Home
   latitude: !secret location_latitude
   longitude: !secret location_longitude
@@ -29,8 +30,8 @@ browser_mod:
 config:
 conversation:
 discovery:
-frontend:
-  themes: !include_dir_merge_named themes
+# frontend:
+#   themes: !include_dir_merge_named themes
 history:
 logbook:
 sun:
@@ -52,6 +53,7 @@ logger:
   logs:
     custom_components.hacs: debug
     homeassistant.components.withings: critical
+#    homeassistant.components.netatmo: debug
 
 recorder:
   db_url: !secret mariadb_url
@@ -82,6 +84,8 @@ recorder:
 #    host: !secret philips_e14_host
 #    token: !secret philips_e14_token
 #    model: philips.light.candle
+
+dialogflow:
 
 tts:
   - platform: google_translate
@@ -325,27 +329,27 @@ device_tracker:
 
 ########### LOVELACE ########### 
 
-lovelace:
-  mode: yaml
-  resources:
-    - url: /community_plugin/compact-custom-header/compact-custom-header.js
-      type: module
-    - url: /community_plugin/weather-card/weather-card.js
-      type: module
-    - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
-      type: js
-    - url: /community_plugin/mini-graph-card/mini-graph-card.js
-      type: module
-    - url: /community_plugin/button-card/button-card.js
-      type: module
-    - url: /community_plugin/lovelace-card-tools/card-tools.js
-      type: js
-    - url: /community_plugin/lovelace-auto-entities/auto-entities.js
-      type: js
-    - url: /community_plugin/decluttering-card/decluttering-card.js
-      type: module
-    - url: /community_plugin/fitbit-card/fitbit-card.js
-      type: js
+# lovelace:
+#   mode: yaml
+#   resources:
+#     - url: /community_plugin/compact-custom-header/compact-custom-header.js
+#       type: module
+#     - url: /community_plugin/weather-card/weather-card.js
+#       type: module
+#     - url: /community_plugin/lovelace-home-feed-card/lovelace-home-feed-card.js
+#       type: js
+#     - url: /community_plugin/mini-graph-card/mini-graph-card.js
+#       type: module
+#     - url: /community_plugin/button-card/button-card.js
+#       type: module
+#     - url: /community_plugin/lovelace-card-tools/card-tools.js
+#       type: js
+#     - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+#       type: js
+#     - url: /community_plugin/decluttering-card/decluttering-card.js
+#       type: module
+#     - url: /community_plugin/fitbit-card/fitbit-card.js
+#       type: js
 
 ########### INCLUDES ########### 
 
@@ -355,3 +359,4 @@ sensor: !include sensors.yaml
 switch: !include switchs.yaml
 group: !include groups.yaml
 person: !include persons.yaml
+intent_script: !include intent_scripts.yaml

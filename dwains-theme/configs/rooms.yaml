@@ -1,0 +1,98 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/rooms.html
+
+rooms:
+  - name: Vestibule
+    icon: fas:key
+    light: switch.shelly_shsw_1_c499ba
+    motion: binary_sensor.motion_sensor_158d00042026f7
+    door: binary_sensor.door_window_sensor_158d0002c9c949
+    more_entities:
+      entities:
+        - entity: sensor.porte_de_devant_battery
+  - name: Garage
+    icon: fas:garage
+    light: light.garage_light
+    motion: binary_sensor.garage_sensor_motion
+    temperature: sensor.garage_temperature
+  - name: Salon
+    icon: fas:couch
+    light: group.living_lights
+    temperature: sensor.netatmo_living_room_inside_temperature
+    humidity: sensor.netatmo_living_room_inside_humidity
+    media_player: group.living_medias
+    page_entities:
+      entities:
+        - entity: binary_sensor.smoke_sensor_158d0001e581ee
+        - entity: switch.powerstrip1_plug1
+        - entity: switch.powerstrip1_plug2
+        - entity: switch.powerstrip1_plug3
+        - entity: switch.powerstrip1_plug4
+        - entity: switch.powerstrip1_usb
+        - entity: switch.mp1_atv
+        - entity: switch.mp1_btv
+        - entity: switch.mp1_sha
+        - entity: switch.mp1_ps3
+        - entity: switch.prise3
+
+  - name: Veranda
+    icon: fas:window-restore
+  - name: Jardin
+    icon: fas:leaf
+  - name: Mezzanine
+    icon: fas:store
+  - name: Chambre Parent
+    icon: fas:bed
+  - name: Chambre Mia
+    icon: fas:bed
+  - name: Chambre Evy
+    icon: fas:bed
+  - name: Chambre Amis
+    icon: fas:user-friends
+  - name: Salle de Bain
+    icon: fas:bath
+
+
+# rooms:
+#   - name: Hallway
+#     icon: fas:key
+#     light: light.hallway
+#     temperature: sensor.hallway_temperature
+#     climate: climate.hallway_climate
+#     humidity: sensor.halway_humidity
+#     motion: binary_sensor.hallway_sensor_motion
+#     door: binary_sensor.hallway_door_contact
+#     window: binary_sensor.hallway_window_contact
+#     vacuum: 
+#       entity: vacuum.rockrobo
+#       camera: camera.rockrobo_map
+#     plant: plant.hallway_plant
+#     media_player: media_player.awesome_hallway_tv
+#     more_entities:
+#       entities:
+#         - entity: sensor.hallway_motion_battery_level
+#         - entity: sensor.smokedetector_battery
+#   - name: Garage
+#     icon: fas:garage
+#     light: group.garage_lights
+#     door: group.garage_doors
+#     addons:
+#       - name: Hello room
+#         icon: fas:puzzle-piece
+#         path: 'dwains-theme/addons/rooms/hello-room/page.yaml'
+#         button_path: 'dwains-theme/addons/rooms/hello-room/button.yaml'
+#         data:
+#           some_data: 'This is some data parsed.'
+#           some_other_data: 'and some other data.'
+#           entity: vacuum.roborock
+#   - name: Bedroom
+#     icon: fal:bed
+#     more_entities:
+#       columns: 2 #optional
+#       entities:
+#         - entity: sensor.name1
+#         - entity: sensor.name2
+#     page_entities:
+#       columns: 1 #optional
+#       entities:
+#         - entity: sensor.name1
+#         - entity: sensor.name2

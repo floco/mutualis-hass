@@ -1,0 +1,14 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/more_page.html
+
+more_page:
+  addons:
+    - name: Web Links
+      icon: mdi:web
+      path: 'dwains-theme/addons/more_page/weblinks/page_secret.yaml'
+      columns: 2
+      data:
+        some_data: 'This is some data parsed.'
+        some_other_data: 'and some other data.'
+    - name: Ha View
+      icon: mdi:home-assistant
+      path: 'dwains-theme/addons/more_page/ha_view/page.yaml'

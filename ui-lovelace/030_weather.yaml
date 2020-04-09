@@ -15,16 +15,16 @@ cards:
       - type: custom:decluttering-card
         template: sensors_graph
         variables:
-          - entity1: sensor.netatmo_inside_temperature
+          - entity1: sensor.netatmo_living_room_inside_temperature
           - name1: Living
-          - entity2: sensor.netatmo_inside_humidity
+          - entity2: sensor.netatmo_living_room_inside_humidity
           - name2: Hum
-          - entity3: sensor.netatmo_inside_pressure
+          - entity3: sensor.netatmo_living_room_inside_pressure
           - name3: Pres
       - type: custom:decluttering-card
         template: sensors_graph
         variables:
-          - entity1: sensor.netatmo_inside_co2
+          - entity1: sensor.netatmo_living_room_inside_co2
           - name1: CO2
           - entity2: sensor.garage_temperature
           - name2: Garage
@@ -37,18 +37,18 @@ cards:
       - type: custom:decluttering-card
         template: sensors_graph
         variables:
-          - entity1: sensor.netatmo_outside_temperature
+          - entity1: sensor.netatmo_living_room_outside_temperature
           - name1: Temp
-          - entity2: sensor.netatmo_outside_humidity
+          - entity2: sensor.netatmo_living_room_outside_humidity
           - name2: Hum
-          - entity3:  sensor.netatmo_outside_battery_percent
+          - entity3:  sensor.netatmo_living_room_outside_battery_percent
           - name3: Bat
 
       - type: 'custom:mini-graph-card'
         entities:
-          - entity: sensor.netatmo_outside_temperature
+          - entity: sensor.netatmo_living_room_outside_temperature
             name: Outside
-          - entity: sensor.netatmo_inside_temperature
+          - entity: sensor.netatmo_living_room_inside_temperature
             name: Inside
           - color: gray
             entity: input_number.nighttime

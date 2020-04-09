@@ -1,0 +1,39 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/persons.html
+
+persons: 
+  - name: Julien
+    track: person.julien
+    picture_path: 'images/person.julien_home.png'
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.withings_weight_kg_julien
+        - entity: sensor.withings_fat_ratio_pct_julien
+        - entity: sensor.withings_systolic_blood_pressure_mmhg_julien
+  - name: Mojca
+    track: person.mojca
+    picture_path: 'images/person.mojca_home.png'
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.withings_weight_kg_mojca
+        - entity: sensor.withings_fat_ratio_pct_mojca
+        - entity: sensor.withings_systolic_blood_pressure_mmhg_mojca
+  - name: Mia
+    track: person.mia
+    picture_path: 'images/person.mia_home.png'
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.withings_weight_kg_mia
+        - entity: sensor.withings_fat_ratio_pct_mia
+        - entity: sensor.withings_systolic_blood_pressure_mmhg_mia
+  - name: Evy
+    track: person.evy
+    picture_path: 'images/person.evy_home.png'
+    page_entities:
+      columns: 1 #optional
+      entities:
+        - entity: sensor.withings_weight_kg_evy
+        - entity: sensor.withings_fat_ratio_pct_evy
+        - entity: sensor.withings_systolic_blood_pressure_mmhg_evy

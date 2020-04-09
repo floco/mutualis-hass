@@ -1,3 +1,11 @@
+  living_lights:
+    - light.lightstrip
+    - light.main_light
+  living_medias:
+    - media_player.cuisine
+    - media_player.salon
+    - media_player.enceintes
+    - media_player.apple_tv
   living:
     - light.lightstrip
     - light.garage_light

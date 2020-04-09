@@ -1,0 +1,14 @@
+# https://dwainscheeren.github.io/lovelace-dwains-theme/configuration/house_information.html
+
+house_information:
+  favorites:
+    - entity: binary_sensor.porte_de_devant_ding
+      icon_on: fas:bell
+      icon_off: fas:bell
+    - entity: binary_sensor.door_window_sensor_158d0002c9c949
+      icon_on: fas:door-open
+      icon_off: fas:door-closed
+
+  calendar:
+    - calendar.poubelle_waterloo
+    - calendar.home_status
