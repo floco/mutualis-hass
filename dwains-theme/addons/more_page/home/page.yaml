@@ -1,0 +1,288 @@
+
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+
+  cards:
+
+    - type: vertical-stack
+      cards:
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: VESTIBULE
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: door
+                  entity: binary_sensor.door_window_sensor_158d0002c9c949 
+                - type: custom:button-card
+                  template: motion
+                  entity: binary_sensor.motion_sensor_158d00042026f7
+                - type: custom:button-card
+                  template: light
+                  entity: switch.shelly_shsw_1_c499ba
+                - type: custom:button-card
+                  template: motion
+                  entity: binary_sensor.porte_de_devant_motion
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: GARAGE
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: light
+                  entity: light.garage_light
+                - type: custom:button-card
+                  template: motion
+                  entity: binary_sensor.garage_sensor_motion
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: SALON
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: light
+                  entity: light.main_light
+                - type: custom:button-card
+                  template: light
+                  entity: light.lightstrip
+                - type: custom:button-card
+                  template: smoke
+                  entity: binary_sensor.smoke_sensor_158d0001e581ee 
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.powerstrip1_plug1
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.mp1_atv
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.mp1_btv
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.mp1_sha
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.mp1_ps3
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.prise3
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: VERANDA
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: JARDIN
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.prise4
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+    - type: vertical-stack
+      cards:
+        # - type: custom:button-card
+        #   template: header_group
+        #   name: ETAGE
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: MEZZANINE
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: window
+                  entity: binary_sensor.door_window_sensor_158d000237d1b8
+                - type: custom:button-card
+                  template: motion
+                  entity: binary_sensor.motion_sensor_158d000276d4da
+                - type: custom:button-card
+                  template: light
+                  entity: switch.shelly_shsw_1_c495de
+                - type: custom:button-card
+                  template: smoke
+                  entity: binary_sensor.smoke_sensor_158d0001bbe483 
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: CHAMBRE PARENTS
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: light
+                  entity: group.spots
+                - type: custom:button-card
+                  template: window
+                  entity: binary_sensor.door_window_sensor_158d000232b0ad
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: CHAMBRE MIA
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: window
+                  entity: binary_sensor.door_window_sensor_158d000237d1e8
+                - type: custom:button-card
+                  template: window
+                  entity: binary_sensor.door_window_sensor_158d000238c840
+                - type: custom:button-card
+                  template: smoke
+                  entity: binary_sensor.smoke_sensor_158d00024e8f68
+                - type: custom:button-card
+                  color_type: blank-card
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: CHAMBRE EVY
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: light
+                  entity: light.evy_light
+                - type: custom:button-card
+                  template: window
+                  entity: binary_sensor.door_window_sensor_158d00023295ce
+                - type: custom:button-card
+                  template: velux
+                  entity: binary_sensor.door_window_sensor_158d000237d247
+                - type: custom:button-card
+                  template: smoke
+                  entity: binary_sensor.smoke_sensor_158d00028f4032
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: CHAMBRE AMIS
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: plug
+                  entity: switch.prise2
+                - type: custom:button-card
+                  template: window
+                  entity: binary_sensor.door_window_sensor_158d000238628c
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+        - type: vertical-stack
+          cards:
+            - type: custom:button-card
+              template: header
+              name: SALLE DE BAIN
+            - type: horizontal-stack
+              cards:
+                - type: custom:button-card
+                  template: velux
+                  entity: binary_sensor.door_window_sensor_158d000243645e
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+                - type: custom:button-card
+                  color_type: blank-card
+
+    - type: 'custom:home-feed-card'
+      title: Home Feed
+      show_empty: false
+      calendars:
+        - calendar.holidays_in_belgium
+        - calendar.home_status
+        - calendar.poubelle_waterloo
+      id_filter: ^home_feed_.*
+      more_info_on_tap: true
+      entities:
+          - binary_sensor.door_window_sensor_158d0002c9c949
+          # - entity: sensor.bin_collection
+          #   name: Next Bin Collection
+          #   more_info_on_tap: false
+          # - entity: sensor.reddit_help
+          #   multiple_items: true
+          #   list_attribute: posts
+          #   timestamp_property: created_
+          #   max_items: 5
+          #   content_template: '[{{title}}]({{url}})'
+
+    # person
+    - type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: header
+          name: PERSONNE
+        - type: custom:decluttering-card
+          template: persons
+          variables:
+            - entity1: person.julien
+            - entity2: person.mojca
+            - entity3: person.mia
+            - entity4: person.evy
+
+    # cast
+    - type: entities
+      entities:
+        - type: cast
+          name: Home
+          view: home
+        - type: cast
+          name: Security
+          view: security

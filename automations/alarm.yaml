@@ -62,17 +62,7 @@
       data_template:
         type: Alert
         message: >-
-          Window or Door left opened while noone is home
-          {% for entity in states.group.doors.attributes.entity_id %}
-            {% if states(entity) == 'on' %}
-              {{ state_attr(entity, 'friendly_name') }} is opened
-            {% endif %}
-          {% endfor %}
-          {% for entity in states.group.windows.attributes.entity_id %}
-            {% if states(entity) == 'on' %}
-              {{ state_attr(entity, 'friendly_name') }} is opened
-            {% endif %}
-          {% endfor %}
+          Window or Door left opened while noone is home: {% for entity in states.group.doors.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %}{% for entity in states.group.windows.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %}is opened.
 
 - id: AL004
   alias: 'Notify if door/window opened for 60 minutes'                                                                                                   
@@ -89,7 +79,7 @@
       data_template:
         type: Warning
         message: >-
-          Window or Door Opened Too Long.{% for entity in trigger.to_state.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }} has been opened for 60 minutes{% endif %}{% endfor %}
+          Window or Door Opened Too Long. {% for entity in trigger.to_state.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %} has been opened for more than 60 minutes.
 
 
 # Activated when alarm is armed

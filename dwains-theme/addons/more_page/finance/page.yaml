@@ -1,0 +1,43 @@
+
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+
+  cards:
+  
+    - type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: header
+          name: INSIDE
+        - type: horizontal-stack
+          cards:
+            - type: 'custom:mini-graph-card'
+              entities:
+                - sensor.google
+              font_size: 75
+              line_color: blue
+              line_width: 8
+              name: Google
+            - type: 'custom:mini-graph-card'
+              entities:
+                - sensor.usd_eur
+              font_size: 75
+              line_color: blue
+              line_width: 8
+              name: USD_EUR
+    
+    - type: vertical-stack
+      cards:
+        - type: custom:button-card
+          template: header
+          name: INSIDE
+        - type: custom:decluttering-card
+          template: sensors_graph
+          variables:
+            - entity1: sensor.servicenow
+            - name1: SNOW
+            - entity2: sensor.lyxorcac40
+            - name2: CAC40
+            - entity3: sensor.apple
+            - name3: APPLE

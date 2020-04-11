@@ -125,27 +125,27 @@
                   entity_id: switch.adb_addon
 
         # Deconz Addon
-            - type: picture-entity
-              style: |
-                ha-card {
-                  background: var(--paper-card-background-color);
-                  border-radius: 10px;
-                  box-shadow: 10px;
-                  font-weight: bold;
-                  opacity: 0.8;
-                }
-              entity: switch.deconz_addon
-              image: /local/images/lovelace-themes/dwains-theme/containers/deconz_dwains.png
-              aspect_ratio: 4:9
-              show_name: false
-              show_state: false
-              tap_action:
-                action: none
-              hold_action:
-                action: toggle
-                service: switch.toggle
-                service_data:
-                  entity_id: switch.deconz_addon
+            # - type: picture-entity
+            #   style: |
+            #     ha-card {
+            #       background: var(--paper-card-background-color);
+            #       border-radius: 10px;
+            #       box-shadow: 10px;
+            #       font-weight: bold;
+            #       opacity: 0.8;
+            #     }
+            #   entity: switch.deconz_addon
+            #   image: /local/images/lovelace-themes/dwains-theme/containers/deconz_dwains.png
+            #   aspect_ratio: 4:9
+            #   show_name: false
+            #   show_state: false
+            #   tap_action:
+            #     action: none
+            #   hold_action:
+            #     action: toggle
+            #     service: switch.toggle
+            #     service_data:
+            #       entity_id: switch.deconz_addon
 
         # ESPHome Addon
             - type: picture-entity
@@ -263,27 +263,27 @@
                   entity_id: switch.phpmyadmin_addon
 
         # VSCode Addon
-            - type: picture-entity
-              style: |
-                ha-card {
-                  background: var(--paper-card-background-color);
-                  border-radius: 10px; 
-                  box-shadow: 10px;
-                  font-weight: bold;
-                  opacity: 0.8;
-                }
-              entity: switch.vscode_addon
-              image: /local/images/lovelace-themes/dwains-theme/containers/vscode_dwains.png
-              aspect_ratio: 4:9
-              show_name: false
-              show_state: false
-              tap_action:
-                action: none
-              hold_action:
-                action: toggle
-                service: switch.toggle
-                service_data:
-                  entity_id: switch.vscode_addon
+            # - type: picture-entity
+            #   style: |
+            #     ha-card {
+            #       background: var(--paper-card-background-color);
+            #       border-radius: 10px; 
+            #       box-shadow: 10px;
+            #       font-weight: bold;
+            #       opacity: 0.8;
+            #     }
+            #   entity: switch.vscode_addon
+            #   image: /local/images/lovelace-themes/dwains-theme/containers/vscode_dwains.png
+            #   aspect_ratio: 4:9
+            #   show_name: false
+            #   show_state: false
+            #   tap_action:
+            #     action: none
+            #   hold_action:
+            #     action: toggle
+            #     service: switch.toggle
+            #     service_data:
+            #       entity_id: switch.vscode_addon
 
 
 - type: vertical-stack

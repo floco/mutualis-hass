@@ -4,20 +4,24 @@
   living_medias:
     - media_player.cuisine
     - media_player.salon
-    - media_player.enceintes
     - media_player.apple_tv
-  living:
-    - light.lightstrip
-    - light.garage_light
-    - light.main_light
+  windows_mia:
+    - binary_sensor.door_window_sensor_158d000237d1e8
+    - binary_sensor.door_window_sensor_158d000238c840
+  windows_evy:
+    - binary_sensor.door_window_sensor_158d00023295ce
+    - binary_sensor.door_window_sensor_158d000237d247
+  powerstrip1_p402a:
     - switch.powerstrip1_plug1
-    - switch.prise2
-    - switch.prise3
-    - switch.prise4
-    - switch.mp1_ps3
+    - switch.powerstrip1_plug2
+    - switch.powerstrip1_plug3
+    - switch.powerstrip1_plug4
+    - switch.powerstrip1_usb
+  powerstrip2_mp1:
     - switch.mp1_atv
     - switch.mp1_btv
     - switch.mp1_sha
+    - switch.mp1_ps3
   spots:
     - light.chambre_spot_1
     - light.chambre_spot_2
@@ -27,23 +31,6 @@
     - light.evy_light
     - binary_sensor.wall_switch_right_158d000237bae7      # Wall_Switch_Right
     - binary_sensor.wall_switch_both_158d000237bae7       # Wall_Switch_Both
-  weather:
-    - sun.sun
-    - sensor.yr_symbol
-    - sensor.netatmo_outside_temperature
-    - sensor.netatmo_outside_humidity
-  inside:
-    - sensor.netatmo_inside_temperature
-    - sensor.netatmo_inside_humidity
-    - sensor.netatmo_inside_pressure
-    - sensor.netatmo_inside_co2
-    - sensor.netatmo_inside_noise
-    - sensor.garage_temperature
-    - sensor.garage_lux
-    - sensor.garage_motion
-    - sensor.broadlink_sensor_temperature
-    - sensor.home_assistant_v2_db
-    - script.netatmo
   tv:
     - switch.sharp
     - switch.bose_system
@@ -56,8 +43,6 @@
     - script.netatmo
     - script.table_up
     - script.table_down
-    - script.cleaning
-    - script.garbage
     - switch.table
   hdmi_switch:
     - script.input1

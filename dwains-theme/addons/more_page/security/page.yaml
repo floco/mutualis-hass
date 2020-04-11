@@ -1,0 +1,45 @@
+
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+
+  cards:
+    - entities:
+        - binary_sensor.door_window_sensor_158d0002c9c949
+      show_header_toggle: true
+      title: doors
+      type: entities
+    - entities:
+        - binary_sensor.door_window_sensor_158d000232b0ad
+        - binary_sensor.door_window_sensor_158d000237d1e8
+        - binary_sensor.door_window_sensor_158d000238c840
+        - binary_sensor.door_window_sensor_158d00023295ce
+        - binary_sensor.door_window_sensor_158d000237d247
+        - binary_sensor.door_window_sensor_158d000238628c
+        - binary_sensor.door_window_sensor_158d000237d1b8
+        - binary_sensor.door_window_sensor_158d000243645e
+      show_header_toggle: false
+      title: windows
+      type: entities
+    - entities:
+        - binary_sensor.wall_switch_left_158d000237bae7
+        - light.gateway_light_7811dcb8f98a
+        - sensor.illumination_7811dcb8f98a
+      show_header_toggle: false
+      title: alarm
+      type: entities
+    - entity: alarm_control_panel.home_alarm
+      type: alarm-panel
+    - entities:
+        - binary_sensor.smoke_sensor_158d0001bbe483
+        - binary_sensor.smoke_sensor_158d0001e581ee
+        - binary_sensor.smoke_sensor_158d00024e8f68
+        - binary_sensor.smoke_sensor_158d00028f4032
+      show_header_toggle: true
+      title: smoke
+      type: entities
+    - entities:
+        - binary_sensor.motion_sensor_158d000276d4da
+      show_header_toggle: true
+      title: motion
+      type: entities

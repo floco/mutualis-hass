@@ -91,6 +91,28 @@
           {% set low_batteries = states | selectattr('attributes.battery_level', 'defined') | selectattr('attributes.battery_level','<', battery_alert_threshold ) | map(attribute='name') | list | join(', ') %}
           Low batteries in the following devices: {{ low_batteries }}
 
+- id: SY003
+  alias: Home Assistant Started
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - delay:
+        minutes: 1
+    - service: homeassistant.turn_on
+      entity_id: automation.addon_update_available
+
+- id: SY004
+  alias: "New Home Assitant Version"
+  trigger:
+    - platform: state
+      entity_id: sensor.hassio_version
+  action:
+    service: notify.notify
+    data:
+      title: "New Home Assistant Version"
+      message: "Version {{ states.sensor.latest_version.state }} is available!"
+
 # - id: SY003
 #   alias: 'Set theme at startup'
 #   trigger:

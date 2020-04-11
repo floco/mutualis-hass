@@ -5,7 +5,7 @@ lovelace:
   dashboards:
     dwains-theme:
       mode: yaml
-      title: Dwains Theme
+      title: Overview
       icon: mdi:alpha-d-box
       show_in_sidebar: true
       filename: dwains-theme-lovelace.yaml

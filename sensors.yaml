@@ -19,6 +19,36 @@
     resource: !secret hue_motion
     value_template: '{{ value_json.state.status }}'
     name: 'Garage Motion'
+  - platform: template
+    sensors:  
+      garage_sensor_motion_battery:
+        value_template: '{{ states.binary_sensor.garage_sensor_motion.attributes.battery_level }}'
+        unit_of_measurement: '%' 
+  - platform: rest
+    resource: https://s3.amazonaws.com/hassio-version/stable.json
+    name: Latest Version
+    value_template: "qemux86-64"
+    scan_interval: 3600
+  - platform: rest
+    resource: http://1.2.3.4:8123/api/hassio/addons/a0d7b954_adguard/info
+    name: adguard
+    value_template: '{{ value_json.data.state }}'
+    scan_interval: 60
+    headers:
+      Authorization: !secret adguard_token
+      Content-Type: application/json
+    json_attributes_path: "$.data"
+    json_attributes:
+      - version
+      - last_version
+  - platform: command_line
+    name: Supervisor updates
+    command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"addons":[.data.addons[] | select(.version != .installed)]}'''
+    value_template: "{{ value_json.addons | length }}"
+    json_attributes:
+    - newest_version
+    - current_version
+    - addons
   - platform: filesize
     file_paths:
       - /config/home-assistant_v2.db

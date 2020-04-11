@@ -14,6 +14,10 @@ custom_header:
 # These are the templates used to avoid too much duplicate code.      
 button_card_templates:
   !include_dir_merge_named dwains-theme/plugins/button-cards-templates        
+
+# Custom
+decluttering_templates:
+  !include_dir_merge_named dwains-theme/plugins/decluttering-templates
  
 # Start of main lovelace theme 
 background: var(--background-image)
@@ -21,3 +25,5 @@ views:
   !include_dir_merge_list dwains-theme/views/main/
 # End of the dwains theme ui-lovelace.yaml part
 ######
+
+

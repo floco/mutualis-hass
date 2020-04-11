@@ -1,0 +1,25 @@
+
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+
+  cards:
+
+    # person
+    - type: custom:decluttering-card
+      template: health
+      variables:
+        - entity: julien
+    - type: custom:decluttering-card
+      template: health
+      variables:
+        - entity: mojca
+    - type: custom:decluttering-card
+      template: health
+      variables:
+        - entity: mia
+    - type: custom:decluttering-card
+      template: health
+      variables:
+        - entity: evy
+  
