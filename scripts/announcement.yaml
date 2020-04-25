@@ -97,14 +97,14 @@ increase_volume_max:
   sequence:
     - service: media_player.volume_set
       data:
-        entity_id: media_player.cuisine, media_player.google_home
+        entity_id: media_player.cuisine, media_player.mezzanine
         volume_level: 1.0
 
 increase_volume:
   sequence:
     - service: media_player.volume_set
       data:
-        entity_id: media_player.cuisine, media_player.google_home
+        entity_id: media_player.cuisine, media_player.mezzanine
         volume_level: 0.5
 
 decrease_volume:
@@ -112,5 +112,5 @@ decrease_volume:
     - delay: 00:00:15
     - service: media_player.volume_set
       data:
-        entity_id: media_player.cuisine, media_player.google_home
+        entity_id: media_player.cuisine, media_player.mezzanine
         volume_level: 0.4

@@ -41,3 +41,10 @@
             - name2: CAC40
             - entity3: sensor.apple
             - name3: APPLE
+
+    - type: custom:decluttering-card
+      template: finance
+      variables:
+        - entity1: apple
+        - entity2: microsoft
+        - entity3: servicenow

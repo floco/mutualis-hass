@@ -9,7 +9,7 @@ doorbell:
       entity_id: script.increase_volume_doorbell
     - service: media_player.play_media
       data_template:
-        entity_id: media_player.cuisine, media_player.google_home
+        entity_id: media_player.cuisine, media_player.mezzanine
         media_content_id: !secret ring_chime
         media_content_type: music
     - service: homeassistant.turn_on
@@ -24,7 +24,7 @@ increase_volume_doorbell:
   sequence:
     - service: media_player.volume_set
       data:
-        entity_id: media_player.cuisine, media_player.google_home
+        entity_id: media_player.cuisine, media_player.mezzanine
         volume_level: 0.8
 
 decrease_volume_doorbell:
@@ -32,5 +32,5 @@ decrease_volume_doorbell:
     - delay: 00:00:15
     - service: media_player.volume_set
       data:
-        entity_id: media_player.cuisine, media_player.google_home
+        entity_id: media_player.cuisine, media_player.mezzanine
         volume_level: 0.4

@@ -241,6 +241,10 @@ camera:
     username: !secret cam2_username
     password: !secret cam2_password
 
+# glances:
+#   - host: !secret glances_host
+#   - port: 61209
+
 google_assistant:
   project_id: !secret google_project_id
 #  api_key: !secret google_api_key

@@ -1,0 +1,89 @@
+---
+sensor:
+  - platform: avanza_stock
+    stock: 361180
+    name: avanza_servicenow
+    monitored_conditions:
+      - change
+      - changePercent
+      - country
+      - currency
+      - directYield
+      - dividends
+      - flagCode
+      - hasInvestmentFees
+      - highestPrice
+      - id
+      - isin
+      - lastPrice
+      - lastPriceUpdated
+      - loanFactor
+      - lowestPrice
+      - marketCapital
+      - marketList
+      - marketMakerExpected
+      - marketPlace
+      - marketTrades
+      - morningStarFactSheetUrl
+      - name
+      - numberOfOwners
+      - orderDepthReceivedTime
+      - priceAtStartOfYear
+      - priceEarningsRatio
+      - priceFiveYearsAgo
+      - priceOneMonthAgo
+      - priceOneWeekAgo
+      - priceOneYearAgo
+      - priceSixMonthsAgo
+      - priceThreeMonthsAgo
+      - priceThreeYearsAgo
+      - pushPermitted
+      - quoteUpdated
+      - sector
+      - shortSellable
+      - superLoan
+      - tickerSymbol
+      - totalNumberOfShares
+      - totalValueTraded
+      - totalVolumeTraded
+      - tradable
+      - volatility
+input_text:
+  avanza_servicenow_min:
+    icon: mdi:arrow-collapse-down
+    name: Min Alert servicenow
+  avanza_servicenow_max:
+    icon: mdi:arrow-collapse-up
+    name: Max Alert servicenow
+automation:
+  - id: avanza_servicenow
+    alias: Avanza servicenow
+    trigger:
+      - platform: template
+        value_template: >
+          {{ states('sensor.avanza_servicenow') | float
+          > states('input_text.avanza_servicenow_max') |float
+          and states('input_text.avanza_servicenow_max') not in ['unknown', ''] }}
+      - platform: template
+        value_template: >
+          {{ states('sensor.avanza_servicenow') | float
+          < states('input_text.avanza_servicenow_min') | float
+          and states('input_text.avanza_servicenow_min') not in ['unknown', ''] }}
+    action:
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >
+            {% if states('sensor.avanza_servicenow') | float
+            > states('input_text.avanza_servicenow_max') | float
+            and states('input_text.avanza_servicenow_max') not in ['unknown', ''] %}
+            "Stock alert: {{ state_attr('sensor.avanza_servicenow','name') }}:
+            {{ states('sensor.avanza_servicenow') }}
+            {{ state_attr('sensor.avanza_servicenow','currency') }}.
+            Over threshold of {{ states('input_text.avanza_servicenow_max') }}"
+            {% else %}
+            "Stock alert: {{ state_attr('sensor.avanza_servicenow','name') }}:
+            {{ states('sensor.avanza_servicenow') }}
+            {{ state_attr('sensor.avanza_servicenow','currency') }}.
+            Under threshold of {{ states('input_text.avanza_servicenow_min') }}"
+            {% endif %}

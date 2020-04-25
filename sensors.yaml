@@ -29,18 +29,19 @@
     name: Latest Version
     value_template: "qemux86-64"
     scan_interval: 3600
-  - platform: rest
-    resource: http://1.2.3.4:8123/api/hassio/addons/a0d7b954_adguard/info
-    name: adguard
-    value_template: '{{ value_json.data.state }}'
-    scan_interval: 60
-    headers:
-      Authorization: !secret adguard_token
-      Content-Type: application/json
-    json_attributes_path: "$.data"
-    json_attributes:
-      - version
-      - last_version
+  # - platform: rest
+  #   resource: !secret adguard_url
+  #   name: adguard
+  #   value_template: '{{ value_json.data.state }}'
+  #   scan_interval: 60
+  #   headers:
+  #     Authorization: !secret adguard_token
+  #     Content-Type: application/json
+  #   json_attributes_path: "$.data"
+  #   json_attributes:
+  #     - version
+  #     - last_version
+
   - platform: command_line
     name: Supervisor updates
     command: 'curl http://supervisor/supervisor/info -H "Authorization: Bearer $(printenv SUPERVISOR_TOKEN)" | jq ''{"newest_version":.data.version_latest,"current_version":.data.version,"addons":[.data.addons[] | select(.version != .installed)]}'''
@@ -53,6 +54,7 @@
     file_paths:
       - /config/home-assistant_v2.db
       - /config/home-assistant.log
+
   - platform: alpha_vantage
     api_key: !secret alphavantage_api_key
     symbols:

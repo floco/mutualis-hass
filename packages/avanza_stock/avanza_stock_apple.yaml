@@ -1,0 +1,89 @@
+---
+sensor:
+  - platform: avanza_stock
+    stock: 3323
+    name: avanza_apple
+    monitored_conditions:
+      - change
+      - changePercent
+      - country
+      - currency
+      - directYield
+      - dividends
+      - flagCode
+      - hasInvestmentFees
+      - highestPrice
+      - id
+      - isin
+      - lastPrice
+      - lastPriceUpdated
+      - loanFactor
+      - lowestPrice
+      - marketCapital
+      - marketList
+      - marketMakerExpected
+      - marketPlace
+      - marketTrades
+      - morningStarFactSheetUrl
+      - name
+      - numberOfOwners
+      - orderDepthReceivedTime
+      - priceAtStartOfYear
+      - priceEarningsRatio
+      - priceFiveYearsAgo
+      - priceOneMonthAgo
+      - priceOneWeekAgo
+      - priceOneYearAgo
+      - priceSixMonthsAgo
+      - priceThreeMonthsAgo
+      - priceThreeYearsAgo
+      - pushPermitted
+      - quoteUpdated
+      - sector
+      - shortSellable
+      - superLoan
+      - tickerSymbol
+      - totalNumberOfShares
+      - totalValueTraded
+      - totalVolumeTraded
+      - tradable
+      - volatility
+input_text:
+  avanza_apple_min:
+    icon: mdi:arrow-collapse-down
+    name: Min Alert apple
+  avanza_apple_max:
+    icon: mdi:arrow-collapse-up
+    name: Max Alert apple
+automation:
+  - id: avanza_apple
+    alias: Avanza apple
+    trigger:
+      - platform: template
+        value_template: >
+          {{ states('sensor.avanza_apple') | float
+          > states('input_text.avanza_apple_max') |float
+          and states('input_text.avanza_apple_max') not in ['unknown', ''] }}
+      - platform: template
+        value_template: >
+          {{ states('sensor.avanza_apple') | float
+          < states('input_text.avanza_apple_min') | float
+          and states('input_text.avanza_apple_min') not in ['unknown', ''] }}
+    action:
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >
+            {% if states('sensor.avanza_apple') | float
+            > states('input_text.avanza_apple_max') | float
+            and states('input_text.avanza_apple_max') not in ['unknown', ''] %}
+            "Stock alert: {{ state_attr('sensor.avanza_apple','name') }}:
+            {{ states('sensor.avanza_apple') }}
+            {{ state_attr('sensor.avanza_apple','currency') }}.
+            Over threshold of {{ states('input_text.avanza_apple_max') }}"
+            {% else %}
+            "Stock alert: {{ state_attr('sensor.avanza_apple','name') }}:
+            {{ states('sensor.avanza_apple') }}
+            {{ state_attr('sensor.avanza_apple','currency') }}.
+            Under threshold of {{ states('input_text.avanza_apple_min') }}"
+            {% endif %}
