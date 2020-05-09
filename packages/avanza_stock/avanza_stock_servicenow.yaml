@@ -90,3 +90,20 @@ automation:
             {{ state_attr('sensor.avanza_servicenow','currency') }}.
             Under threshold of {{ states('input_text.avanza_servicenow_min') }}"
             {% endif %}
+      - service: script.mail
+        data_template:
+          type: Info
+          message: >
+            {% if states('sensor.avanza_servicenow') | float
+            > states('input_text.avanza_servicenow_max') | float
+            and states('input_text.avanza_servicenow_max') not in ['unknown', ''] %}
+            "Stock alert: {{ state_attr('sensor.avanza_servicenow','name') }}:
+            {{ states('sensor.avanza_servicenow') }}
+            {{ state_attr('sensor.avanza_servicenow','currency') }}.
+            Over threshold of {{ states('input_text.avanza_servicenow_max') }}"
+            {% else %}
+            "Stock alert: {{ state_attr('sensor.avanza_servicenow','name') }}:
+            {{ states('sensor.avanza_servicenow') }}
+            {{ state_attr('sensor.avanza_servicenow','currency') }}.
+            Under threshold of {{ states('input_text.avanza_servicenow_min') }}"
+            {% endif %}
