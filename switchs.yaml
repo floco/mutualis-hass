@@ -40,12 +40,12 @@
   host: !secret broadlink_mp1_host
   mac: !secret broadlink_mp1_mac
   type: mp1
-  friendly_name: 'MP1'
+  friendly_name: 'powerstrip2'
   slots:
-      slot_1: 'MP1 SHA'
-      slot_2: 'MP1 BTV'
-      slot_3: 'MP1 ATV'
-      slot_4: 'MP1 PS3'
+      slot_1: 'powerstrip2 PLUG1'
+      slot_2: 'powerstrip2 PLUG2'
+      slot_3: 'powerstrip2 PLUG3'
+      slot_4: 'powerstrip2 PLUG4'
 
 - platform: template
   switches:

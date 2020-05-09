@@ -1,0 +1,12 @@
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+
+  cards:
+
+    {% for stock in stocks %}
+    - type: custom:decluttering-card
+      template: finance
+      variables:
+        - entity: {{ stock }}
+     {% endfor %}   

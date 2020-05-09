@@ -122,3 +122,18 @@
 #     service: frontend.set_theme
 #     data:
 #       name: happy
+
+# Send notification for new sync to minio
+- id: SY005
+  alias: Updated file alert
+  trigger:
+    platform: event
+    event_type: folder_watcher
+    event_data:
+      event_type: modified
+  action:
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >
+          Sync done: {{ trigger.event.data.file }} modified in {{ trigger.event.data.folder }}

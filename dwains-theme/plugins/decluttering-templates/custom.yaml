@@ -97,35 +97,17 @@ finance:
           - type: 'custom:mini-graph-card'
             animate: true
             entities:
-              - sensor.avanza_[[entity1]]
+              - entity: sensor.avanza_[[entity]]
+                show_legend: false
+              - entity: input_text.avanza_[[entity]]_min
+                show_legend: false
+              - entity: input_text.avanza_[[entity]]_max
+                show_legend: false
             graph: line
+            height: 200
             hour24: true
             hours_to_show: 720 # 1 month
-            name: '[[entity1]] Stock last Month'
-            show:
-              extrema: true
-              icon: true
-              name: true
-          - type: 'custom:mini-graph-card'
-            animate: true
-            entities:
-              - sensor.avanza_[[entity2]]
-            graph: line
-            hour24: true
-            hours_to_show: 720 # 1 month
-            name: '[[entity2]] Stock last Month'
-            show:
-              extrema: true
-              icon: true
-              name: true
-          - type: 'custom:mini-graph-card'
-            animate: true
-            entities:
-              - sensor.avanza_[[entity3]]
-            graph: line
-            hour24: true
-            hours_to_show: 720 # 1 month
-            name: '[[entity3]] Stock last Month'
+            name: '[[entity]] Stock last Month'
             show:
               extrema: true
               icon: true
@@ -133,20 +115,9 @@ finance:
       - type: horizontal-stack
         cards:
           - type: entities
-            title: '[[entity1]]'
+            title: '[[entity]]'
             entities:
-              - entity: input_text.avanza_[[entity1]]_max
-              - entity: input_text.avanza_[[entity1]]_min
-              - entity: automation.avanza_[[entity1]]
-          - type: entities
-            title: '[[entity2]]'
-            entities:
-              - entity: input_text.avanza_[[entity2]]_max
-              - entity: input_text.avanza_[[entity2]]_min
-              - entity: automation.avanza_[[entity2]]
-          - type: entities
-            title: '[[entity3]]'
-            entities:
-              - entity: input_text.avanza_[[entity3]]_max
-              - entity: input_text.avanza_[[entity3]]_min
-              - entity: automation.avanza_[[entity3]]
+              - entity: input_text.avanza_[[entity]]_max
+              - entity: input_text.avanza_[[entity]]_bought
+              - entity: input_text.avanza_[[entity]]_min
+              - entity: automation.avanza_[[entity]]

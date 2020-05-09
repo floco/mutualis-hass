@@ -89,18 +89,20 @@ input4:
 # Activities
 watch_tv:
   sequence:
-    - service: homeassistant.turn_off
-      entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
-      entity_id: switch.mp1_sha
-    - service: homeassistant.turn_on
-      entity_id: switch.mp1_btv
+      entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.mp1_atv
-    - service: homeassistant.turn_off
-      entity_id: switch.mp1_ps3
+      entity_id: switch.powerstrip2_plug1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip1_plug2
+    - service: homeassistant.turn_off
+      entity_id: switch.powerstrip1_plug3
+    - service: homeassistant.turn_off
+      entity_id: switch.powerstrip1_plug4
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -116,16 +118,18 @@ watch_tv:
 
 watch_movies:
   sequence:
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
+      entity_id: switch.powerstrip2_plug1
+    - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
-      entity_id: switch.mp1_sha
-    - service: homeassistant.turn_on
-      entity_id: switch.mp1_atv
+      entity_id: switch.powerstrip1_plug3
     - service: homeassistant.turn_off
-      entity_id: switch.mp1_ps3
+      entity_id: switch.powerstrip1_plug4
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip1_plug1
+      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -141,16 +145,16 @@ watch_movies:
 
 watch_ps3:
   sequence:
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
+      entity_id: switch.powerstrip2_plug1
+    - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
-      entity_id: switch.mp1_sha
-    - service: homeassistant.turn_off
-      entity_id: switch.mp1_atv
+      entity_id: switch.powerstrip1_plug4
     - service: homeassistant.turn_on
-      entity_id: switch.mp1_ps3
-    - service: homeassistant.turn_on
-      entity_id: switch.powerstrip1_plug1
+      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -168,12 +172,14 @@ watch_ps3:
 
 listen_audio:
   sequence:
-    - service: homeassistant.turn_off
-      entity_id: switch.powerstrip1_plug1
-    - service: homeassistant.turn_off
-      entity_id: switch.mp1_sha
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip1_plug1
+      entity_id: switch.powerstrip1_usb
+    - service: homeassistant.turn_off
+      entity_id: switch.powerstrip2_plug1
+    - service: homeassistant.turn_off
+      entity_id: switch.powerstrip1_plug3
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: script.input1
@@ -182,12 +188,14 @@ listen_audio:
 
 watch_video:
   sequence:
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip1_plug1
-    - service: homeassistant.turn_on
-      entity_id: switch.mp1_sha
+      entity_id: switch.powerstrip2_plug1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -209,12 +217,12 @@ stop_watching:
     - service: homeassistant.turn_off
       entity_id: script.portta
     - service: homeassistant.turn_off
-      entity_id: switch.mp1_sha
+      entity_id: switch.powerstrip1_plug3
     - service: homeassistant.turn_off
-      entity_id: switch.mp1_btv
-    - service: homeassistant.turn_off
-      entity_id: switch.mp1_atv
-    - service: homeassistant.turn_off
-      entity_id: switch.mp1_ps3
+      entity_id: switch.powerstrip1_plug2
     - service: homeassistant.turn_off
       entity_id: switch.powerstrip1_plug1
+    - service: homeassistant.turn_off
+      entity_id: switch.powerstrip1_plug4
+    - service: homeassistant.turn_off
+      entity_id: switch.powerstrip2_plug1

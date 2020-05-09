@@ -12,3 +12,20 @@ notify:
       data_template:
         message: >         
           {{ now().strftime('%H:%M') }} {{type}}: {{message}}
+
+mail:
+  description: 'Send a notification by mail'
+  fields:
+    type:
+      description: 'The type of the notification'
+      example: 'Info, Warning, Alert'
+    message:
+      description: 'The message content'
+      example: 'Something happened'
+  sequence:
+    - service: notify.mail
+      data_template:
+        title: > 
+          {{type}} from Home Assistant
+        message: >         
+          {{ now().strftime('%H:%M') }} {{type}}: {{message}}

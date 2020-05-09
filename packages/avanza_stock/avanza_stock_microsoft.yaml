@@ -55,6 +55,9 @@ input_text:
   avanza_microsoft_max:
     icon: mdi:arrow-collapse-up
     name: Max Alert microsoft
+  avanza_microsoft_bought:
+    icon: mdi:arrow-collapse-right
+    name: Bought Alert microsoft
 automation:
   - id: avanza_microsoft
     alias: Avanza microsoft

@@ -55,6 +55,9 @@ input_text:
   avanza_servicenow_max:
     icon: mdi:arrow-collapse-up
     name: Max Alert servicenow
+  avanza_servicenow_bought:
+    icon: mdi:arrow-collapse-right
+    name: Bought Alert servicenow
 automation:
   - id: avanza_servicenow
     alias: Avanza servicenow

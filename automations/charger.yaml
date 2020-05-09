@@ -22,3 +22,21 @@
   action:
   - service: homeassistant.turn_off
     entity_id: switch.prise3
+# Turn off mp1 for bedtime
+- id: CH003
+  alias: Turn off mp1 after we go to bed
+  trigger:
+    platform: time
+    at: '23:59:00'
+  action:
+  - service: homeassistant.turn_off
+    entity_id: group.powerstrip2_mp1
+# Turn on mp1 during day
+- id: CH004
+  alias: Turn on mp1 during day
+  trigger:
+    platform: time
+    at: '07:00:00'
+  action:
+  - service: homeassistant.turn_on
+    entity_id: group.powerstrip2_mp1

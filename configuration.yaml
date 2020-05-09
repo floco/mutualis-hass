@@ -119,7 +119,20 @@ notify:
     method: POST_JSON
   # - name: Google Assistant
   #   platform: rest
-  #   resource: !secret google_msg_url
+  #   resource: !secret google_msg_urlnotify:
+  - name: mail
+    platform: smtp
+    server: !secret smtp_url 
+    port: 587
+    timeout: 15
+    sender: !secret smtp_from
+    encryption: starttls
+    username: !secret smtp_user
+    password: !secret smtp_password
+    recipient:
+      - !secret smtp_to_home
+      - !secret smtp_to_work
+    sender_name: My Home Assistant
 
 # ring:
 #   username: !secret ring_username
@@ -365,6 +378,18 @@ weather:
 #   username: !secret mqtt_username
 #   password: !secret mqtt_password
 #   client_id: home-assistant
+
+minio:
+  host: !secret minio_host
+  port: 8000
+  access_key: !secret minio_access_key
+  secret_key: !secret minio_secret_key
+  secure: true
+
+folder_watcher:
+  - folder: /config/www/sync
+    # patterns:
+    #   - 'sync*.log'
 
 influxdb:
   host: a0d7b954-influxdb

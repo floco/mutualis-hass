@@ -12,16 +12,16 @@
     - binary_sensor.door_window_sensor_158d00023295ce
     - binary_sensor.door_window_sensor_158d000237d247
   powerstrip1_p402a:
-    - switch.powerstrip1_plug1
-    - switch.powerstrip1_plug2
-    - switch.powerstrip1_plug3
-    - switch.powerstrip1_plug4
+    - switch.powerstrip1_plug1 #SHA
+    - switch.powerstrip1_plug2 #BTV
+    - switch.powerstrip1_plug3 #ATV
+    - switch.powerstrip1_plug4 #PS3
     - switch.powerstrip1_usb
   powerstrip2_mp1:
-    - switch.mp1_atv
-    - switch.mp1_btv
-    - switch.mp1_sha
-    - switch.mp1_ps3
+    - switch.powerstrip2_plug1
+    - switch.powerstrip2_plug2
+    - switch.powerstrip2_plug3
+    - switch.powerstrip2_plug4
   spots:
     - light.chambre_spot_1
     - light.chambre_spot_2

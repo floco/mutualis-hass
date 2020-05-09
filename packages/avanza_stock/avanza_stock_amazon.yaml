@@ -1,8 +1,8 @@
 ---
 sensor:
   - platform: avanza_stock
-    stock: 3323
-    name: avanza_apple
+    stock: 3986
+    name: avanza_amazon
     monitored_conditions:
       - change
       - changePercent
@@ -49,44 +49,44 @@ sensor:
       - tradable
       - volatility
 input_text:
-  avanza_apple_min:
+  avanza_amazon_min:
     icon: mdi:arrow-collapse-down
-    name: Min Alert apple
-  avanza_apple_max:
+    name: Min Alert amazon
+  avanza_amazon_max:
     icon: mdi:arrow-collapse-up
-    name: Max Alert apple
-  avanza_apple_bought:
+    name: Max Alert amazon
+  avanza_amazon_bought:
     icon: mdi:arrow-collapse-right
-    name: Bought Alert apple
+    name: Bought Alert amazon
 automation:
-  - id: avanza_apple
-    alias: Avanza apple
+  - id: avanza_amazon
+    alias: Avanza amazon
     trigger:
       - platform: template
         value_template: >
-          {{ states('sensor.avanza_apple') | float
-          > states('input_text.avanza_apple_max') |float
-          and states('input_text.avanza_apple_max') not in ['unknown', ''] }}
+          {{ states('sensor.avanza_amazon') | float
+          > states('input_text.avanza_amazon_max') |float
+          and states('input_text.avanza_amazon_max') not in ['unknown', ''] }}
       - platform: template
         value_template: >
-          {{ states('sensor.avanza_apple') | float
-          < states('input_text.avanza_apple_min') | float
-          and states('input_text.avanza_apple_min') not in ['unknown', ''] }}
+          {{ states('sensor.avanza_amazon') | float
+          < states('input_text.avanza_amazon_min') | float
+          and states('input_text.avanza_amazon_min') not in ['unknown', ''] }}
     action:
       - service: script.notify
         data_template:
           type: Info
           message: >
-            {% if states('sensor.avanza_apple') | float
-            > states('input_text.avanza_apple_max') | float
-            and states('input_text.avanza_apple_max') not in ['unknown', ''] %}
-            "Stock alert: {{ state_attr('sensor.avanza_apple','name') }}:
-            {{ states('sensor.avanza_apple') }}
-            {{ state_attr('sensor.avanza_apple','currency') }}.
-            Over threshold of {{ states('input_text.avanza_apple_max') }}"
+            {% if states('sensor.avanza_amazon') | float
+            > states('input_text.avanza_amazon_max') | float
+            and states('input_text.avanza_amazon_max') not in ['unknown', ''] %}
+            "Stock alert: {{ state_attr('sensor.avanza_amazon','name') }}:
+            {{ states('sensor.avanza_amazon') }}
+            {{ state_attr('sensor.avanza_amazon','currency') }}.
+            Over threshold of {{ states('input_text.avanza_amazon_max') }}"
             {% else %}
-            "Stock alert: {{ state_attr('sensor.avanza_apple','name') }}:
-            {{ states('sensor.avanza_apple') }}
-            {{ state_attr('sensor.avanza_apple','currency') }}.
-            Under threshold of {{ states('input_text.avanza_apple_min') }}"
+            "Stock alert: {{ state_attr('sensor.avanza_amazon','name') }}:
+            {{ states('sensor.avanza_amazon') }}
+            {{ state_attr('sensor.avanza_amazon','currency') }}.
+            Under threshold of {{ states('input_text.avanza_amazon_min') }}"
             {% endif %}

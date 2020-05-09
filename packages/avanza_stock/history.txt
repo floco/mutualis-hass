@@ -1,3 +1,0 @@
-python new_avanza_stock_sensors.py microsoft 3873
-python new_avanza_stock_sensors.py apple 3323
-python new_avanza_stock_sensors.py servicenow 361180

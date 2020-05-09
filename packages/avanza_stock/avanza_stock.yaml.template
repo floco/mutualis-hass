@@ -55,6 +55,9 @@ input_text:
   avanza_${name}_max:
     icon: mdi:arrow-collapse-up
     name: Max Alert ${name}
+  avanza_${name}_bought:
+    icon: mdi:arrow-collapse-right
+    name: Bought Alert ${name}
 automation:
   - id: avanza_${name}
     alias: Avanza ${name}
