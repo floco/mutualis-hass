@@ -57,7 +57,6 @@ logger:
 
 recorder:
   db_url: !secret mariadb_url
-  purge_interval: 1
   purge_keep_days: 15
   include:
     entities:
@@ -139,6 +138,15 @@ notify:
 #   password: !secret ring_password
 
 binary_sensor:
+  - platform: hikvision
+    host: !secret nvr_host
+    port: 80
+    ssl: false
+    username: !secret nvr_username
+    password: !secret nvr_password
+    customize:
+      motion:
+        delay: 30
   - platform: template
     sensors:
       # True if there's an update available for supervisor
@@ -253,6 +261,41 @@ camera:
     name: cam2
     username: !secret cam2_username
     password: !secret cam2_password
+  - platform: generic
+    name: nvr_cam1
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam1_still_url
+    stream_source: !secret nvr_cam1_rtsp_url
+  - platform: generic
+    name: nvr_cam2
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam2_still_url
+    stream_source: !secret nvr_cam2_rtsp_url
+  - platform: generic
+    name: nvr_cam3
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam3_still_url
+    stream_source: !secret nvr_cam3_rtsp_url
+  - platform: generic
+    name: nvr_cam4
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam4_still_url
+    stream_source: !secret nvr_cam4_rtsp_url
+  # - platform: onvif
+  #   host: !secret nvr_host
+  #   username: !secret nvr_username
+  #   password: !secret nvr_password
+  #   name: Annke
+  #   profile: 1
+  #   port: 8000
 
 # glances:
 #   - host: !secret glances_host
@@ -437,7 +480,7 @@ edgeos:
     - iphone-x
     - iphone-5S
     - lumia
-    - oneplus-onex
+    - oneplus-onex 
   unit: 'M'
 
 device_tracker:
@@ -456,6 +499,26 @@ device_tracker:
     consider_home: 180
     new_device_defaults:
       track_new_devices: false
+
+fan:
+  - platform: xiaomi_miio_fan
+    name: Xiaomi Smart Fan
+    host: !secret smartmi_ip
+    token: !secret smartmi_token
+
+ffmpeg:
+
+image_processing:
+  - platform: deepstack_object
+    ip_address: 192.168.2.140
+    port: 5000
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - person
+      - cat
+    source:
+      - entity_id: camera.nvr_cam1
 
 ########### LOVELACE ########### 
 

@@ -3,3 +3,7 @@
 cameras:
   - entity: camera.cam1
   - entity: camera.cam2
+  - entity: camera.nvr_cam1
+  - entity: camera.nvr_cam2
+  - entity: camera.nvr_cam3
+  - entity: camera.nvr_cam4

@@ -1,0 +1,23 @@
+- type: custom:dwains-flexbox-card
+  padding: true
+  items_classes: 'col-lg-6 col-md-6 col-sm-12 col-xs-12'
+  cards:
+
+{% for tags, links in items | groupby('tags') %}
+    - type: entities
+      title: {{ tags }}
+      show_header_toggle: false
+      entities:
+    {% for link in links %}
+        - type: weblink
+          name: {{ link.name }}
+          url:  {{ link.prefix }}{{ link.url }}
+          icon: mdi:{{ link.icon }}
+    {% endfor %}
+
+{% endfor %}
+
+
+
+
+

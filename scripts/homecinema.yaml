@@ -211,7 +211,7 @@ watch_video:
 stop_watching:
   sequence:
     - service: homeassistant.turn_off
-      entity_id: script.bose_system
+      entity_id: switch.bose_system
     - service: homeassistant.turn_off
       entity_id: switch.sharp
     - service: homeassistant.turn_off

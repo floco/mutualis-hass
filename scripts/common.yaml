@@ -2,8 +2,8 @@
 go_to_sleep:
   alias: Go to sleep
   sequence:
-    - service: homeassistant.turn_off
-      entity_id: script.everything
+    - service: homeassistant.turn_on
+      entity_id: script.stop_watching
     - service: homeassistant.turn_off
       entity_id: switch.lights_outside
     - service: homeassistant.turn_off

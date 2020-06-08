@@ -6,6 +6,10 @@
     - entity: weather.dark_sky
       name: Weather
       type: 'custom:weather-card'
+
+    - entity: fan.xiaomi_smart_fan
+      name: Fan Smartmi 2S
+      type: 'custom:fan-xiaomi'
   
     - type: vertical-stack
       cards:
@@ -62,3 +66,5 @@
             labels_secondary: true
           hours_to_show: 336
           points_per_hour: 0.1
+
+

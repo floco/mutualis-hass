@@ -27,3 +27,4 @@ emulated_hue_ids.json
 ip_bans.yaml
 /esphome/**
 env
+*.csv

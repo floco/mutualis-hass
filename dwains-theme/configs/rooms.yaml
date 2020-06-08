@@ -33,7 +33,8 @@ rooms:
     page_entities:
       entities:
         - entity: sensor.garage_sensor_motion_battery
-        - entity: camera.cam1  
+        - entity: camera.nvr_cam1  
+        - entity: image_processing.deepstack_object_cam1
         # - entity: petkit
 
   - name: Salon
@@ -112,6 +113,8 @@ rooms:
         - entity: binary_sensor.wall_switch_both_158d000237bae7
         - entity: binary_sensor.wall_switch_right_158d000237bae7
         - entity: binary_sensor.wall_switch_left_158d000237bae7
+        - entity: fan.xiaomi_smart_fan
+
 
   - name: Chambre Mia
     icon: fas:bed

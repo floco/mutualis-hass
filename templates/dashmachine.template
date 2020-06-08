@@ -1,0 +1,34 @@
+[Settings]
+theme = light
+accent = orange
+background = None
+roles = admin,user,public_user
+home_access_groups = admin_only
+settings_access_groups = admin_only
+custom_app_title = DashMachine
+sidebar_default = open
+
+[admin]
+role = admin
+password = 
+confirm_password = 
+
+{% for tags, links in items | groupby('tags') %}
+# {{ tags }}
+{% for link in links %}
+[{{ link.name }}]
+prefix = {{ link.prefix }}
+url = {{ link.url }}
+icon = static/images/apps/{{ link.icon }}
+sidebar_icon = static/images/apps/{{ link.icon }}
+description = {{ link.description }}
+open_in = {{ link.open_in }}
+tags = {{ link.tags }}
+{% endfor %}
+{% endfor %}
+
+[Collection Name]
+type = collection
+icon = collections_bookmark
+urls = {"url": "https://google.com", "icon": "static/images/apps/default.png", "name": "Google", "open_in": "new_tab"},{"url": "https://duckduckgo.com", "icon": "static/images/apps/default.png", "name": "DuckDuckGo", "open_in": "this_tab"}
+

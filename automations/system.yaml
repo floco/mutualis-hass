@@ -113,6 +113,20 @@
       title: "New Home Assistant Version"
       message: "Version {{ states.sensor.latest_version.state }} is available!"
 
+- id: SY005
+  alias: Addon Update Available
+  initial_state: false
+  trigger:
+    - platform: template
+      value_template: "{{state_attr('sensor.adguard', 'version') != state_attr('sensor.adguard', 'version_latest')}}"
+    - platform: template
+      value_template: "{{state_attr('sensor.ssh', 'version') != state_attr('sensor.ssh', 'version_latest')}}"
+  action:
+    service: notify.home_assistant
+    data_template:
+      title: "Add-On Update Available"
+      message: "The {{ trigger.to_state.attributes.friendly_name }} add-on is currently running version {{ trigger.to_state.attributes.version }} and version {{ trigger.to_state.attributes.version_latest }} is available."
+
 # - id: SY003
 #   alias: 'Set theme at startup'
 #   trigger:
@@ -124,7 +138,7 @@
 #       name: happy
 
 # Send notification for new sync to minio
-- id: SY005
+- id: SY006
   alias: Updated file alert
   trigger:
     platform: event
