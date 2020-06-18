@@ -130,7 +130,7 @@ notify:
     password: !secret smtp_password
     recipient:
       - !secret smtp_to_home
-      - !secret smtp_to_work
+#      - !secret smtp_to_work
     sender_name: My Home Assistant
 
 # ring:
@@ -139,11 +139,42 @@ notify:
 
 binary_sensor:
   - platform: hikvision
+    name: nvr_cam1
     host: !secret nvr_host
-    port: 80
+    port: 65001
     ssl: false
     username: !secret nvr_username
-    password: !secret nvr_password
+    password: !secret nvr_cam_password
+    customize:
+      motion:
+        delay: 30
+  - platform: hikvision
+    name: nvr_cam2
+    host: !secret nvr_host
+    port: 65002
+    ssl: false
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    customize:
+      motion:
+        delay: 30
+  - platform: hikvision
+    name: nvr_cam3
+    host: !secret nvr_host
+    port: 65003
+    ssl: false
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    customize:
+      motion:
+        delay: 30
+  - platform: hikvision
+    name: nvr_cam4
+    host: !secret nvr_host
+    port: 65004
+    ssl: false
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
     customize:
       motion:
         delay: 30
@@ -431,6 +462,7 @@ minio:
 
 folder_watcher:
   - folder: /config/www/sync
+  - folder: /config/snapshots
     # patterns:
     #   - 'sync*.log'
 
@@ -510,15 +542,95 @@ ffmpeg:
 
 image_processing:
   - platform: deepstack_object
-    ip_address: 192.168.2.140
-    port: 5000
+    ip_address: !secret deepstack_host
+    port: 5555
     save_file_folder: /config/snapshots/
     save_timestamped_file: True
     targets:
       - person
-      - cat
+    confidence: 66
     source:
       - entity_id: camera.nvr_cam1
+        name: cam1_person
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - person
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam2
+        name: cam2_person
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - person
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam3
+        name: cam3_person
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - person
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam4
+        name: cam4_person
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - cat
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam1
+        name: cam1_cat
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - cat
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam2
+        name: cam2_cat
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - cat
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam3
+        name: cam3_cat
+  - platform: deepstack_object
+    ip_address: !secret deepstack_host
+    port: 5555
+    save_file_folder: /config/snapshots/
+    save_timestamped_file: True
+    targets:
+      - cat
+    confidence: 66
+    source:
+      - entity_id: camera.nvr_cam4
+        name: cam4_cat
+
+
 
 ########### LOVELACE ########### 
 

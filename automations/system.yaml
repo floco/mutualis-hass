@@ -145,6 +145,7 @@
     event_type: folder_watcher
     event_data:
       event_type: modified
+      path: '/config/www/sync/sync.log'
   action:
     - service: script.notify
       data_template:
