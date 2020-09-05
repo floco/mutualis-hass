@@ -155,8 +155,8 @@
       message: >         
         Main door closed !
 
-- id: AL009
-  alias: Object detection automation
+- id: AL009a
+  alias: Person detection automation
   trigger:
   - platform: event
     event_type: deepstack.object_detected
@@ -167,88 +167,163 @@
     data_template:
       type: Info
       message: >         
-        New object detection: {{ trigger.event.data.name }} with confidence {{ trigger.event.data.confidence }}
+        New person detection: {{ trigger.event.data.name }} with confidence {{ trigger.event.data.confidence }}
+
+- id: AL009b
+  alias: Cat detection automation
+  trigger:
+  - platform: event
+    event_type: deepstack.object_detected
+    event_data:
+      object: cat
+  action:
+  - service: script.notify
+    data_template:
+      type: Info
+      message: >         
+        New cat detection: {{ trigger.event.data.name }} with confidence {{ trigger.event.data.confidence }}
 
 - id: AL010
-  alias: Deepstack person alert cam1
+  alias: Deepstack alert on one of the cam
   trigger:
-    event_type: folder_watcher
     platform: event
+    event_type: folder_watcher
     event_data:
-      event_type: modified
-      path: '/config/snapshots/cam1_person_latest.jpg'
+      event_type: created
   action:
   - service: notify.mail
-    data:
+    data_template:
         title: 'Intruder alert'
-        message: 'Intruder alert detected on cam1 !'
+        message: 'Intruder detected ! See file {{ trigger.event.data.file }}'
         data:
             images:
-                - /config/snapshots/cam1_person_latest.jpg
+                - '{{ trigger.event.data.path }}'
 
-- id: AL011
-  alias: Deepstack person alert cam2
-  trigger:
-    event_type: folder_watcher
-    platform: event
-    event_data:
-      event_type: modified
-      path: '/config/snapshots/cam2_person_latest.jpg'
-  action:
-  - service: notify.mail
-    data:
-        title: 'Intruder alert'
-        message: 'Intruder alert detected on cam2 !'
-        data:
-            images:
-                - /config/snapshots/cam2_person_latest.jpg
+# - id: AL010b
+#   alias: Deepstack cat alert cam1
+#   trigger:
+#     event_type: folder_watcher
+#     platform: event
+#     event_data:
+#       event_type: modified
+#       path: '/config/snapshots/cam1_cat_latest.jpg'
+#   action:
+#   - service: notify.mail
+#     data:
+#         title: 'Cat detected'
+#         message: 'Cat detected on cam1 !'
+#         data:
+#             images:
+#                 - /config/snapshots/cam1_cat_latest.jpg
 
-- id: AL012
-  alias: Deepstack person alert cam3
-  trigger:
-    event_type: folder_watcher
-    platform: event
-    event_data:
-      event_type: modified
-      path: '/config/snapshots/cam3_person_latest.jpg'
-  action:
-  - service: notify.mail
-    data:
-        title: 'Intruder alert'
-        message: 'Intruder alert detected on cam3 !'
-        data:
-            images:
-                - /config/snapshots/cam3_person_latest.jpg
+# - id: AL011
+#   alias: Deepstack person alert cam2
+#   trigger:
+#     event_type: folder_watcher
+#     platform: event
+#     event_data:
+#       event_type: modified
+#       path: '/config/snapshots/cam2_person_latest.jpg'
+#   action:
+#   - service: notify.mail
+#     data:
+#         title: 'Intruder alert'
+#         message: 'Intruder alert detected on cam2 !'
+#         data:
+#             images:
+#                 - /config/snapshots/cam2_person_latest.jpg
 
-- id: AL013
-  alias: Deepstack person alert cam4
-  trigger:
-    event_type: folder_watcher
-    platform: event
-    event_data:
-      event_type: modified
-      path: '/config/snapshots/cam4_person_latest.jpg'
-  action:
-  - service: notify.mail
-    data:
-        title: 'Intruder alert'
-        message: 'Intruder alert detected on cam4 !'
-        data:
-            images:
-                - /config/snapshots/cam4_person_latest.jpg
+# - id: AL012
+#   alias: Deepstack person alert cam3
+#   trigger:
+#     event_type: folder_watcher
+#     platform: event
+#     event_data:
+#       event_type: modified
+#       path: '/config/snapshots/cam3_person_latest.jpg'
+#   action:
+#   - service: notify.mail
+#     data:
+#         title: 'Intruder alert'
+#         message: 'Intruder alert detected on cam3 !'
+#         data:
+#             images:
+#                 - /config/snapshots/cam3_person_latest.jpg
+
+# - id: AL013
+#   alias: Deepstack person alert cam4
+#   trigger:
+#     event_type: folder_watcher
+#     platform: event
+#     event_data:
+#       event_type: modified
+#       path: '/config/snapshots/cam4_person_latest.jpg'
+#   action:
+#   - service: notify.mail
+#     data:
+#         title: 'Intruder alert'
+#         message: 'Intruder alert detected on cam4 !'
+#         data:
+#             images:
+#                 - /config/snapshots/cam4_person_latest.jpg
 
 - id: AL014
-  alias: Motion Detected on cam1
+  alias: Scan cam1 for known object triggered by line crossing or motion
   trigger:
   - entity_id: binary_sensor.nvr_cam1_line_crossing
     from: 'off'
     platform: state
     to: 'on'
+  - entity_id: binary_sensor.garage_sensor_motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_away
+      - condition: state
+        entity_id: alarm_control_panel.home_alarm
+        state: armed_home
   action:
   - service: image_processing.scan
     entity_id: image_processing.cam1_person
-  - service: script.notify
-    data_template:
-      type: Info
-      message: >         
-        Scan of cam1 triggered
+  - delay: 00:00:05
+  - service: image_processing.scan
+    entity_id: image_processing.cam1_cat
+#  - service: script.notify
+#    data_template:
+#      type: Info
+#      message: >         
+#        Scan of cam1 triggered by motion
+
+- id: AL015
+  alias: Scan cam2 for known object
+  trigger:
+  - entity_id: binary_sensor.nvr_cam2_line_crossing
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: image_processing.scan
+    entity_id: image_processing.cam2_person
+  - delay: 00:00:05
+  - service: image_processing.scan
+    entity_id: image_processing.cam2_cat
+
+- id: AL016
+  alias: Scan cam3 for known object
+  trigger:
+  - entity_id: binary_sensor.nvr_cam3_line_crossing
+    from: 'off'
+    platform: state
+    to: 'on'
+  action:
+  - service: image_processing.scan
+    entity_id: image_processing.cam3_person
+  - delay: 00:00:05
+  - service: image_processing.scan
+    entity_id: image_processing.cam3_cat
+

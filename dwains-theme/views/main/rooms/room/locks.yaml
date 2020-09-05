@@ -14,6 +14,7 @@
           max-width: 1465px;
           padding-bottom: 50px;
           margin: 0 auto;
+          font-family: "Open Sans", sans-serif !important;
         }
       card:
         type: vertical-stack
@@ -35,7 +36,11 @@
                   options:
                     type: custom:button-card
                     template: room_lock
-                    tap_action:
+                    hold_action:
+                      !include 
+                        - ../../../popups/more-info.yaml
+                        - entity: this.entity_id
+                    double_tap_action:
                       !include 
                         - ../../../popups/more-info.yaml
                         - entity: this.entity_id

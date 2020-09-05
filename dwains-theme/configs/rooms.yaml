@@ -3,7 +3,7 @@
 rooms:
 
   - name: Vestibule
-    icon: fas:key
+    icon: mdi:key
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     motion: binary_sensor.motion_sensor_158d00042026f7
@@ -21,7 +21,7 @@ rooms:
         - entity: sensor.entree_wifi_signal_category
 
   - name: Garage
-    icon: fas:garage
+    icon: mdi:garage
     temperature: sensor.garage_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     motion: binary_sensor.garage_sensor_motion
@@ -33,44 +33,68 @@ rooms:
     page_entities:
       entities:
         - entity: sensor.garage_sensor_motion_battery
-        - entity: camera.nvr_cam1  
-        - entity: image_processing.deepstack_object_cam1
+        - entity: camera.nvr_cam1 
+        - entity: camera.nvr_cam1_person
+        - entity: camera.nvr_cam1_cat
+        - entity: image_processing.cam1_person
+        - entity: image_processing.cam1_cat
+        - entity: binary_sensor.door_window_sensor_158d00047d4a5e
         # - entity: petkit
 
   - name: Salon
-    icon: fas:couch
+    icon: mdi:sofa
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion:
     light: group.living_lights
-    # window:
+    window: binary_sensor.door_window_sensor_158d00047d4c05
     # door: 
     media_player: group.living_medias
     # plant: 
     page_entities:
       entities:
+        - entity: switch.belgacom
+        - entity: switch.apple
+        - entity: switch.ps3
+        - entity: switch.chromecast_audio
+        - entity: switch.chromecast_video
+        - entity: switch.chargeur
         - entity: binary_sensor.smoke_sensor_158d0001e581ee
         - entity: group.powerstrip1_p402a
         - entity: group.powerstrip2_mp1
         - entity: switch.prise3
         - entity: camera.cam2
 
-  - name: Veranda
-    icon: fas:window-restore
-    # temperature: 
-    # humidity: 
-    # motion: 
+  - name: Cuisine
+    icon: mdi:fridge-outline
+    temperature: sensor.netatmo_living_room_inside_temperature
+    humidity: sensor.netatmo_living_room_inside_humidity
+    # motion:
     # light: 
-    # window:
+    window: binary_sensor.door_window_sensor_158d00047ddad9
     # door: 
-    # media_player:
+    media_player: media_player.cuisine
     # plant: 
     # page_entities:
     #   entities:
     #     - entity: 
 
+  - name: Veranda
+    icon: mdi:window-restore
+    temperature: sensor.temperature_158d00030aeb64
+    humidity: sensor.humidity_158d00030aeb64
+    # motion: 
+    # light: 
+    # window:
+    door: binary_sensor.door_window_sensor_158d00045c97e4
+    # media_player:
+    # plant: 
+    page_entities:
+      entities:
+        - entity: sensor.pressure_158d00030aeb64
+
   - name: Jardin
-    icon: fas:leaf
+    icon: mdi:leaf
     temperature: sensor.netatmo_living_room_outside_temperature
     humidity: sensor.netatmo_living_room_outside_humidity
     # motion: 
@@ -82,9 +106,19 @@ rooms:
     page_entities:
       entities:
         - entity: switch.prise4
+        - entity: camera.nvr_cam2  
+        - entity: camera.nvr_cam2_person
+        - entity: camera.nvr_cam2_cat
+        - entity: image_processing.cam2_person
+        - entity: image_processing.cam2_cat
+        - entity: camera.nvr_cam3 
+        - entity: camera.nvr_cam3_person
+        - entity: camera.nvr_cam3_cat
+        - entity: image_processing.cam3_person
+        - entity: image_processing.cam3_cat
 
   - name: Mezzanine
-    icon: fas:store
+    icon: mdi:store
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     motion: binary_sensor.motion_sensor_158d000276d4da
@@ -98,7 +132,7 @@ rooms:
         - entity: binary_sensor.smoke_sensor_158d0001bbe483
 
   - name: Chambre Parent
-    icon: fas:bed
+    icon: mdi:bed-king
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion: 
@@ -117,7 +151,7 @@ rooms:
 
 
   - name: Chambre Mia
-    icon: fas:bed
+    icon: mdi:bed-single
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion: 
@@ -131,7 +165,7 @@ rooms:
         - entity: binary_sensor.smoke_sensor_158d00024e8f68 
 
   - name: Chambre Evy
-    icon: fas:bed
+    icon: mdi:bed-single-outline
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion: 
@@ -145,7 +179,7 @@ rooms:
         - entity: binary_sensor.smoke_sensor_158d00028f4032
 
   - name: Chambre Amis
-    icon: fas:user-friends
+    icon: mdi:account-multiple-plus
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion: 
@@ -159,7 +193,7 @@ rooms:
         - entity: switch.prise2
 
   - name: Salle de Bain
-    icon: fas:bath
+    icon: mdi:paper-roll
     temperature: sensor.netatmo_living_room_inside_temperature
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion: 

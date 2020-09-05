@@ -15,16 +15,15 @@ homeassistant:
     - /config
 
 http:
-  base_url: !secret http_base_url
-  # ip_ban_enabled: True
+  # base_url: !secret http_base_url
+  ip_ban_enabled: true
   login_attempts_threshold: 3
-  # cors_allowed_origins:
-  #   - https://google.com
-  #   - https://home-assistant.io
-  # use_x_forwarded_for: True
-  # trusted_networks:
-  #   - !secret trusted_ip
-  #   - !secret trusted_ip_2
+  cors_allowed_origins:
+    - https://google.com
+    - https://www.home-assistant.io
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.30.33.0/24
 
 browser_mod:
 config:
@@ -320,6 +319,25 @@ camera:
     authentication: digest
     still_image_url: !secret nvr_cam4_still_url
     stream_source: !secret nvr_cam4_rtsp_url
+  - platform: local_file
+    name: nvr_cam1_person
+    file_path: /config/snapshots/cam1_person_latest.jpg
+  - platform: local_file
+    name: nvr_cam1_cat
+    file_path: /config/snapshots/cam1_cat_latest.jpg
+  - platform: local_file
+    name: nvr_cam2_person
+    file_path: /config/snapshots/cam2_person_latest.jpg
+  - platform: local_file
+    name: nvr_cam2_cat
+    file_path: /config/snapshots/cam2_cat_latest.jpg
+  - platform: local_file
+    name: nvr_cam3_person
+    file_path: /config/snapshots/cam3_person_latest.jpg
+  - platform: local_file
+    name: nvr_cam3_cat
+    file_path: /config/snapshots/cam3_cat_latest.jpg
+    
   # - platform: onvif
   #   host: !secret nvr_host
   #   username: !secret nvr_username
@@ -392,10 +410,10 @@ timer:
   light_down:
     duration: '00:05:00'
 
-xiaomi_aqara:
-  gateways:
-    - mac: !secret xiaomi_gw_mac
-      key: !secret xiaomi_gw_key
+# xiaomi_aqara:
+#   gateways:
+#     - mac: !secret xiaomi_gw_mac
+#       key: !secret xiaomi_gw_key
 
 input_boolean:
   alarm:
@@ -425,13 +443,13 @@ alarm_control_panel:
   - platform: manual
     name: Home Alarm
     code: !secret alarm_code
-    pending_time: 5
+    arming_time: 5
     delay_time: 1
     trigger_time: 1
     disarmed:
       trigger_time: 0
     armed_home:
-      pending_time: 0
+      arming_time: 0
       delay_time: 0
 
 speedtestdotnet:
@@ -494,7 +512,7 @@ hacs:
 
 #breaking_changes:
 
-shelly:
+#shelly:
 
 edgeos:
   host: !secret edge_os_host
@@ -592,7 +610,7 @@ image_processing:
     save_timestamped_file: True
     targets:
       - cat
-    confidence: 66
+    confidence: 25
     source:
       - entity_id: camera.nvr_cam1
         name: cam1_cat
@@ -603,7 +621,8 @@ image_processing:
     save_timestamped_file: True
     targets:
       - cat
-    confidence: 66
+      - dog
+    confidence: 25
     source:
       - entity_id: camera.nvr_cam2
         name: cam2_cat
@@ -613,8 +632,10 @@ image_processing:
     save_file_folder: /config/snapshots/
     save_timestamped_file: True
     targets:
+      - car
       - cat
-    confidence: 66
+      - dog
+    confidence: 33
     source:
       - entity_id: camera.nvr_cam3
         name: cam3_cat

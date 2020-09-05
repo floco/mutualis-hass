@@ -2,6 +2,7 @@ homepage_room:
   size: 55px
   show_label: true
   double_tap_action:
+    haptic: heavy
     action: toggle
   styles:
     grid:
@@ -22,6 +23,8 @@ homepage_room:
       - color: var(--dwains-theme-grey)
     icon:
       - color: var(--dwains-theme-accent)
+      - height: 50px
+      - width: 50px
     img_cell:
       - padding-top: 20px
       - padding-bottom: 5px
