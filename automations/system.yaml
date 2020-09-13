@@ -152,3 +152,15 @@
         type: Info
         message: >
           Sync done: {{ trigger.event.data.file }} modified in {{ trigger.event.data.folder }}
+
+- id: SY007
+  alias: 'DNS Change Notification'
+  trigger:
+  - platform: state
+    entity_id: sensor.myip
+  action:
+  - service: script.notify
+    data_template:
+      type: Info
+      message: >
+        IP changed: {{ trigger.from_state.state }} → {{ trigger.to_state.state }}

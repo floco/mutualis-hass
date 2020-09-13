@@ -496,11 +496,11 @@ influxdb:
 withings:
   client_id: !secret withings_client_id
   client_secret: !secret withings_client_secret
-  profiles:
-    - Julien
-    - Mojca
-    - Mia 
-    - Evy
+  # profiles:
+  #   - Julien
+  #   - Mojca
+  #   - Mia 
+  #   - Evy
   # measures:
   #   - weight_kg
   #   - fat_mass_kg

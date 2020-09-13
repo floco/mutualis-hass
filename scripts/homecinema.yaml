@@ -101,8 +101,6 @@ watch_tv:
       entity_id: switch.powerstrip1_plug3
     - service: homeassistant.turn_off
       entity_id: switch.powerstrip1_plug4
-    - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -110,6 +108,9 @@ watch_tv:
       entity_id: script.source_ext5
     - service: homeassistant.turn_on
       entity_id: script.input4
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip2_plug1
+    - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.bose_system
     - delay: 00:00:40
@@ -128,8 +129,6 @@ watch_movies:
       entity_id: switch.powerstrip1_plug3
     - service: homeassistant.turn_off
       entity_id: switch.powerstrip1_plug4
-    - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -137,6 +136,9 @@ watch_movies:
       entity_id: script.source_ext5
     - service: homeassistant.turn_on
       entity_id: script.input2
+    - service: homeassistant.turn_on
+      entity_id: switch.powerstrip2_plug1
+    - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.bose_system
     - delay: 00:00:40
