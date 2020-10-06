@@ -406,7 +406,7 @@ timer:
   charge:
     duration: '04:00:00'
   light_up:
-    duration: '00:05:00'
+    duration: '00:10:00'
   light_down:
     duration: '00:05:00'
 
@@ -512,7 +512,7 @@ hacs:
 
 #breaking_changes:
 
-#shelly:
+# shelly:
 
 edgeos:
   host: !secret edge_os_host
@@ -683,6 +683,7 @@ automation: !include_dir_merge_list automations
 script: !include_dir_merge_named scripts
 sensor: !include sensors.yaml
 switch: !include switchs.yaml
+cover: !include covers.yaml
 group: !include groups.yaml
 person: !include persons.yaml
 intent_script: !include intent_scripts.yaml

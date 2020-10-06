@@ -107,7 +107,7 @@
   trigger:
     platform: sun
     event: sunset
-    offset: +00:30:00
+    offset: +00:00:01
   action:
   - service: homeassistant.turn_on
     entity_id: switch.prise4

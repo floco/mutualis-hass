@@ -124,12 +124,14 @@ rooms:
     motion: binary_sensor.motion_sensor_158d000276d4da
     light: switch.shelly_shsw_1_c495de
     window: binary_sensor.door_window_sensor_158d000237d1b8
+    cover: cover.mezzanine
     # door: 
     media_player: media_player.mezzanine
     # plant: 
     page_entities:
       entities:
         - entity: binary_sensor.smoke_sensor_158d0001bbe483
+        - entity: cover.mezzanine
 
   - name: Chambre Parent
     icon: mdi:bed-king

@@ -1,0 +1,23 @@
+- id: 'SH001'
+  alias: Shade - Mezzanine - Close at sunset
+  trigger:
+    platform: sun
+    event: sunset
+    offset: +00:00:01
+  condition: []
+  action:
+  - service: cover.close_cover
+    data:
+      entity_id: cover.mezzanine
+
+- id: 'SH002'
+  alias: Shade - Mezzanine - Open in the morning
+  trigger:
+  - at: 08:00
+    platform: time
+  condition: []
+  action:
+    - service: cover.open_cover
+      data:
+        entity_id: cover.mezzanine
+      
