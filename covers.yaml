@@ -8,3 +8,19 @@
         service: script.mezzanine_shade_down
       stop_cover:
         service: script.mezzanine_shade_stop
+    living_right:
+      friendly_name: "Living Right Shade"
+      open_cover:
+        service: script.living_right_shade_up
+      close_cover:
+        service: script.living_right_shade_down
+      stop_cover:
+        service: script.living_right_shade_stop        
+    living_left:
+      friendly_name: "Living Left Shade"
+      open_cover:
+        service: script.living_left_shade_up
+      close_cover:
+        service: script.living_left_shade_down
+      stop_cover:
+        service: script.living_left_shade_stop   

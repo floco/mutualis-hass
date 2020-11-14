@@ -7,3 +7,11 @@ cameras:
   - entity: camera.nvr_cam2
   - entity: camera.nvr_cam3
   - entity: camera.nvr_cam4
+  - entity: camera.nvr_cam1_doods
+  - entity: camera.nvr_cam2_doods
+  - entity: camera.nvr_cam3_doods
+  - entity: camera.nvr_cam4_doods
+  - entity: camera.nvr_cam1_local
+  - entity: camera.nvr_cam2_local
+  - entity: camera.nvr_cam3_local
+  - entity: camera.nvr_cam4_local

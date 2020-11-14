@@ -64,6 +64,7 @@ rooms:
         - entity: group.powerstrip2_mp1
         - entity: switch.prise3
         - entity: camera.cam2
+        - entity: sensor.rmpro_temperature
 
   - name: Cuisine
     icon: mdi:fridge-outline

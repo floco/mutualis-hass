@@ -32,7 +32,7 @@
             - name1: CO2
             - entity2: sensor.garage_temperature
             - name2: Garage
-            - entity3: sensor.broadlink_sensor_temperature
+            - entity3: sensor.rmpro_temperature
             - name3: TV
 
         - type: custom:button-card

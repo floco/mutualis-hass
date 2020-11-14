@@ -11,8 +11,9 @@ homeassistant:
   customize_domain:
     automation:
       initial_state: 'on'
-  whitelist_external_dirs:
+  allowlist_external_dirs:
     - /config
+  external_url: !secret http_ext_url
 
 http:
   # base_url: !secret http_base_url
@@ -24,6 +25,8 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.30.33.0/24
+    - 192.168.2.0/24
+    - 192.168.3.0/24
 
 browser_mod:
 config:
@@ -50,8 +53,9 @@ panel_iframe:
 logger:
   default: warn
   logs:
-    custom_components.hacs: debug
+#    custom_components.hacs: debug
     homeassistant.components.withings: critical
+#    custom_components.signalmessenger: info
 #    homeassistant.components.netatmo: debug
 
 recorder:
@@ -64,7 +68,6 @@ recorder:
   exclude:
     domains:
       - updater
-      - automation
       - device_tracker
       - group
       - scene
@@ -104,17 +107,36 @@ netatmo:
 #       - !secret telegram_chat_id_ju
 #       - !secret telegram_chat_id_mo
 
+signalmessenger:
 notify:
+  - name: signal_info
+    platform: signalmessenger
+    destinations: 
+      - !secret signal_info
+  - name: signal_alert
+    platform: signalmessenger
+    destinations: 
+      - !secret signal_alert
+  - name: signal_cam
+    platform: signalmessenger
+    destinations: 
+      - !secret signal_cam
   # - name: ju
   #   platform: telegram
   #   chat_id: !secret telegram_chat_id_ju
   # - name: mo
   #   platform: telegram
   #   chat_id: !secret telegram_chat_id_mo
-  - name: signal
-    platform: rest
-    resource: !secret signal_url 
-    method: POST_JSON
+  # - name: signal
+  #   platform: signal_messenger
+  #   url: !secret signal_url 
+  #   number: !secret signal_sender
+  #   recipients:
+  #     - !secret signal_recipient
+  # - name: signal
+  #   platform: rest
+  #   resource: !secret signal_url 
+  #   method: POST_JSON
   # - name: Google Assistant
   #   platform: rest
   #   resource: !secret google_msg_urlnotify:
@@ -136,215 +158,15 @@ notify:
 #   username: !secret ring_username
 #   password: !secret ring_password
 
-binary_sensor:
-  - platform: hikvision
-    name: nvr_cam1
-    host: !secret nvr_host
-    port: 65001
-    ssl: false
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    customize:
-      motion:
-        delay: 30
-  - platform: hikvision
-    name: nvr_cam2
-    host: !secret nvr_host
-    port: 65002
-    ssl: false
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    customize:
-      motion:
-        delay: 30
-  - platform: hikvision
-    name: nvr_cam3
-    host: !secret nvr_host
-    port: 65003
-    ssl: false
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    customize:
-      motion:
-        delay: 30
-  - platform: hikvision
-    name: nvr_cam4
-    host: !secret nvr_host
-    port: 65004
-    ssl: false
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    customize:
-      motion:
-        delay: 30
-  - platform: template
-    sensors:
-      # True if there's an update available for supervisor
-      updater_supervisor:
-        friendly_name: 'Updater - Supervisor'
-        device_class: problem
-        entity_id:
-        - sensor.supervisor_updates
-        value_template: "{{ state_attr('sensor.supervisor_updates', 'current_version') != state_attr('sensor.supervisor_updates', 'newest_version') }}"
-        availability_template: "{{ (states('sensor.supervisor_updates') | int(-1)) > -1 }}"
 
-      # True if there's updates available for any HACS components
-      updater_hacs:
-        friendly_name: 'Updater - HACS'
-        device_class: problem
-        entity_id:
-        - sensor.hacs
-        value_template: "{{ states('sensor.hacs') | int > 0 }}"
 
-      # True if there's updates available for any addons
-      updater_addons:
-        friendly_name: 'Updater - Addons'
-        device_class: problem
-        entity_id:
-        - sensor.supervisor_updates
-        value_template: "{{ states('sensor.supervisor_updates') | int > 0 }}"
 
-alert:
-
-# Update is available - un-acknowledgeble, auto-dismiss, me only
-# Wait 5 minutes before first to give core config check time to run
-  ha_update_available:
-    name: HA has an update
-    entity_id: binary_sensor.updater
-    state: 'on'
-    can_acknowledge: false
-    repeat: 
-    - 5
-    - 360
-    title: 'Update for HA available'
-    message: "New version is {{ state_attr('binary_sensor.updater', 'newest_version') }}. Currently on {{ states('sensor.current_version') }}"
-    notifiers:
-    - 'me'
-    data:
-      tag: 'ha-update-available'
-      url: 'http://hassio.local/hassio/addon/core_check_config'
-      ttl: 21600
-
-  # Supervisor update is available - un-acknowledgeable, auto-dismiss, me only
-  supervisor_update_available:
-    name: Supervisor has an update
-    entity_id: binary_sensor.updater_supervisor
-    state: 'on'
-    can_acknowledge: false
-    repeat: 360
-    title: 'Update for HA Supervisor available'
-    message: "New version is {{ state_attr('sensor.supervisor_updates', 'newest_version') }}. Currently on {{ state_attr('sensor.supervisor_updates', 'current_version') }}"
-    notifiers:
-    - 'me'
-    data:
-      tag: 'supervisor-update-available'
-      url: 'http://hassio.local/hassio/dashboard'
-      ttl: 21600
-
-  # HACS repos have updates available - unacknowledgeable, auto-dismiss, me only
-  hacs_update_available:
-    name: HACS repos have updates
-    entity_id: binary_sensor.updater_hacs
-    state: 'on'
-    can_acknowledge: false
-    repeat: 360
-    title: "Updates available in {{ states('sensor.hacs') }} HACS repo{% if states('sensor.hacs') | int > 1 %}s{% endif %}"
-    message: ""
-    notifiers:
-      - 'me'
-    data:
-      tag: 'hacs-update-available'
-      url: 'http://hassio.local/hacs/installed'
-      ttl: 21600
-
-  # Addons have updates available - unacknowledgeable, auto-dismiss, me only
-  addon_update_available:
-    name: Addons have updates
-    entity_id: binary_sensor.updater_addons
-    state: 'on'
-    can_acknowledge: false
-    repeat: 360
-    title: "Updates available for {{ states('sensor.supervisor_updates') }} HA addon{% if states('sensor.supervisor_updates') | int > 1 %}s{% endif %}"
-    message: ""
-    notifiers:
-    - 'me'
-    data:
-      tag: 'addon-update-available'
-      url: 'http://hassio.local/hassio/dashboard'
-      ttl: 21600
-
-cast:
-  media_player:
-    - host: !secret nest_hub_host
-    - host: !secret google_home_host
-    - host: !secret lenovo_clock_host
-    - host: !secret chromecast_video_host
-
-camera:
-  - platform: mjpeg
-    mjpeg_url: !secret cam1_url
-    name: cam1
-    username: !secret cam1_username
-    password: !secret cam1_password
-  - platform: mjpeg
-    mjpeg_url: !secret cam2_url
-    name: cam2
-    username: !secret cam2_username
-    password: !secret cam2_password
-  - platform: generic
-    name: nvr_cam1
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    authentication: digest
-    still_image_url: !secret nvr_cam1_still_url
-    stream_source: !secret nvr_cam1_rtsp_url
-  - platform: generic
-    name: nvr_cam2
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    authentication: digest
-    still_image_url: !secret nvr_cam2_still_url
-    stream_source: !secret nvr_cam2_rtsp_url
-  - platform: generic
-    name: nvr_cam3
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    authentication: digest
-    still_image_url: !secret nvr_cam3_still_url
-    stream_source: !secret nvr_cam3_rtsp_url
-  - platform: generic
-    name: nvr_cam4
-    username: !secret nvr_username
-    password: !secret nvr_cam_password
-    authentication: digest
-    still_image_url: !secret nvr_cam4_still_url
-    stream_source: !secret nvr_cam4_rtsp_url
-  - platform: local_file
-    name: nvr_cam1_person
-    file_path: /config/snapshots/cam1_person_latest.jpg
-  - platform: local_file
-    name: nvr_cam1_cat
-    file_path: /config/snapshots/cam1_cat_latest.jpg
-  - platform: local_file
-    name: nvr_cam2_person
-    file_path: /config/snapshots/cam2_person_latest.jpg
-  - platform: local_file
-    name: nvr_cam2_cat
-    file_path: /config/snapshots/cam2_cat_latest.jpg
-  - platform: local_file
-    name: nvr_cam3_person
-    file_path: /config/snapshots/cam3_person_latest.jpg
-  - platform: local_file
-    name: nvr_cam3_cat
-    file_path: /config/snapshots/cam3_cat_latest.jpg
-    
-  # - platform: onvif
-  #   host: !secret nvr_host
-  #   username: !secret nvr_username
-  #   password: !secret nvr_password
-  #   name: Annke
-  #   profile: 1
-  #   port: 8000
+# cast:
+#   media_player:
+#     - host: !secret nest_hub_host
+#     - host: !secret google_home_host
+#     - host: !secret lenovo_clock_host
+#     - host: !secret chromecast_video_host
 
 # glances:
 #   - host: !secret glances_host
@@ -363,15 +185,15 @@ google:
   client_id: !secret google_calendar_client_id
   client_secret: !secret google_calendar_client_secret
 
-grocy:
-  url: !secret grocy_api_host
-  api_key: !secret grocy_api_key
-  verify_ssl: false
-  port: 9192
-  sensor:
-    - enabled: true
-  binary_sensor:
-    - enabled : true
+# grocy:
+#   url: !secret grocy_api_host
+#   api_key: !secret grocy_api_key
+#   verify_ssl: false
+#   port: 9192
+#   sensor:
+#     - enabled: true
+#   binary_sensor:
+#     - enabled : true
 
 rest_command:
   assistant_broadcast:
@@ -484,14 +306,14 @@ folder_watcher:
     # patterns:
     #   - 'sync*.log'
 
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: homeassistant
-  password: !secret influxdb_password
-  max_retries: 3
-  default_measurement: state
+# influxdb:
+#   host: a0d7b954-influxdb
+#   port: 8086
+#   database: homeassistant
+#   username: homeassistant
+#   password: !secret influxdb_password
+#   max_retries: 3
+#   default_measurement: state
 
 withings:
   client_id: !secret withings_client_id
@@ -558,98 +380,98 @@ fan:
 
 ffmpeg:
 
-image_processing:
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - person
-    confidence: 66
-    source:
-      - entity_id: camera.nvr_cam1
-        name: cam1_person
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - person
-    confidence: 66
-    source:
-      - entity_id: camera.nvr_cam2
-        name: cam2_person
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - person
-    confidence: 66
-    source:
-      - entity_id: camera.nvr_cam3
-        name: cam3_person
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - person
-    confidence: 66
-    source:
-      - entity_id: camera.nvr_cam4
-        name: cam4_person
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - cat
-    confidence: 25
-    source:
-      - entity_id: camera.nvr_cam1
-        name: cam1_cat
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - cat
-      - dog
-    confidence: 25
-    source:
-      - entity_id: camera.nvr_cam2
-        name: cam2_cat
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - car
-      - cat
-      - dog
-    confidence: 33
-    source:
-      - entity_id: camera.nvr_cam3
-        name: cam3_cat
-  - platform: deepstack_object
-    ip_address: !secret deepstack_host
-    port: 5555
-    save_file_folder: /config/snapshots/
-    save_timestamped_file: True
-    targets:
-      - cat
-    confidence: 66
-    source:
-      - entity_id: camera.nvr_cam4
-        name: cam4_cat
+          
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - person
+  #   confidence: 66
+  #   source:
+  #     - entity_id: camera.nvr_cam1
+  #       name: cam1_person
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - person
+  #   confidence: 66
+  #   source:
+  #     - entity_id: camera.nvr_cam2
+  #       name: cam2_person
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - person
+  #   confidence: 66
+  #   source:
+  #     - entity_id: camera.nvr_cam3
+  #       name: cam3_person
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - person
+  #   confidence: 66
+  #   source:
+  #     - entity_id: camera.nvr_cam4
+  #       name: cam4_person
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - cat
+  #   confidence: 25
+  #   source:
+  #     - entity_id: camera.nvr_cam1
+  #       name: cam1_cat
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - cat
+  #     - dog
+  #   confidence: 25
+  #   source:
+  #     - entity_id: camera.nvr_cam2
+  #       name: cam2_cat
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - car
+  #     - cat
+  #     - dog
+  #   confidence: 33
+  #   source:
+  #     - entity_id: camera.nvr_cam3
+  #       name: cam3_cat
+  # - platform: deepstack_object
+  #   ip_address: !secret deepstack_host
+  #   port: 5555
+  #   save_file_folder: /config/snapshots/
+  #   save_timestamped_file: True
+  #   targets:
+  #     - cat
+  #   confidence: 66
+  #   source:
+  #     - entity_id: camera.nvr_cam4
+  #       name: cam4_cat
 
 
 
@@ -687,3 +509,6 @@ cover: !include covers.yaml
 group: !include groups.yaml
 person: !include persons.yaml
 intent_script: !include intent_scripts.yaml
+camera: !include_dir_merge_list cameras
+binary_sensor: !include_dir_merge_list binary_sensors
+

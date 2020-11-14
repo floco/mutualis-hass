@@ -18,10 +18,10 @@
     - switch.powerstrip1_plug4 #PS3
     - switch.powerstrip1_usb
   powerstrip2_mp1:
-    - switch.powerstrip2_plug1
-    - switch.powerstrip2_plug2
-    - switch.powerstrip2_plug3
-    - switch.powerstrip2_plug4
+    - switch.mp1_s1
+    - switch.mp1_s2
+    - switch.mp1_s3
+    - switch.mp1_s4
   spots:
     - light.chambre_spot_1
     - light.chambre_spot_2

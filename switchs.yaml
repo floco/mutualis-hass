@@ -1,7 +1,7 @@
 - platform: broadlink
-  host: !secret broadlink_rm_host
+  # host: !secret broadlink_rm_host
   mac: !secret broadlink_rm_mac
-  timeout: 15
+  # timeout: 15
   switches:
 # Home Cinema Light
     prise1:
@@ -43,16 +43,16 @@
       
 
 
-- platform: broadlink
-  host: !secret broadlink_mp1_host
-  mac: !secret broadlink_mp1_mac
-  type: mp1
-  friendly_name: 'powerstrip2'
-  slots:
-      slot_1: 'powerstrip2 PLUG1'
-      slot_2: 'powerstrip2 PLUG2'
-      slot_3: 'powerstrip2 PLUG3'
-      slot_4: 'powerstrip2 PLUG4'
+# - platform: broadlink
+  # host: !secret broadlink_mp1_host
+  # mac: !secret broadlink_mp1_mac
+  # type: mp1
+  # friendly_name: 'powerstrip2'
+  # slots:
+  #     slot_1: 'powerstrip2 PLUG1'
+  #     slot_2: 'powerstrip2 PLUG2'
+  #     slot_3: 'powerstrip2 PLUG3'
+  #     slot_4: 'powerstrip2 PLUG4'
 
 - platform: template
   switches:
@@ -105,6 +105,22 @@
       turn_off:
         service: script.turn_on
         entity_id: script.do_nothing
+    store:
+      value_template: "{{ is_state('switch.store', 'on') }}"
+      turn_on:
+        - service: script.turn_on
+          entity_id: script.living_left_shade_down
+        - service: script.turn_on
+          entity_id: script.living_right_shade_down
+        - service: script.turn_on
+          entity_id: script.mezzanine_shade_down
+      turn_off:
+        - service: script.turn_on
+          entity_id: script.living_left_shade_up
+        - service: script.turn_on
+          entity_id: script.living_right_shade_up
+        - service: script.turn_on
+          entity_id: script.mezzanine_shade_up 
     alarm_arm_away:
       value_template: "{{ is_state('input_boolean.alarm', 'on') }}"
       turn_on:
@@ -154,16 +170,16 @@
           entity_id: timer.charge
         - service: homeassistant.turn_off
           entity_id: switch.prise3
-    glances_addon:
-      value_template: "{{ is_state('sensor.glances_addon', 'started') }}"
-      turn_on:
-        service: hassio.addon_start
-        data:
-          addon: a0d7b954_glances
-      turn_off:
-        service: hassio.addon_stop
-        data:
-          addon: a0d7b954_glances
+    # glances_addon:
+    #   value_template: "{{ is_state('sensor.glances_addon', 'started') }}"
+    #   turn_on:
+    #     service: hassio.addon_start
+    #     data:
+    #       addon: a0d7b954_glances
+    #   turn_off:
+    #     service: hassio.addon_stop
+    #     data:
+    #       addon: a0d7b954_glances
     adb_addon:
       value_template: "{{ is_state('sensor.adb_addon', 'started') }}"
       turn_on:

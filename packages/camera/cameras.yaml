@@ -1,0 +1,282 @@
+camera:
+  # Local DOODS cam    
+  - platform: local_file
+    name: nvr_cam1_doods
+    file_path: /config/snapshots/nvr_cam1_local_doods_latest.jpg
+  - platform: local_file
+    name: nvr_cam2_doods
+    file_path: /config/snapshots/nvr_cam2_local_doods_latest.jpg
+  - platform: local_file
+    name: nvr_cam3_doods
+    file_path: /config/snapshots/nvr_cam3_local_doods_latest.jpg
+  - platform: local_file
+    name: nvr_cam4_doods
+    file_path: /config/snapshots/nvr_cam4_local_doods_latest.jpg
+  # Local snapshot cam    
+  - platform: local_file
+    name: nvr_cam1_local
+    file_path: /config/snapshots/nvr_cam1_local_latest.jpg
+  - platform: local_file
+    name: nvr_cam2_local
+    file_path: /config/snapshots/nvr_cam2_local_latest.jpg
+  - platform: local_file
+    name: nvr_cam3_local
+    file_path: /config/snapshots/nvr_cam3_local_latest.jpg
+  - platform: local_file
+    name: nvr_cam4_local
+    file_path: /config/snapshots/nvr_cam4_local_latest.jpg
+  # NVR cams
+  - platform: generic
+    name: nvr_cam1
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam1_still_url
+    stream_source: !secret nvr_cam1_rtsp_url
+  - platform: generic
+    name: nvr_cam2
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam2_still_url
+    stream_source: !secret nvr_cam2_rtsp_url
+  - platform: generic
+    name: nvr_cam3
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam3_still_url
+    stream_source: !secret nvr_cam3_rtsp_url
+  - platform: generic
+    name: nvr_cam4
+    username: !secret nvr_username
+    password: !secret nvr_cam_password
+    authentication: digest
+    still_image_url: !secret nvr_cam4_still_url
+    stream_source: !secret nvr_cam4_rtsp_url 
+    # - platform: onvif
+    #   host: !secret nvr_host
+    #   username: !secret nvr_username
+    #   password: !secret nvr_password
+    #   name: Annke
+    #   profile: 1
+    #   port: 8000
+
+binary_sensor:
+# - platform: hikvision
+#   name: nvr_cam1
+#   host: !secret nvr_host
+#   port: 65001
+#   ssl: false
+#   username: !secret nvr_username
+#   password: !secret nvr_cam_password
+#   customize:
+#     motion:
+#       delay: 30
+# - platform: hikvision
+#   name: nvr_cam2
+#   host: !secret nvr_host
+#   port: 65002
+#   ssl: false
+#   username: !secret nvr_username
+#   password: !secret nvr_cam_password
+#   customize:
+#     motion:
+#       delay: 30
+# - platform: hikvision
+#   name: nvr_cam3
+#   host: !secret nvr_host
+#   port: 65003
+#   ssl: false
+#   username: !secret nvr_username
+#   password: !secret nvr_cam_password
+#   customize:
+#     motion:
+#       delay: 30
+# - platform: hikvision
+#   name: nvr_cam4
+#   host: !secret nvr_host
+#   port: 65004
+#   ssl: false
+#   username: !secret nvr_username
+#   password: !secret nvr_cam_password
+#   customize:
+#     motion:
+#       delay: 30
+  - platform: hikvision
+    name: nvr
+    host: !secret nvr_host
+    port: 80
+    ssl: false
+    username: !secret nvr_username
+    password: !secret nvr_password
+    customize:
+      motion:
+        delay: 10  
+
+image_processing:
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam1_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam2_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam3_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam4_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+
+automation:
+  - id: CAM01
+    alias: Scan cam1 garage for known object
+    trigger:
+      - entity_id: binary_sensor.nvr_motion_1
+        from: 'off'
+        platform: state
+        to: 'on'
+      - entity_id: binary_sensor.garage_sensor_motion
+        from: 'off'
+        platform: state
+        to: 'on'
+    # condition:
+    #   condition: or
+    #   conditions:
+    #     - condition: state
+    #       entity_id: alarm_control_panel.home_alarm
+    #       state: armed_away
+    #     - condition: state
+    #       entity_id: alarm_control_panel.home_alarm
+    #       state: armed_home
+    action:
+      - repeat:
+          count: 5
+          sequence: 
+            - service: camera.snapshot
+              data:
+                entity_id: camera.nvr_cam1
+                filename: '/config/snapshots/nvr_cam1_local_latest.jpg' 
+            - delay: 1  
+            - service: image_processing.scan
+              entity_id: image_processing.doods_nvr_cam1_local
+            - delay: 1 
+  - id: CAM02
+    alias: Scan cam2 garden for known object
+    trigger:
+      - entity_id: binary_sensor.nvr_motion_2
+        from: 'off'
+        platform: state
+        to: 'on'
+    action:
+      - repeat:
+          count: 5
+          sequence: 
+            - service: camera.snapshot
+              data:
+                entity_id: camera.nvr_cam2
+                filename: '/config/snapshots/nvr_cam2_local_latest.jpg' 
+            - delay: 1  
+            - service: image_processing.scan
+              entity_id: image_processing.doods_nvr_cam2_local
+            - delay: 1 
+  - id: CAM03
+    alias: Scan cam3 front for known object
+    trigger:
+      - entity_id: binary_sensor.nvr_motion_3
+        from: 'off'
+        platform: state
+        to: 'on'
+    action:
+      - repeat:
+          count: 5
+          sequence: 
+            - service: camera.snapshot
+              data:
+                entity_id: camera.nvr_cam3
+                filename: '/config/snapshots/nvr_cam3_local_latest.jpg' 
+            - delay: 1  
+            - service: image_processing.scan
+              entity_id: image_processing.doods_nvr_cam3_local
+            - delay: 1  
+  - id: CAM04
+    alias: Scan cam4 for known object
+    trigger:
+      - entity_id: binary_sensor.nvr_motion_4
+        from: 'off'
+        platform: state
+        to: 'on'
+    action:
+      - repeat:
+          count: 5
+          sequence: 
+            - service: camera.snapshot
+              data:
+                entity_id: camera.nvr_cam4
+                filename: '/config/snapshots/nvr_cam4_local_latest.jpg' 
+            - delay: 1  
+            - service: image_processing.scan
+              entity_id: image_processing.doods_nvr_cam4_local
+            - delay: 1  
+  - id: CAM05
+    alias: Detection alert on one of the cam
+    trigger:
+      platform: event
+      event_type: folder_watcher
+      event_data:
+        event_type: created
+    action:
+    - service: script.notify_with_file
+      data_template:
+        type: Warning
+        message: ""
+        # message: "Intruder detected ! See file {{ trigger.event.data.file }}"
+        file: "{{ trigger.event.data.path }}"

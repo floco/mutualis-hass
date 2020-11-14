@@ -69,16 +69,16 @@
               cards:
                 - type: custom:button-card
                   template: plug
-                  entity: switch.powerstrip2_plug1
+                  entity: switch.mp1_s1
                 - type: custom:button-card
                   template: plug
-                  entity: switch.powerstrip2_plug2
+                  entity: switch.mp1_s2
                 - type: custom:button-card
                   template: plug
-                  entity: switch.powerstrip2_plug3
+                  entity: switch.mp1_s3
                 - type: custom:button-card
                   template: plug
-                  entity: switch.powerstrip2_plug4
+                  entity: switch.mp1_s4
             - type: horizontal-stack
               cards:
                 - type: custom:button-card

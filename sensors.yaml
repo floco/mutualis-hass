@@ -1,10 +1,10 @@
-  - platform: yr
-  - platform: broadlink
-    scan_interval: 60
-    host: !secret broadlink_rm_host
-    mac: !secret broadlink_rm_mac
-    monitored_conditions:
-      - temperature
+  - platform: weather_data
+  # - platform: broadlink
+  #   scan_interval: 60
+  #   host: !secret broadlink_rm_host
+  #   mac: !secret broadlink_rm_mac
+  #   monitored_conditions:
+  #     - temperature
   - platform: rest
     resource: !secret hue_lux
     value_template: '{{ value_json.state.lightlevel }}'
@@ -57,15 +57,15 @@
 
   - platform: dnsip
 
-  - platform: alpha_vantage
-    api_key: !secret alphavantage_api_key
-    symbols:
-    - symbol: GOOGL
-      name: Google
-    foreign_exchange:
-    - name: USD_EUR
-      from: USD
-      to: EUR
+  # - platform: alpha_vantage
+  #   api_key: !secret alphavantage_api_key
+  #   symbols:
+  #   - symbol: GOOGL
+  #     name: Google
+  #   foreign_exchange:
+  #   - name: USD_EUR
+  #     from: USD
+  #     to: EUR
   - platform: avanza_stock
     stock: 361180
     name: ServiceNow

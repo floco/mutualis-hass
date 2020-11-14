@@ -18,6 +18,7 @@
   action:
   - service: alarm_control_panel.alarm_trigger
     entity_id: alarm_control_panel.home_alarm
+
 # Activated when alarm is trigerred
 - id: AL002
   alias: Send notification when alarm triggered
@@ -77,31 +78,10 @@
   action:
     - service: script.notify
       data_template:
-        type: Warning
+        type: Info
         message: >-
           Window or Door Opened Too Long. {% for entity in trigger.to_state.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %} has been opened for more than 60 minutes.
 
-
-# Activated when alarm is armed
-#- id: A009c
-#  alias: indicator alarm is armed away
-#  trigger:
-#  - entity_id: alarm_control_panel.home_alarm
-#    platform: state
-#    from: 'disarmed'
-#    to: 'pending'
-#  action:
-#  - service: script.alarm_armed
-# Activated when alarm is disarmed
-# - id: A009d
-#   alias: restore alarm to initial state
-#   trigger:
-#   - entity_id: alarm_control_panel.home_alarm
-#     platform: state
-#     to: 'disarmed'
-#   action:
-#   - service: homeassistant.turn_on
-#     entity_id: script.alarm_off
 # Activated when smoke is detected
 - id: AL005
   alias: Send notification on fire alarm
@@ -113,6 +93,7 @@
   action:
   - service: homeassistant.turn_on
     entity_id: script.smoke_alarm
+
 # Activated by parent switch left
 - id: AL006
   alias: Toggle Alarm
@@ -126,6 +107,7 @@
   - service: homeassistant.toggle
     data:
       entity_id: switch.alarm_arm_away
+
 # Activated when the door is opened
 - id: AL007
   alias: Door Alert Open
@@ -140,6 +122,7 @@
       type: Info
       message: >         
         Main door opened !
+
 # Activated when the door is closed
 - id: AL008
   alias: Door Alert Closed
@@ -154,176 +137,3 @@
       type: Info
       message: >         
         Main door closed !
-
-- id: AL009a
-  alias: Person detection automation
-  trigger:
-  - platform: event
-    event_type: deepstack.object_detected
-    event_data:
-      object: person
-  action:
-  - service: script.notify
-    data_template:
-      type: Info
-      message: >         
-        New person detection: {{ trigger.event.data.name }} with confidence {{ trigger.event.data.confidence }}
-
-- id: AL009b
-  alias: Cat detection automation
-  trigger:
-  - platform: event
-    event_type: deepstack.object_detected
-    event_data:
-      object: cat
-  action:
-  - service: script.notify
-    data_template:
-      type: Info
-      message: >         
-        New cat detection: {{ trigger.event.data.name }} with confidence {{ trigger.event.data.confidence }}
-
-- id: AL010
-  alias: Deepstack alert on one of the cam
-  trigger:
-    platform: event
-    event_type: folder_watcher
-    event_data:
-      event_type: created
-  action:
-  - service: notify.mail
-    data_template:
-        title: 'Intruder alert'
-        message: 'Intruder detected ! See file {{ trigger.event.data.file }}'
-        data:
-            images:
-                - '{{ trigger.event.data.path }}'
-
-# - id: AL010b
-#   alias: Deepstack cat alert cam1
-#   trigger:
-#     event_type: folder_watcher
-#     platform: event
-#     event_data:
-#       event_type: modified
-#       path: '/config/snapshots/cam1_cat_latest.jpg'
-#   action:
-#   - service: notify.mail
-#     data:
-#         title: 'Cat detected'
-#         message: 'Cat detected on cam1 !'
-#         data:
-#             images:
-#                 - /config/snapshots/cam1_cat_latest.jpg
-
-# - id: AL011
-#   alias: Deepstack person alert cam2
-#   trigger:
-#     event_type: folder_watcher
-#     platform: event
-#     event_data:
-#       event_type: modified
-#       path: '/config/snapshots/cam2_person_latest.jpg'
-#   action:
-#   - service: notify.mail
-#     data:
-#         title: 'Intruder alert'
-#         message: 'Intruder alert detected on cam2 !'
-#         data:
-#             images:
-#                 - /config/snapshots/cam2_person_latest.jpg
-
-# - id: AL012
-#   alias: Deepstack person alert cam3
-#   trigger:
-#     event_type: folder_watcher
-#     platform: event
-#     event_data:
-#       event_type: modified
-#       path: '/config/snapshots/cam3_person_latest.jpg'
-#   action:
-#   - service: notify.mail
-#     data:
-#         title: 'Intruder alert'
-#         message: 'Intruder alert detected on cam3 !'
-#         data:
-#             images:
-#                 - /config/snapshots/cam3_person_latest.jpg
-
-# - id: AL013
-#   alias: Deepstack person alert cam4
-#   trigger:
-#     event_type: folder_watcher
-#     platform: event
-#     event_data:
-#       event_type: modified
-#       path: '/config/snapshots/cam4_person_latest.jpg'
-#   action:
-#   - service: notify.mail
-#     data:
-#         title: 'Intruder alert'
-#         message: 'Intruder alert detected on cam4 !'
-#         data:
-#             images:
-#                 - /config/snapshots/cam4_person_latest.jpg
-
-- id: AL014
-  alias: Scan cam1 for known object triggered by line crossing or motion
-  trigger:
-  - entity_id: binary_sensor.nvr_cam1_line_crossing
-    from: 'off'
-    platform: state
-    to: 'on'
-  - entity_id: binary_sensor.garage_sensor_motion
-    from: 'off'
-    platform: state
-    to: 'on'
-  condition:
-    condition: or
-    conditions:
-      - condition: state
-        entity_id: alarm_control_panel.home_alarm
-        state: armed_away
-      - condition: state
-        entity_id: alarm_control_panel.home_alarm
-        state: armed_home
-  action:
-  - service: image_processing.scan
-    entity_id: image_processing.cam1_person
-  - delay: 00:00:05
-  - service: image_processing.scan
-    entity_id: image_processing.cam1_cat
-#  - service: script.notify
-#    data_template:
-#      type: Info
-#      message: >         
-#        Scan of cam1 triggered by motion
-
-- id: AL015
-  alias: Scan cam2 for known object
-  trigger:
-  - entity_id: binary_sensor.nvr_cam2_line_crossing
-    from: 'off'
-    platform: state
-    to: 'on'
-  action:
-  - service: image_processing.scan
-    entity_id: image_processing.cam2_person
-  - delay: 00:00:05
-  - service: image_processing.scan
-    entity_id: image_processing.cam2_cat
-
-- id: AL016
-  alias: Scan cam3 for known object
-  trigger:
-  - entity_id: binary_sensor.nvr_cam3_line_crossing
-    from: 'off'
-    platform: state
-    to: 'on'
-  action:
-  - service: image_processing.scan
-    entity_id: image_processing.cam3_person
-  - delay: 00:00:05
-  - service: image_processing.scan
-    entity_id: image_processing.cam3_cat
-

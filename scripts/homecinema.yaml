@@ -2,89 +2,89 @@
 belgacom_tv:
   alias: Belgacom TV
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgCuAC8RFxEIF0ITBw0HEiQXFwALcy8RFxEIF0ITBw0HEiQXFwALdB8GCRIHBgkTBhcIBhcHCAYIFAUPBRQGCAcGCRcHBgkAC3UeBgkSBwYJEgcYBwYJBggGCQYIFAUPBRQGCAcGCRgGBwgAC3UeBgkSBwcIEwYYFgYJBQkGCRMHDQcSJRcGCAgAC3QuEhUTBxhCEgcMCBIlFxYAC3QuEhYSBxgzEwcSBw0HEiUYFQANBQAAAAAAAAAAAAA'
-          - 'JgCgABEGCAYJEwYHCBMGGAcHCAYXBgkSBw4FFAYHCAYJGAYHCAALdS4SFhIIF0IRCA0HEiQYFgALdC4SFhIIF0ISBw0HEiUXFgALdC4SFhIIF0ISBw0HEiUXFgALdC4SFhIIF0ISCAwHEiUXFwALcy4SCAUJEggXQhIIDAgRJRcXAAtzLhMGCAgSBhgWBgkGCRIGFAYOBRQGCAgFCRgGCAcADQUAAAAAAAAAAA=='
-          - 'JgCqAC4SFhIIF0IRCA0HEyQXFgALdC4SFhIIF0ISBw0HEiUXFwALcy4SFhMGGAgFNRIIDAgRJRcXAAtzLhIWEggXQhIIDQcRJRcXAAtzIAYJEgYHCRIHGAYHCQUJBgkGCBMGDwUTBwcIBQkYBwcIAAt0EAYJBgkSBggIEgcYBwcIBQkGCQYIEwYPBRMHBwgGCBgHBwgAC3UQBRkRFxEIFzQRCBIIDQcRJRcXAA0FAAAAAAAAAAAAAAAAAAA'
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgCuAC8RFxEIF0ITBw0HEiQXFwALcy8RFxEIF0ITBw0HEiQXFwALdB8GCRIHBgkTBhcIBhcHCAYIFAUPBRQGCAcGCRcHBgkAC3UeBgkSBwYJEgcYBwYJBggGCQYIFAUPBRQGCAcGCRgGBwgAC3UeBgkSBwcIEwYYFgYJBQkGCRMHDQcSJRcGCAgAC3QuEhUTBxhCEgcMCBIlFxYAC3QuEhYSBxgzEwcSBw0HEiUYFQANBQAAAAAAAAAAAAA
+          - b64:JgCgABEGCAYJEwYHCBMGGAcHCAYXBgkSBw4FFAYHCAYJGAYHCAALdS4SFhIIF0IRCA0HEiQYFgALdC4SFhIIF0ISBw0HEiUXFgALdC4SFhIIF0ISBw0HEiUXFgALdC4SFhIIF0ISCAwHEiUXFwALcy4SCAUJEggXQhIIDAgRJRcXAAtzLhMGCAgSBhgWBgkGCRIGFAYOBRQGCAgFCRgGCAcADQUAAAAAAAAAAA==
+          - b64:JgCqAC4SFhIIF0IRCA0HEyQXFgALdC4SFhIIF0ISBw0HEiUXFwALcy4SFhMGGAgFNRIIDAgRJRcXAAtzLhIWEggXQhIIDQcRJRcXAAtzIAYJEgYHCRIHGAYHCQUJBgkGCBMGDwUTBwcIBQkYBwcIAAt0EAYJBgkSBggIEgcYBwcIBQkGCQYIEwYPBRMHBwgGCBgHBwgAC3UQBRkRFxEIFzQRCBIIDQcRJRcXAA0FAAAAAAAAAAAAAAAAAAA
 
 # Sharp TV
 source_ext4:
   alias: Source ext4
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgDMAAw6CxgLFwwXCzoKGQoYDDkLGAs6CzoLOws6DDkLFwsABYkMOgwXCxcLFws7CzoLOgsXCzoNFgsYChgLGAoYCzoLAAXPDDkMFwsXCxgLOgsXCxgLOgsXCzsMOQs6DDkLOgwXCwAFigw5CxcLGAsXCzoLOgs7DBYLOwwWDBcLFwsXCxgLOgwABc0MOgwXDBYMFws6CxgLFws6CxgLOgs6CzsLOgs6DBYLAAWJDDoMFwsWCxgLOws6DDkLFww5DRYLGAoYCxgLFws6CwANBQAAAAAAAAAAAAAAAA=='
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgDMAAw6CxgLFwwXCzoKGQoYDDkLGAs6CzoLOws6DDkLFwsABYkMOgwXCxcLFws7CzoLOgsXCzoNFgsYChgLGAoYCzoLAAXPDDkMFwsXCxgLOgsXCxgLOgsXCzsMOQs6DDkLOgwXCwAFigw5CxcLGAsXCzoLOgs7DBYLOwwWDBcLFwsXCxgLOgwABc0MOgwXDBYMFws6CxgLFws6CxgLOgs6CzsLOgs6DBYLAAWJDDoMFwsWCxgLOws6DDkLFww5DRYLGAoYCxgLFws6CwANBQAAAAAAAAAAAAAAAA==
 source_ext5:
   alias: Source ext5
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgDMAAs6CxcLGAsXCzoLOgsYCzsMFgw5DDkLOwo7CjwLFgsABWcNOAwXCxgLFws6CxgLOgsXCzoLGAsXCxgLFwsYCzoMAAXwCzsMFwsXCxcLOww5CxcMOQsYCzoLOgs7DDkMOQsYCgAFZww5CxgKGAsYCjsLFws7DBYLOwsXDBcLFwsXCxcKPAwABfEMOQsXCxgLFws6CzoLGAs6CxgKOww5DDoKOws6CxcLAAVmDDoMFwwXChgLOgsYCzoLFws6ChkLFwsYCxcLGAo7CwANBQAAAAAAAAAAAAAAAA=='
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgDMAAs6CxcLGAsXCzoLOgsYCzsMFgw5DDkLOwo7CjwLFgsABWcNOAwXCxgLFws6CxgLOgsXCzoLGAsXCxgLFwsYCzoMAAXwCzsMFwsXCxcLOww5CxcMOQsYCzoLOgs7DDkMOQsYCgAFZww5CxgKGAsYCjsLFws7DBYLOwsXDBcLFwsXCxcKPAwABfEMOQsXCxgLFws6CzoLGAs6CxgKOww5DDoKOws6CxcLAAVmDDoMFwwXChgLOgsYCzoLFws6ChkLFwsYCxcLGAo7CwANBQAAAAAAAAAAAAAAAA==
 source_ext6:
   alias: Source ext6
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgDMAA44DBcKGAwXCzoMFgsYCxgKOws6CD0KOwk9DDkLFwwABYgJPAoZCBoKGQg9CjwLOgk8ChgKGQkZCxgKGAwXCzoJAAXRCjsLFwkaCxcKOwwXCxcJGgk8CTwLOww5CzoLOgkaCwAFiQo8ChgKGQsXCzoKOwo7DDoMFwsWChkKGAwXCxcKPAoABc8NOQwXDBYMFgs7DBYMFwwWCzsLOgs6CzoMOg43DBYPAAWFETQMFwsXCxgKOww6DzYONwsXChkLFwsYDBYLGAs6CwANBQAAAAAAAAAAAAAAAA=='
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgDMAA44DBcKGAwXCzoMFgsYCxgKOws6CD0KOwk9DDkLFwwABYgJPAoZCBoKGQg9CjwLOgk8ChgKGQkZCxgKGAwXCzoJAAXRCjsLFwkaCxcKOwwXCxcJGgk8CTwLOww5CzoLOgkaCwAFiQo8ChgKGQsXCzoKOwo7DDoMFwsWChkKGAwXCxcKPAoABc8NOQwXDBYMFgs7DBYMFwwWCzsLOgs6CzoMOg43DBYPAAWFETQMFwsXCxgKOww6DzYONwsXChkLFwsYDBYLGAs6CwANBQAAAAAAAAAAAAAAAA==
 
 # Portta
 portta:
   alias: Portta
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgBcABUACxYAASiQFBEVEBUQExEVEBUQExEVEBU0FTQUNRY0FTQUNRY0FTQUERUPFg8UERUPFhATERUPFjMWNBQ1FTQWNBQ1FjMWNBQABRMAASdIFQAMOwABKEcVAA0FAAAAAAAAAAAAAAAA'
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgBcABUACxYAASiQFBEVEBUQExEVEBUQExEVEBU0FTQUNRY0FTQUNRY0FTQUERUPFg8UERUPFhATERUPFjMWNBQ1FTQWNBQ1FjMWNBQABRMAASdIFQAMOwABKEcVAA0FAAAAAAAAAAAAAAAA
 
 # chromecast input
 input1:
   alias: Input 1
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgBgAAABKJAWDhUQFRAVDxUQFRAVDxUQFTQWNBU0FTQXMxU0FTQWNBUPFRAVEBU0FRAUEBUQFRAVNBU0FTQVEBU0FjMVNRU0FQAFEgABKEcVAAw6AAEoRhYADDoAAShGFgANBQAAAAAAAAAA'
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgBgAAABKJAWDhUQFRAVDxUQFRAVDxUQFTQWNBU0FTQXMxU0FTQWNBUPFRAVEBU0FRAUEBUQFRAVNBU0FTQVEBU0FjMVNRU0FQAFEgABKEcVAAw6AAEoRhYADDoAAShGFgANBQAAAAAAAAAA
 
 # apple tv input
 input2:
   alias: Input 2
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgBgAAABKJAWDhUQFRAVDxUQFRAVDxUQFTQWNBU0FTQWNBQ1FTQVNRQQFTQVEBU0FRAVDxUQFRAVNBUQFDUVEBU0FTQVNBY0FQAFEgABKEYWAAw6AAEoRhYADDgAASpGFgANBQAAAAAAAAAA'
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgBgAAABKJAWDhUQFRAVDxUQFRAVDxUQFTQWNBU0FTQWNBQ1FTQVNRQQFTQVEBU0FRAVDxUQFRAVNBUQFDUVEBU0FTQVNBY0FQAFEgABKEYWAAw6AAEoRhYADDgAASpGFgANBQAAAAAAAAAA
 
 # ps3 input
 input3:
   alias: Input 3
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgBgAAABJZMSEhQRFBESEhQRFBEQFBQREzYUNhE4FDUUNhI3FDUUNhISFRATNhQ0FREVDxMSFRAVNBU0FBEVEBU0FTQTNhY0FQAFEgABKEYWAAw6AAEnRxUADDoAAShGFgANBQAAAAAAAAAA'
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgBgAAABJZMSEhQRFBESEhQRFBEQFBQREzYUNhE4FDUUNhI3FDUUNhISFRATNhQ0FREVDxMSFRAVNBU0FBEVEBU0FTQTNhY0FQAFEgABKEYWAAw6AAEnRxUADDoAAShGFgANBQAAAAAAAAAA
 
 # tv input
 input4:
   alias: Input 4
   sequence:
-    - service: broadlink.send
+    - service: remote.send_command
       data:
-        host: !secret broadlink_rm_host 
-        packet:
-          - 'JgBgAAABKJAWDxQQFRAVEBQQFRAVEBQQFTQWNBU0FjMXMxU0FjMWNBUPFTUUNRU0Fg8VEBUPFRAVNBYPFRAUEBU0FjMWNBU0FQAFEgABKEcVAAw6AAEoRhYADDoAAShGFgANBQAAAAAAAAAA'
+        entity_id: remote.rmpro_remote
+        command:
+          - b64:JgBgAAABKJAWDxQQFRAVEBQQFRAVEBQQFTQWNBU0FjMXMxU0FjMWNBUPFTUUNRU0Fg8VEBUPFRAVNBYPFRAUEBU0FjMWNBU0FQAFEgABKEcVAAw6AAEoRhYADDoAAShGFgANBQAAAAAAAAAA
 
 # Activities
 watch_tv:
@@ -92,7 +92,7 @@ watch_tv:
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
@@ -109,7 +109,7 @@ watch_tv:
     - service: homeassistant.turn_on
       entity_id: script.input4
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.bose_system
@@ -122,7 +122,7 @@ watch_movies:
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
@@ -137,7 +137,7 @@ watch_movies:
     - service: homeassistant.turn_on
       entity_id: script.input2
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.bose_system
@@ -150,13 +150,13 @@ watch_ps3:
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug4
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -177,11 +177,11 @@ listen_audio:
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - service: homeassistant.turn_off
       entity_id: switch.powerstrip1_plug3
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: script.input1
@@ -193,11 +193,11 @@ watch_video:
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_usb
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - service: homeassistant.turn_on
       entity_id: switch.powerstrip1_plug1
     - service: homeassistant.turn_on
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1
     - delay: 00:00:03
     - service: homeassistant.turn_on
       entity_id: switch.sharp
@@ -227,4 +227,4 @@ stop_watching:
     - service: homeassistant.turn_off
       entity_id: switch.powerstrip1_plug4
     - service: homeassistant.turn_off
-      entity_id: switch.powerstrip2_plug1
+      entity_id: switch.mp1_s1

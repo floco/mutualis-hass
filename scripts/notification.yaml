@@ -8,10 +8,51 @@ notify:
       description: 'The message content'
       example: 'Something happened'
   sequence:
-    - service: notify.signal
+    - service_template: > 
+        {% if type == "Info" %}
+          notify.signal_info
+        {% elif type == "Warning" %}
+          notify.signal_cam
+        {% elif type == "Alert" %}
+          notify.signal_alert
+        {% else %}
+          notify.signal_info
+        {% endif %} 
       data_template:
-        message: >         
-          {{ now().strftime('%H:%M') }} {{type}}: {{message}}
+        message: "{{ now().strftime('%H:%M') }} {{type}}: {{message}}"  
+         
+notify_with_file:
+  description: 'Send a notification to signal'
+  fields:
+    type:
+      description: 'The type of the notification'
+      example: 'Info, Warning, Alert'
+    message:
+      description: 'The message content'
+      example: 'Something happened'
+    file:
+      description: 'The path of the file'
+      example: '/config/www/images/person.julien_not_home.png'
+  sequence:
+    - service_template: > 
+        {% if type == "Info" %}
+          notify.signal_info
+        {% elif type == "Warning" %}
+          notify.signal_cam
+        {% elif type == "Alert" %}
+          notify.signal_alert
+        {% else %}
+          notify.signal_info
+        {% endif %} 
+      data_template:
+        message: >
+          {% if type == "Warning" %}
+            "{{message}}"
+          {% else %}
+            "{{ now().strftime('%H:%M') }} {{type}}: {{message}}"    
+          {% endif %}  
+        data:
+          file: "{{file}}"
 
 mail:
   description: 'Send a notification by mail'
@@ -29,3 +70,20 @@ mail:
           {{type}} from Home Assistant
         message: >         
           {{ now().strftime('%H:%M') }} {{type}}: {{message}}
+
+test_notification:
+  sequence:
+    - service: notify.signal_info
+      data:
+        message: test with attachement
+        data:
+          file: /config/www/images/person.julien_not_home.png
+    - service: script.notify
+      data:
+        type: Info
+        message: test from template 
+    - service: script.notify_with_file
+      data:
+        type: Info
+        message: test from template with file
+        file: /config/www/images/person.julien_home.png 
