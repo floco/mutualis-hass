@@ -7,7 +7,7 @@ import jinja2
 
 TEMPLATE_FILE = "avanza_stock.yaml.template"
 TEMPLATE_PAGE_FILE = "avanza_stock.page.yaml.template"
-OUTPUT_FILE_PATH = "../../dwains-theme/addons/more_page/finance/page.yaml"
+OUTPUT_FILE_PATH = "../../dwains-dashboard/addons/more_page/finance/page.yaml"
 
 @click.command()
 # @click.argument('name', type=click.STRING)

@@ -1,0 +1,16 @@
+cameras:
+  entities:
+    - camera.cam1
+    - camera.cam2
+    - camera.nvr_cam1
+    - camera.nvr_cam2
+    - camera.nvr_cam3
+    - camera.nvr_cam4
+    - camera.nvr_cam1_doods
+    - camera.nvr_cam2_doods
+    - camera.nvr_cam3_doods
+    - camera.nvr_cam4_doods
+    - camera.nvr_cam1_local
+    - camera.nvr_cam2_local
+    - camera.nvr_cam3_local
+    - camera.nvr_cam4_local
