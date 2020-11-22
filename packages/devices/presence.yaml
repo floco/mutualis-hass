@@ -1,0 +1,126 @@
+edgeos:
+  host: !secret edge_os_host
+  ssl: !secret edge_os_ssl
+  username: !secret edge_os_username
+  password: !secret edge_os_password
+#  cert_file: !secret ssl_certificate
+  monitored_interfaces:
+    - eth0
+    - eth1
+    - eth2
+    - eth3
+    - eth4
+  monitored_devices:
+    - iphone-x
+    - iphone-5S
+    - lumia
+    - oneplus-onex 
+  unit: 'M'
+
+device_tracker:
+  - platform: edgeos
+    hosts:
+      - iphone-x
+      - iphone-5S
+      - lumia
+      - oneplus-onex
+
+  - platform: edgeos_cmd
+    host: !secret edge_os_host
+    username: !secret edge_os_admin_username
+    password: !secret edge_os_admin_password
+    interval_seconds: 60
+    consider_home: 180
+    new_device_defaults:
+      track_new_devices: false
+
+person:
+  - name: Julien
+    id: julien
+    user_id: 09702289c33b4ba9896a2ee566181ef9
+    device_trackers:
+      - device_tracker.b0_19_c6_b4_82_2f
+  - name: Mojca
+    id: mojca
+    device_trackers:
+      - device_tracker.a8_9c_ed_d7_df_16 
+  - name: Mia
+    id: mia
+    device_trackers:
+      - device_tracker.e0_dc_ff_f7_84_e9 
+  - name: Evy
+    id: evy
+    device_trackers:
+      - device_tracker.54_e4_3a_28_fe_75
+
+automation: 
+  # Presence notification
+  - id: PR001
+    alias: Presence Notification Home
+    trigger:
+      platform: state
+      entity_id: person.julien, person.mojca, person.mia, person.evy
+      to: 'home'
+    action:
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >
+          {{ trigger.from_state.attributes.friendly_name }} est à la maison.
+
+  - id: PR002
+    alias: Presence Notification Leave
+    trigger:
+      platform: state
+      entity_id: person.julien, person.mojca, person.mia, person.evy
+      from: 'home'
+    action:
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >
+          {{ trigger.from_state.attributes.friendly_name }} est parti.
+
+  - id: PR003
+    alias: Presence Workaround to prevent device to be away if door not opened
+    trigger:
+      platform: state
+      entity_id: device_tracker.b0_19_c6_b4_82_2f
+      from: 'home'
+    condition:
+    - condition: template
+      value_template: '{{ as_timestamp(now()) - as_timestamp(states.binary_sensor.door_window_sensor_158d0002c9c949.attributes.last_triggered) | int > 600 }}'
+    action:
+    - service: device_tracker.see
+      data:
+        dev_id: device_tracker.b0_19_c6_b4_82_2f
+        location_name: 'home'
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >
+          {{ trigger.from_state.attributes.friendly_name }} est remis en home car porte pas ouverte recemment.
+
+
+    # - service: tts.google_say
+    #   entity_id: media_player.cuisine
+    #   data_template:
+    #     message: >
+    #       {%- macro speak_presence(person) -%}
+    #         {{ [
+    #         "A bientot " + person + " !",
+    #         person + "est parti !",
+    #         person + "n'est plus la !"
+    #         ] | random }}
+    #       {%- endmacro -%}
+    #       {% set person = trigger.from_state.attributes.friendly_name %}       
+    #       {{ speak_presence(person) }}
+
+  # - alias: Turn off air purifier when everyone leaves
+  #   trigger: 
+  #     platform: state
+  #     entity_id: group.allpersons
+  #     to: 'not_home'
+  #   action:
+  #     entity_id: fan.air_purifier
+  #     service: fan.turn_off

@@ -1,0 +1,14 @@
+automation:
+  - id: 'sync_bring'
+    alias: Sync Bring
+    description: ''
+    trigger:
+    - platform: time_pattern
+      hours: '*'
+      minutes: /15
+      seconds: '0'
+    condition: []
+    action:
+    - service: shopping_list.bring_sync
+      data: {}
+    mode: single

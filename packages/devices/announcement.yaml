@@ -1,0 +1,262 @@
+dialogflow:
+
+tts:
+  - platform: google_translate
+    language: 'fr'
+    service_name: google_say
+    base_url: !secret tts_base_url
+
+rest_command:
+  assistant_broadcast:
+    url: !secret google_assistant_url
+    method: POST
+    content_type: 'application/json'
+    payload: !secret google_assistant_payload_broadcast
+    
+  assistant_converse:
+    url: !secret google_assistant_url
+    method: POST
+    content_type: 'application/json'
+    payload: !secret google_assistant_payload_converse
+
+  assistant_relay:
+    url: !secret google_assistant_url
+    method: POST
+    content_type: 'application/json'
+    payload: !secret google_assistant_payload_relay
+
+automation:
+  - id: AN001
+    alias: Anounce Chores Week Put Table
+    trigger:
+      platform: time
+      at: '18:55:00'
+    action:
+    - service: homeassistant.turn_on
+      entity_id: script.table_up
+
+  - id: AN002
+    alias: Anounce Chores Week Clean Table
+    trigger:
+      platform: time
+      at: '19:55:00'
+    action:
+    - service: homeassistant.turn_on
+      entity_id: script.table_down
+
+  - id: AN003
+    alias: Anounce Chores Week End
+    trigger:
+      platform: time
+      at: '12:30:00'
+    condition:
+    - condition: time
+      weekday:
+      - sat
+      - sun
+    action:
+    - service: homeassistant.turn_on
+      entity_id: script.table_up
+
+  - id: AN004
+    alias: Anounce Calendar Event
+    trigger:
+      platform: state
+      entity_id: calendar.poubelle_waterloo
+      to: 'on'
+    #condition:
+    #  condition: template
+    #  value_template: "{{states.calendar.calendar_name.attributes.message == 'vacation' }}"
+    action:
+    # - service: script.announce
+    #   data_template:
+    #     no_say: "{{ no_say }}"
+    #         media_player: "{{ media_player }}"
+    #         message: "{{ message }}"
+    - service: homeassistant.turn_on
+      entity_id: script.calendar
+      data_template:
+        variables:
+          message: '{{ states.calendar.poubelle_waterloo.attributes.message }}'
+
+  - id: AN005
+    alias: Anounce Sensor Info Week
+    trigger:
+      platform: time
+      at: '08:30:00'
+    condition:
+    - condition: time
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+    action:
+    - service: homeassistant.turn_on
+      entity_id: script.netatmo
+
+  - id: AN006
+    alias: Anounce Sensor Info Weekend
+    trigger:
+      platform: time
+      at: '11:00:00'
+    condition:
+    - condition: time
+      weekday:
+      - sat
+      - sun
+    action:
+    - service: homeassistant.turn_on
+      entity_id: script.netatmo  
+
+intent_script:
+  Temperature:
+    speech:
+      text: La température à la maison est de {{states('sensor.netatmo_living_room_inside_temperature')}} degrés.
+  Table:
+    speech:
+      text: >
+          {%- macro speak_table(person,action) -%}
+            {{ [
+            "c'est a " + person + " de " + action + " la table."
+            ] | random }}
+          {%- endmacro -%}
+          {% set action = "mettre" %}
+          {% if now().strftime("%W")|int % 2 != 0 %}
+            {% if action == "mettre" %}
+              {% set person = "Evy" %}
+            {% else %}
+              {% set person = "Mia" %}
+            {%endif%}
+          {% else %}
+            {% if action == "mettre" %}
+              {% set person = "Mia" %}
+            {% else %}
+              {% set person = "Evy" %}
+            {%endif%}
+          {%endif%}
+          {{ speak_table(person,action) }}
+          
+
+script:
+#Inspiration: https://github.com/CCOSTAN/Home-AssistantConfig/blob/master/script/speech_engine.yaml
+  netatmo:
+    sequence:
+      # - service: homeassistant.turn_on
+      #   entity_id: switch.send_text_to_nest_hub
+      # - delay: 00:00:05
+      - service: homeassistant.turn_on
+        entity_id: script.increase_volume
+      # - service: tts.google_say
+      #   entity_id: media_player.cuisine, media_player.google_home
+      - service: rest_command.assistant_broadcast
+        data_template:
+          command: Il fait {{states('sensor.netatmo_living_room_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_living_room_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_living_room_inside_co2')}} ppm. Bonne journée !
+          # cache: false
+      - service: homeassistant.turn_on
+        entity_id: script.decrease_volume
+      # - service: homeassistant.turn_off
+      #   entity_id: switch.send_text_to_nest_hub
+      - service: script.notify
+        data_template:
+          type: Info
+          message: Il fait {{states('sensor.netatmo_living_room_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_living_room_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_living_room_inside_co2')}} ppm. Bonne journée !
+      # - service: script.mail
+      #   data_template:
+      #     type: Info
+      #     message: Il fait {{states('sensor.netatmo_living_room_outside_temperature')}} degrés à l'extérieur et {{states('sensor.netatmo_living_room_inside_temperature')}} degré à l'interieur. Le niveau de CO2 est de {{states('sensor.netatmo_living_room_inside_co2')}} ppm. Bonne journée !
+
+  table_up:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: script.table
+        data:
+          variables:
+            action: 'mettre'
+
+  table_down:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: script.table
+        data:
+          variables:
+            action: 'débarasser'
+
+  table:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: script.increase_volume
+      # - service: tts.google_say
+      #   entity_id: media_player.cuisine, media_player.google_home
+      - service: rest_command.assistant_broadcast
+        data_template:
+          command: >
+            {%- macro speak_table(person,action) -%}
+              {{ [
+              "Allez on se bouge, cette semaine c'est a " + person + " de " + action + " la table ! Merci " + person + "!",
+              "Cette semaine c'est a " + person + " de " + action + " la table ! Merci " + person + "!",
+              person + ", c'est a ton tour de " + action + " la table ! Merci " + person + "!",
+              "Dis donc " + person + " ce serait pas a toi de " + action + " la table par hasard ? Merci " + person + "!",
+              "Alors ma grande, t'a oubliée de" + action + " la table." + person + ", on se depeche ! Allez " + person
+              ] | random }}
+            {%- endmacro -%}
+            {% if now().strftime("%W")|int % 2 != 0 %}
+              {% if action == "mettre" %}
+                {% set person = "Evy" %}
+              {% else %}
+                {% set person = "Mia" %}
+              {%endif%}
+            {% else %}
+              {% if action == "mettre" %}
+                {% set person = "Mia" %}
+              {% else %}
+                {% set person = "Evy" %}
+              {%endif%}
+            {%endif%}
+            {{ speak_table(person,action) }}
+      - service: homeassistant.turn_on
+        entity_id: script.decrease_volume
+
+  calendar:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: script.increase_volume
+      # - service: tts.google_say
+      #   entity_id: media_player.cuisine, media_player.google_home
+      - service: rest_command.assistant_broadcast
+        data_template:
+          command: >
+            {%- macro speak_calendar(message) -%}
+              {{ [
+              "Il y a quelque chose à faire " + message + " merci !",
+              "Votre attention, il faut " + message + " merci !",
+              "C'est le jour de " + message + " merci !"
+              ] | random }}
+            {%- endmacro -%}
+            {{ speak_calendar(message) }}
+      - service: homeassistant.turn_on
+        entity_id: script.decrease_volume
+
+
+  increase_volume_max:
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.cuisine, media_player.mezzanine
+          volume_level: 1.0
+
+  increase_volume:
+    sequence:
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.cuisine, media_player.mezzanine
+          volume_level: 0.5
+
+  decrease_volume:
+    sequence:
+      - delay: 00:00:15
+      - service: media_player.volume_set
+        data:
+          entity_id: media_player.cuisine, media_player.mezzanine
+          volume_level: 0.4

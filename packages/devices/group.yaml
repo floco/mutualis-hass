@@ -1,0 +1,77 @@
+  # TODO: split into the different devices/fonctions
+  group:
+    living_lights:
+      - light.lightstrip
+      - light.main_light
+    living_medias:
+      - media_player.cuisine
+      - media_player.salon
+      - media_player.apple_tv
+    windows_mia:
+      - binary_sensor.door_window_sensor_158d000237d1e8
+      - binary_sensor.door_window_sensor_158d000238c840
+    windows_evy:
+      - binary_sensor.door_window_sensor_158d00023295ce
+      - binary_sensor.door_window_sensor_158d000237d247
+    powerstrip1_p402a:
+      - switch.powerstrip1_plug1 #SHA
+      - switch.powerstrip1_plug2 #BTV
+      - switch.powerstrip1_plug3 #ATV
+      - switch.powerstrip1_plug4 #PS3
+      - switch.powerstrip1_usb
+    powerstrip2_mp1:
+      - switch.mp1_s1
+      - switch.mp1_s2
+      - switch.mp1_s3
+      - switch.mp1_s4
+    spots:
+      - light.chambre_spot_1
+      - light.chambre_spot_2
+      - light.chambre_spot_3 
+    bedrooms:
+      - group.spots
+      - light.evy_light
+      - binary_sensor.wall_switch_right_158d000237bae7      # Wall_Switch_Right
+      - binary_sensor.wall_switch_both_158d000237bae7       # Wall_Switch_Both
+    tv:
+      - switch.sharp
+      - switch.bose_system
+      - switch.apple
+      - switch.ps3
+      - switch.belgacom
+      - switch.chromecast_audio
+      - switch.chromecast_video
+    announcements:
+      - script.netatmo
+      - script.table_up
+      - script.table_down
+      - switch.table
+    hdmi_switch:
+      - script.input1
+      - script.input2
+      - script.input3
+      - script.input4
+    alarm:
+      - alarm_control_panel.home_alarm
+      - binary_sensor.wall_switch_left_158d000237bae7       # Wall_Switch_Left
+      - light.gateway_light_7811dcb8f98a
+      - sensor.illumination_7811dcb8f98a
+    doors:
+      - binary_sensor.door_window_sensor_158d0002c9c949     # Door_Entree
+    motion:
+      - binary_sensor.motion_sensor_158d000276d4da          # Motion_Upstairs
+      - binary_sensor.motion_sensor_158d00042026f7          # Motion_Entree
+    smoke:
+      - binary_sensor.smoke_sensor_158d0001bbe483           # Smoke_Sensor_Upstairs
+      - binary_sensor.smoke_sensor_158d0001e581ee           # Smoke_Sensor_Living
+      - binary_sensor.smoke_sensor_158d00024e8f68           # Smoke_Sensor_Mia
+      - binary_sensor.smoke_sensor_158d00028f4032           # Smoke_Sensor_evy
+    all_persons:
+      - person.julien
+      - person.mojca
+      - person.mia
+      - person.evy
+
+
+
+

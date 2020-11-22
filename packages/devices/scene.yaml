@@ -1,0 +1,29 @@
+automation:
+  # Activated at night
+  - id: SC001
+    alias: Trigger Night Scene
+    trigger:
+      platform: time
+      at: "23:59:00"
+    condition:
+    - condition: template
+      value_template: "{{ not is_state('input_select.home_mode', 'Vacation') }}"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Night
+  # Activated in morning
+  - id: SC002
+    alias: Trigger Morning Scene
+    trigger:
+      platform: time
+      at: "06:30:00"
+    condition:
+    - condition: template
+      value_template: "{{ not is_state('input_select.home_mode', 'Vacation') }}"
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.home_mode
+          option: Day

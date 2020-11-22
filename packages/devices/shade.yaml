@@ -1,0 +1,204 @@
+#TODO: add the other binary sensors when installed
+
+cover:
+  - platform: template
+    covers:
+      mezzanine:
+        friendly_name: "Mezzanine Shade"
+        open_cover:
+          service: script.mezzanine_shade_up
+        close_cover:
+          service: script.mezzanine_shade_down
+        stop_cover:
+          service: script.mezzanine_shade_stop
+      living_right:
+        friendly_name: "Living Right Shade"
+        open_cover:
+          service: script.living_right_shade_up
+        close_cover:
+          service: script.living_right_shade_down
+        stop_cover:
+          service: script.living_right_shade_stop        
+      living_left:
+        friendly_name: "Living Left Shade"
+        open_cover:
+          service: script.living_left_shade_up
+        close_cover:
+          service: script.living_left_shade_down
+        stop_cover:
+          service: script.living_left_shade_stop 
+
+switch:
+# For Google Assistant
+  - platform: template
+    switches:
+      store:
+        value_template: "{{ is_state('switch.store', 'on') }}"
+        turn_on:
+          - service: automation.trigger
+            entity_id: automation.shade_mezzanine_close_at_sunset
+        turn_off:
+          - service: automation.trigger
+            entity_id: automation.shade_mezzanine_open_in_the_morning
+
+automation:
+# Close at sunset
+  - id: 'SH001'
+    alias: Shade - Close at sunset
+    trigger:
+      platform: sun
+      event: sunset
+      offset: +00:00:01
+    condition:
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_158d000237d1b8,binary_sensor.door_window_sensor_158d0001e1066e,binary_sensor.door_window_sensor_158d0002ec540a
+        state: 'off'
+    action:
+      - repeat:
+          count: 3
+          sequence: 
+            - service: script.mezzanine_shade_down
+            - delay: 2
+            - service: script.living_left_shade_down
+            - delay: 2
+            - service: script.living_right_shade_down
+            - delay: 30
+      - service: script.notify
+        data_template:
+          type: Info
+          message: All shades are down  
+# Open in the morning week
+  - id: 'SH002'
+    alias: Shade - Mezzanine - Open in the morning during the week
+    trigger:
+    - at: 07:30
+      platform: time
+    condition:
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_158d000237d1b8,binary_sensor.door_window_sensor_158d0001e1066e,binary_sensor.door_window_sensor_158d0002ec540a
+        state: 'off'
+      - condition: time
+        weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    action:
+      - repeat:
+          count: 3
+          sequence: 
+            - service: script.mezzanine_shade_up
+            - delay: 2
+            - service: script.living_left_shade_up
+            - delay: 2
+            - service: script.living_right_shade_up
+            - delay: 30 
+      - service: script.notify
+        data_template:
+          type: Info
+          message: All shades are up      
+# Open in the morning weekend     
+  - id: 'SH003'
+    alias: Shade - Mezzanine - Open in the morning during the weekend
+    trigger:
+    - at: 08:30
+      platform: time
+    condition:
+      - condition: state
+        entity_id: binary_sensor.door_window_sensor_158d000237d1b8,binary_sensor.door_window_sensor_158d0001e1066e,binary_sensor.door_window_sensor_158d0002ec540a
+        state: 'off'
+      - condition: time
+        weekday:
+        - sat
+        - sun
+    action:
+      - repeat:
+          count: 3
+          sequence: 
+            - service: script.mezzanine_shade_up
+            - delay: 2
+            - service: script.living_left_shade_up
+            - delay: 2
+            - service: script.living_right_shade_up
+            - delay: 30
+      - service: script.notify
+        data_template:
+          type: Info
+          message: All shades are up  
+
+script:
+  mezzanine_shade_up:
+    alias: Mezzanine Shade Up
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgDKAQkUCRMJFAkUFAgKEwkUCRQJEwoTChMJEwoTChMJFAkUCRMUCQkUFAgUCQoTFAgVCAoTFAkJFBMJFAgVo6MTFQgKExQIChQJEwkUFAkUCAoTChMUCRMJFQgUCRQIChMKExQJFAkTCRQJFAgUCQoTFAkJExUIChMJFAkTFQgUCQkUCRMKEwkUCRQJEwoTFAgKEwoTCRQJEwoUCRMKEwkTChMKEwoTCRQTCQoTFAkUCAoTFAkUCAoTFAkKExQIFQgUo6MUFAgKExQJCRQJFAkTFAkUCQkTChMUCRQJFAgUCRQJCRQJExQJFAkUCRMJFAkUCQkTFAkJFBQIChMKEwkUEwkUCQoTCRMKEwoTChMJEwoTFAkJFAkTChMKEwkUCRMKEwoTCRQJEwoTChMUCAoTFAkUCAoTFAkUCQkTFQgKExQJFAgUo6MUFAkJFBMJChMJFAkTFAkUCQkTChMUCRQJFAgVCBQJCRQJExUIFAkUCRQIFAkUCQkTFAkKExQJCRMKEwoTFAkTCgkTCRQJFAkTChMJFAkUEwkKEwkUCRQJEwoTCRQJEwoTChMJEwoTCRQUCAoTFAkUCQkUEwkUCQkUFAgKExQJFAgUAAXcCRMKEwoTCRMKEwoTCRQ=
+  mezzanine_shade_down:
+    alias: Mezzanine Shade Down
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgDoARMJFAkUCQkTFQgKExQJCRMKEwoTFAgVCAoTChMJEwoTChMJEwoTFAkKEgsSChMKEwoTCRMKEwoTChIVCAoTChMKEgoTFAkUCRQIChMVCAoTChIKExQJFAgUo6QTFAkKExQIChMKEwoSFQgVCAoTChIVCBQJFAkUCRQIChMKEhUIFQgUCRQJFAgUCQoTFAgKExQJChIKEwoTFAkUCQkTChMKEwkTChMKEwoTFAgKEwoTChIKEwoTChMJFAkTChMUCQkUCRMKEwoTFAgVCBQJChMUCAoTChMJFBQIFAgVo6MUFAgKExUIChMJEwoTFAkUCQkTChMUCRQJFAgUCRQJChIKExQJFAgVCBUIFAkUCAoTFAkKEhUIChMKEwoTFAgUCQoTChIKEwoTChMJEwoTFAkKEwkTChMKEwkTChMKEwoTChIVCAoTChMJEwoTFAkUCRQIChMUCAsSChMKExQJFAgUo6QTFAkJExUIChMJEwoTFAkUCQkTChMUCRQJFAgVCBQJCRMKExUIFAkUCBUIFAkUCAoTFAkKExQIChMKEwoTFAgVCAoTChMJEwoTChMJEwoTFQgKEwkUCRMKEwoTCRQJEwoTChMUCAoTChMKEwkTFQgUCRQIChMUCQoSChMKExQJFAgUAAXc
+  mezzanine_shade_stop:
+    alias: Mezzanine Shade Stop
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgDMAQkTChMKEwkTChMVCAoTChIKEwoTCRMKEwoTChILEwkTFQgKEgsSChMUCRQIFQgKEwoTChIKEwoTFAkUCBSjpBMUCAsSFQgKEwoTChIUCRQJChIKExUIFAkUCBUIFAkKEgoTFQgUCRQIFQgVCBQJChIVCAoTFAgKEwoTChMUCBUIChMKEwkTChMKEgsSChMVCAoTChIKEwoTChIKEwoTChMKEgoTFAkKEwoSChMVCBQJFAgKEwoTChIKEwoTFAkUCBWipBMVCAoTFAgKEwoTChIVCBUIChMKEhUIFAkUCBUIFQgKEwoSFQgUCRQJFAgVCBQJChIVCAoTFAgLEgoTChMUCBUIChMKEwoTCRMKEwoTCRMVCAoTChMJEwoTChMJFAoSChMKEwoSFQgKEwoSCxIVCBQJFAgKEwoTChILEgoTFQgUCBWipBMVCAoTFAgKEwoTCRMVCBQJChMKEhUIFQgUCBUIFQgKEwoSFQgVCBQJFAgVCBQJChMUCAoTFAgLEgoTChMUCRQIChMKEwoSChMKEwoTChIVCAoTChILEgoTChMKEwkTChMKEwoSFQgKEwoTChIVCBQJFAkJEwoTChILEgoTFQgUCBUABdwJEwoTChMKEgsTCRM=
+  living_left_shade_up:
+    alias: Living Left Shade Up
+    sequence: 
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgDoAhQIChMUCQkTChMKExQJFAgKEwkTChMKEwkUCRMUCQoTChMJEwoTChMKEgoTChMJEwoTChMKEwkUEwkKExQIFQgKExQJFAgKExQIFQgKEwoSFaKkExQJCRQTCQoTCRMKExQJFAkJFAkTFAkUCRMJFAkUCAoTChMUCRQIFAkUCRMJFAkKExQIChMUCQkTChMKExQIFQgKEwoTChIKEwoTChMUCAoTChMJEwoTChMKEwkTChMKEgoTChMKEwkUFAgKExQIFQgKExQIFQgKExQJFAgKEwoTFKKkExQJCRMVCAoTChMJExQJFAkJEwoTFAkUCRQIFQgUCQkTChMUCRQIFQgUCRQJFAkJExQJCRMUCQoTCRMKExQJFAkJEwoTCRMKEwoTChMUCAoTCRQJEwoTChMJFAkTChMKEwoSChMKEwkUFAgKExQJFAgKExQJFAgKExQJFAkJEwoTFKKkExQJChMUCAoTCRQKEhQJFAkJEwoTFAkUCBUIFAkUCQkUCRMUCRQIFAkUCRQJFAgKExQIChMUCQkTChMKExQJFAgKEwoTCRMKEwoTCRMVCAoTCRQJFAkTChMJFAkTChMKEwkTChMJFAkTFAkJExUJFAgKExQIFQgKExQJFAgKEwoSFKOkExQIChMUCQoTCRQJExQJFAgKEwoTFAgVCBQJFAgVCAoTCRQUCBQJFAkUCRMJFAkJExQJChMUCAoTChMKExQIFAkJFAkTChMKEwoTCRMVCAoTCRMKEwkUCRQJEwoTCRMKEwoTChIKEwoTFAkJExUIFAkJExUIFAkJFBQIFAkKEwoSFKOjExUIChMUCQkTChMKExQJEwkKEwkTFQgUCRQJFAgVCAoTCRMUCRQJFAkUCBQJFAgKExQJCRQUCAoTChMJExUIFAkJEwoTChMJFAkTChMUCQkTChMKEwkTChMKEwkTChMKEwoSChMKEwoTFAgKExQJFAgKExQJFAkJExQJFAkJEwoTFAAF3A==      
+  living_left_shade_down:
+    alias: Living Left Shade Down
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgCQAhQJCRMKEwoTFAkTCQkUCRQUCRMJFAkUCBQJCRQJFBMJFAkUCRMJFAkUCQkTFAkJExUIChMJFAkUEwkUCQkTChMKEwkUCRMKExQJCRMKEwoSChMKEwoTCRQJEwoTCRQTCQoTChMJEwoTFAkUCRQIChMUCQkUCRMUCQoSChMUoqQUEwkKExQJCRMKEwkTFQgUCQkUCRMUCRQJFAkTCRQJCRQJExQJFAkTCRQJFAkUCQkTFAkJFBMJChMJEwoTFAkUCQkTChMKEwkTChMKExQJCRMKEwkUCRMKEwoTCRMKEwoTCRMVCAoTCRQJEwoTFAkUCBQJCRQUCAoTChMUCQkTChMUoqQTFAkKEhUJCRMJFAkUEwkUCQkUCRMUCRQJFAgUCRQJCRQJExQJFAkTCRQJFAkTCQoTFAgKExQJChMJEwoTFAkUCQkTChMJFAkTChMKExQJCRMJFAkUCRMKEwkTChQJEwoTCRQTCQoTChMJEwoTFAkTChMJCRQUCAoTCRQUCAoTChMUoqQTFAkJExQJChMJEwoTFAkUCAoTChMUCRQIFAkUCRQIChMKExQIFQgUCRQIFQgUCQkUFAgKExQJCRMKEwkUFAgUCQoTChMJEwoTCRQJFBMJChMJFAkTChMJFAkTChMJFAkTChMUCQkTChMKEwkTFQgUCRQJCRMUCQoTCRMUCQoTCRMUo6MUFAgKExQIChQJEwkUFAkTCQoTCRQTCRQJFAkTCRQJCRQJExUIFAkUCRMJFAkUCAoTFAkJFBQIChMJFAkTFAkUCQkTChMKEwkUCRMKExQJCRMKEwkUCRMKEwoTCRQJEwoTChMUCAoTChMJFAkTFAkUCBUIChMUCQkTChMUCQkUCRMUAAXcFAkUCBQJFAk=
+  living_left_shade_stop:
+    alias: Living Left Shade Stop
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgAgARQJFAkUCQkUCRMKEwkTFAkKEwoSFKOjFBQIChMUCQkTChMKExQIFAkKEwoTFAkTCRQJFAgUCQoTCRMUCRQJFAkTCRQJFAgKExQJCRMVCAoTChMJExQJFAkJEwoTChMJEwoTChMUCQkTChMKEwkTChMKEwoTCRMKEwkUCRMUCQoTCRQJExQJFAgVCAoTCRMKFAkTFAgKEwoTFKKkExQJChIVCAoTChMJFBMJFAkKEgoTFAkUCRMJFAkUCAoTChMUCRQIFAkUCRQIFQgKExQIChMUCQkUCRMKExQJFAgKEwkUChIKEwoTCRQUCAoTChMJEwoTChMJEwoTChMKEwkTChMUCQoTCRMKExQJFAgUCQkTChMKEwoTFAgKEwoSFQAF3AAAAAAAAAAA
+  living_right_shade_up:
+    alias: Living Right Shade Up
+    sequence: 
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgCQAhUIChMJEwoTFAkUCAoTChMUCRQIFAkUCRQIChMJExUIFAkUCRQIFQgUCQkTFAkKExQIChMKEwkTFQgUCQkUCRMKEwoTCRMUCQoSChMKEwoTCRMKEwoSCxIKEwoTCRMKEwoTChIVCAoTFAgVCAoTFAkUCAoTFAkUCBQJChIVoqQTFAgKExQJChIKEwoTFAkUCAoTChMUCBQJFAkUCBQJChIKFBMJFAkUCBUIFAkUCAoTFAkJFBMJChIKEwoTFAgVCQkTChMJEwoTChMUCAoTChMKEwkTChMKEwkTChMKEwkTChMKEwkTChMUCQkUFAgUCQoSFQgUCQoSFQgVCBQJCRMUo6MTFAkKExQIChMKEwkTFQgUCQkTChMUCRQIFQgUCRQJCRMKExQJFAgUCRQJFAgUCQoTFAgKExQJCRMKEwoSFQgVCAoTChIKEwoTChIVCAoTChMJEwoTChMJEwoTChMJEwoTChMKEwkTChMUCQkTFAkUCAoTFAkUCQkTFQgUCRQIChMUo6MTFQgKExQIChMKEgoTFAkUCAoTChMUCBUIFAkUCRQIChMKEhUIFAkUCRQIFAkUCAsSFQgKExQIChMKEwoTFAgVCAoTCRMKEwoTCRMUCQoSChMKEwoTCRMKEwoTChMJEwoTCRMKEwoTCRQUCAoTFAgVCAoTFAgVCAoTFAgVCBQJChIVoqQTFAgKExQJCRMKEwoTFAkUCAoTChIVCBQJFAkUCBQJChIKExQJFAkUCBQJFAgVCAoTFAkJExUIChMJEwoTFAkUCAoTChMKEgoTChMUCAoTChMKEgoTChMKEwkTChMKEwkTChMKEwoSChMVCAoTFAgUCQoTFAgVCAoTFAgUCRQJCRMUAAXcFAgVCBQJFAk=
+  living_right_shade_down:
+    alias: Living Right Shade Down
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgAQAhQJCRMVCAoTChMJExQJFAkJEwoTFAkUCBQJFAkUCAoTChMUCRQIFAkUCRQIFAkKEhUIChMUCQkTChMKExQJFAgKEwkTChMKEwoTFAgKEwoTChIKEwoTCRMKEwoTCRMKEwoTFAkJEwoTChMKEhUIFAkUCQkTFAkKEwkTFQgUCQkTFKOjExQJChMUCQkTChMKExQIFAkKEwkUFAgUCRQIFQgUCQkTChMUCRQJFAgUCRQIFQgKExQJCRMUCQoTCRQJExQJFAgKEwoTChMJEwoTFAkJEwoTCRQJEwoTChILEgoTChMKEwkTFAkKEwkTChMKExQIFAkUCQkTFQgKEwkTFAkUCQkTFKOjFBQIChMUCQkTChMKExQIFAkKEgsTFAgUCRQJFAgUCQkTChMUCRQJFAkUCBQJFAgKExQJCRMVCAoTChIKExUIFAkJEwoTChMJEwoTFAkKEgoTChMKEgsSChMKEwkTChMKEwoTFAgKEwoTCRMKExQJFAgVCAoTFAkJEwoTFAkUCAoTFKKkExQJCRMVCAoTCRMKExQJFAkJEwoTFAgVCRMJFAkUCAoTChMUCRQIFAkUCBUIFAkJFBQIChMUCAoTChMJExUIFAkKEwkTChMKEwkUFAgKEwoTCRMKEwoTCRMKEwoTCRQJEwoTFAgKEwoTChMJExQJFAkUCAoTFAkJEwoTFAkUCAoTFAAF3BQIFQgUCQkT
+  living_right_shade_stop:
+    alias: Living Right Shade Stop
+    sequence:
+      - service: remote.send_command
+        data:
+          entity_id: remote.rmpro_remote
+          command:
+            - b64:sgCgARQJChMJFAkTChMUCRQIChIUo6MUFAkJExQJCRQJEwoTFAkUCQkTChMUCRQIFAkUCRQJCRMJFBQIFAkUCRQIFAkUCQkUFAgKExQJCRMKEwkUFAgUCQoTCRMKEwoTCRMUCQoTCRMKFAkTChMJEwoTChMJEwoTChMKExMKCRMKEgoUEwkUCRQJCRMJEwoTChMUCRQIChMUo6MUEwkKExQIChMKEwkTFQgUCQkUCRMUCRQJFAgUCRQJCRMKExQJFAgUCRQJFAgUCQoTFAgKExQJCRQJEwoTFAkUCQkTCRQJFAkTChMUCAoTChMJEwoTChMKEwkTChMJFAkUCRMKExQJCRMKEwoTFAgUCRQIChMKEwoTCRQUCBQJCRMUo6MUFAgKExQJCRMKEwoTFAkUCAoTChIVCBQJFAkTCRQJChMJExQJFAkUCRQIFAkUCAoTFAkJExQJChMJFAkTFAkUCQkTChMJFAkTChMUCQkTChMKEwoSChMKEwkUCRMKEwoTCRMKExQJCRMKEwoTFAgUChMJCRQJEwoTChMUCBQJCRMVAAXcAAAAAAAAAAA=
+
+

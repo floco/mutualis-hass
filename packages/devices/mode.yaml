@@ -1,0 +1,47 @@
+input_select:
+  home_mode:
+    name: Home Mode
+    options:
+      - Day
+      - Night
+      - Away
+      - Vacation
+      - House Keeping
+      - Guest
+    initial: Day
+    icon: mdi:message-settings-variant
+
+automation:
+  # Actions when in Night Mode
+  - id: MO001
+    alias: Activate Night Mode
+    trigger:
+    - entity_id: input_select.home_mode
+      platform: state
+      to: 'Night'
+    action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: switch.alarm_arm_home
+  # Actions when in Day Mode
+  - id: MO002
+    alias: Activate Day Mode
+    trigger:
+    - entity_id: input_select.home_mode
+      platform: state
+      to: 'Day'
+    action:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: switch.alarm_arm_home
+  # Actions when in Vacation Mode
+  - id: MO003
+    alias: Activate Day Mode
+    trigger:
+    - entity_id: input_select.home_mode
+      platform: state
+      to: 'Vacation'
+    action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: switch.alarm_arm_away

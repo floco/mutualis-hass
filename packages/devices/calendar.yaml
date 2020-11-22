@@ -1,0 +1,18 @@
+# Calendar
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_client_secret
+
+automation:
+  - id: CAL01
+    alias: Calendar Event All
+    trigger:
+      platform: state
+      entity_id: calendar.holidays_in_belgium, calendar.home_status, calendar.poubelle_waterloo
+      to: 'on'
+    action:
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >
+          Evenement du calendrier {{ trigger.from_state.attributes.friendly_name }}: {{ trigger.from_state.attributes.message }}

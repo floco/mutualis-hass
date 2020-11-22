@@ -1,8 +1,0 @@
-- id: HO001
-  alias: Turn off Home Cinema in the evening
-  trigger:
-    platform: time
-    at: '23:59:59'
-  action:
-  - service: homeassistant.turn_on
-    entity_id: script.stop_watching

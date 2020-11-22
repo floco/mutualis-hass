@@ -1,0 +1,11 @@
+minio:
+  host: !secret minio_host
+  port: 8000
+  access_key: !secret minio_access_key
+  secret_key: !secret minio_secret_key
+  secure: true
+
+folder_watcher:
+  - folder: /config/www/sync
+    # patterns:
+    #   - 'sync*.log'

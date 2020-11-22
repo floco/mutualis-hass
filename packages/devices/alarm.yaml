@@ -1,0 +1,272 @@
+alarm_control_panel:
+  - platform: manual
+    name: Home Alarm
+    code: !secret alarm_code
+    arming_time: 5
+    delay_time: 1
+    trigger_time: 1
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      arming_time: 0
+      delay_time: 0
+
+input_boolean:
+  alarm:
+    name: Track alarm state
+    icon: mdi:alarm-bell
+
+automation:
+  # Activated when one of the sensors are opened and alarm is armed
+  - id: AL001
+    alias: Windows Alarm
+    trigger:
+    - entity_id: group.windows
+      from: 'off'
+      platform: state
+      to: 'on'
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.home_alarm
+          state: armed_away
+        - condition: state
+          entity_id: alarm_control_panel.home_alarm
+          state: armed_home
+    action:
+    - service: alarm_control_panel.alarm_trigger
+      entity_id: alarm_control_panel.home_alarm
+
+  # Activated when alarm is trigerred
+  - id: AL002
+    alias: Send notification when alarm triggered
+    trigger:
+    - entity_id: alarm_control_panel.home_alarm
+      platform: state
+      to: 'triggered'
+    action:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret xiaomi_gw_mac
+          ringtone_id: 1
+          ringtone_vol: 100
+      - service: script.notify
+        data_template:
+          type: Alert
+          message: >  
+            Alarm Triggered... {% if states('binary_sensor.door_window_sensor_158d000232b0ad') == "on" %}Fenetre_Parents {% endif %}{% if states('binary_sensor.door_window_sensor_158d000237d1e8') == "on" %}Fenetre_Mia_Devant {% endif %}{% if states('binary_sensor.door_window_sensor_158d000238c840') == "on" %}Fenetre_Mia_Laterale {% endif %}{% if states('binary_sensor.door_window_sensor_158d00023295ce') == "on" %}Fenetre_Evy {% endif %}{% if states('binary_sensor.door_window_sensor_158d000237d247') == "on" %}Velux_Evy {% endif %}{% if states('binary_sensor.door_window_sensor_158d000238628c') == "on" %}Fenetre_Chambre_Amis {% endif %}{% if states('binary_sensor.door_window_sensor_158d000237d1b8') == "on" %}Fenetre_Upstairs {% endif %}{% if states('binary_sensor.door_window_sensor_158d000243645e') == "on" %}Velux_Salle_de_bain {% endif %}Opened
+      - service: homeassistant.turn_on
+        entity_id: light.gateway_light_7811dcb8f98a
+        data:
+          brightness: 255
+          rgb_color: [254,0,0]
+
+  - id: AL003
+    alias: 'Notify if door/window opened and no one is home'                                                                                                   
+    trigger:
+      - platform: state
+        entity_id: group.all_persons
+        to: 'not_home' 
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: group.doors
+          state: 'on'
+        - condition: state
+          entity_id: group.windows
+          state: 'on'
+    action:
+      - service: script.notify
+        data_template:
+          type: Alert
+          message: >-
+            Window or Door left opened while noone is home: {% for entity in states.group.doors.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %}{% for entity in states.group.windows.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %}is opened.
+
+  - id: AL004
+    alias: 'Notify if door/window opened for 60 minutes'                                                                                                   
+    trigger:
+      - platform: state
+        entity_id: group.doors, group.windows
+        to: 'on'
+        for:
+          hours: 0
+          minutes: 60
+          seconds: 0
+    action:
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >-
+            Window or Door Opened Too Long. {% for entity in trigger.to_state.attributes.entity_id %}{% if states(entity) == 'on' %}{{ state_attr(entity, 'friendly_name') }}, {% endif %}{% endfor %} has been opened for more than 60 minutes.
+
+  # Activated when smoke is detected
+  - id: AL005
+    alias: Send notification on fire alarm
+    trigger:
+    - entity_id: group.smoke
+      platform: state
+      from: 'off'
+      to: 'on'
+    action:
+    - service: homeassistant.turn_on
+      entity_id: script.smoke_alarm
+
+  # Activated by parent switch left
+  - id: AL006
+    alias: Toggle Alarm
+    trigger:
+      platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        entity_id: binary_sensor.wall_switch_left_158d000237bae7
+        click_type: single
+    action:
+    - service: homeassistant.toggle
+      data:
+        entity_id: switch.alarm_arm_away
+
+  # Activated when the door is opened
+  - id: AL007
+    alias: Door Alert Open
+    trigger:
+    - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
+      from: 'off'
+      platform: state
+      to: 'on'
+    action:
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >         
+          Main door opened !
+
+  # Activated when the door is closed
+  - id: AL008
+    alias: Door Alert Closed
+    trigger:
+    - entity_id: binary_sensor.door_window_sensor_158d0002c9c949 
+      from: 'on'
+      platform: state
+      to: 'off'
+    action:
+    - service: script.notify
+      data_template:
+        type: Info
+        message: >         
+          Main door closed !
+
+
+script:
+  alarm_off_loud:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret xiaomi_gw_mac
+          ringtone_id: 10003
+          ringtone_vol: 10     
+      - service: script.blink_green
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >         
+            Home is not in surveillance.
+
+  alarm_on_loud:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret xiaomi_gw_mac
+          ringtone_id: 10002
+          ringtone_vol: 10  
+      - service: script.blink_orange
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >         
+            Home is under surveillance.
+
+  alarm_off_silent:
+    sequence:
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >         
+            Home is not in surveillance.
+
+  alarm_on_silent:
+    sequence:
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >         
+            Home is under surveillance.
+
+  smoke_alarm:
+    sequence:
+      - service: xiaomi_aqara.play_ringtone
+        data:
+          gw_mac: !secret xiaomi_gw_mac
+          ringtone_id: 2
+          ringtone_vol: 100
+      - service: script.notify
+        data_template:
+          type: Info
+          message: > 
+            Smoke Alarm Triggered... {% if states('binary_sensor.smoke_sensor_158d0001bbe483') == "on" %}Smoke_Sensor_Upstairs {% endif %}{% if states('binary_sensor.smoke_sensor_158d0001e581ee') == "on" %}Smoke_Sensor_Living {% endif %}detected a fire !
+      - service: homeassistant.turn_on
+        entity_id: light.gateway_light_7811dcb8f98a
+        data:
+          brightness: 255
+          rgb_color: [254,0,0]
+
+  blink_green:
+    sequence:
+      - service: script.light_green
+      - wait_template: "{{ is_state('script.light_green', 'off') }}"
+      - service: script.light_green
+      - wait_template: "{{ is_state('script.light_green', 'off') }}"
+
+  light_green:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: light.gateway_light_7811dcb8f98a
+        data:
+          brightness: 255
+          rgb_color: [0,254,0]
+      - delay: 00:00:01
+      - service: homeassistant.turn_off
+        entity_id: light.gateway_light_7811dcb8f98a
+      - delay: 00:00:01
+
+  blink_orange:
+    sequence:
+      - service: script.light_orange
+      - wait_template: "{{ is_state('script.light_orange', 'off') }}"
+      - service: script.light_orange
+      - wait_template: "{{ is_state('script.light_orange', 'off') }}"
+      - service: script.light_orange
+      - wait_template: "{{ is_state('script.light_orange', 'off') }}"
+      - service: script.light_orange
+      - wait_template: "{{ is_state('script.light_orange', 'off') }}"   
+
+  light_orange:
+    sequence:
+      - service: homeassistant.turn_on
+        entity_id: light.gateway_light_7811dcb8f98a
+        data:
+          brightness: 255
+          rgb_color: [0,0,254]
+      - delay: 00:00:01
+      - service: homeassistant.turn_off
+        entity_id: light.gateway_light_7811dcb8f98a
+      - delay: 00:00:01
+
+  door_alert:
+    sequence:
+      - service: script.notify
+        data_template:
+          type: Info
+          message: >         
+            Main door opened !

@@ -47,7 +47,7 @@ rooms:
     humidity: sensor.netatmo_living_room_inside_humidity
     # motion:
     light: group.living_lights
-    window: binary_sensor.door_window_sensor_158d00047d4c05
+    window: group.living_windows
     # door: 
     media_player: group.living_medias
     # plant: 

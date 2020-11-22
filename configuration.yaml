@@ -1,6 +1,6 @@
 ########### DEFAULT CONFIG ########### 
 homeassistant:
-  packages: !include_dir_named packages/ # Comment this whole line if you want to disable Dwains Theme
+  packages: !include_dir_named packages/ 
   name: Home
   latitude: !secret location_latitude
   longitude: !secret location_longitude
@@ -32,8 +32,6 @@ browser_mod:
 config:
 conversation:
 discovery:
-# frontend:
-#   themes: !include_dir_merge_named themes
 history:
 logbook:
 sun:
@@ -75,102 +73,10 @@ recorder:
     entities:
       - sun.sun
 
+hacs:
+  token: !secret hacs_token
+
 ########### PLATFORMS ########### 
-
-#light:
-#  - platform: hue
-#    host: !secret hue_host
-#  - platform: xiaomi_miio
-#    name: Xiaomi Philips E14
-#    host: !secret philips_e14_host
-#    token: !secret philips_e14_token
-#    model: philips.light.candle
-
-dialogflow:
-
-tts:
-  - platform: google_translate
-    language: 'fr'
-    service_name: google_say
-    base_url: !secret tts_base_url
-
-netatmo:
-  client_id: !secret netatmo_client_id
-  client_secret: !secret netatmo_client_secret
-
-# curl -X GET https://api.telegram.org/botYOUR_API_TOKEN/getUpdates
-# telegram_bot:
-#   - platform: polling
-#     api_key: !secret telegram_api_key
-#     parse_mode: html
-#     allowed_chat_ids:
-#       - !secret telegram_chat_id_ju
-#       - !secret telegram_chat_id_mo
-
-signalmessenger:
-notify:
-  - name: signal_info
-    platform: signalmessenger
-    destinations: 
-      - !secret signal_info
-  - name: signal_alert
-    platform: signalmessenger
-    destinations: 
-      - !secret signal_alert
-  - name: signal_cam
-    platform: signalmessenger
-    destinations: 
-      - !secret signal_cam
-  # - name: ju
-  #   platform: telegram
-  #   chat_id: !secret telegram_chat_id_ju
-  # - name: mo
-  #   platform: telegram
-  #   chat_id: !secret telegram_chat_id_mo
-  # - name: signal
-  #   platform: signal_messenger
-  #   url: !secret signal_url 
-  #   number: !secret signal_sender
-  #   recipients:
-  #     - !secret signal_recipient
-  # - name: signal
-  #   platform: rest
-  #   resource: !secret signal_url 
-  #   method: POST_JSON
-  # - name: Google Assistant
-  #   platform: rest
-  #   resource: !secret google_msg_urlnotify:
-  - name: mail
-    platform: smtp
-    server: !secret smtp_url 
-    port: 587
-    timeout: 15
-    sender: !secret smtp_from
-    encryption: starttls
-    username: !secret smtp_user
-    password: !secret smtp_password
-    recipient:
-      - !secret smtp_to_home
-#      - !secret smtp_to_work
-    sender_name: My Home Assistant
-
-# ring:
-#   username: !secret ring_username
-#   password: !secret ring_password
-
-
-
-
-# cast:
-#   media_player:
-#     - host: !secret nest_hub_host
-#     - host: !secret google_home_host
-#     - host: !secret lenovo_clock_host
-#     - host: !secret chromecast_video_host
-
-# glances:
-#   - host: !secret glances_host
-#   - port: 61209
 
 google_assistant:
   project_id: !secret google_project_id
@@ -181,130 +87,11 @@ google_assistant:
     - switch
     - light
 
-google:
-  client_id: !secret google_calendar_client_id
-  client_secret: !secret google_calendar_client_secret
-
-# grocy:
-#   url: !secret grocy_api_host
-#   api_key: !secret grocy_api_key
-#   verify_ssl: false
-#   port: 9192
-#   sensor:
-#     - enabled: true
-#   binary_sensor:
-#     - enabled : true
-
-rest_command:
-  assistant_broadcast:
-    url: !secret google_assistant_url
-    method: POST
-    content_type: 'application/json'
-    payload: !secret google_assistant_payload_broadcast
-    
-  assistant_converse:
-    url: !secret google_assistant_url
-    method: POST
-    content_type: 'application/json'
-    payload: !secret google_assistant_payload_converse
-
-  assistant_relay:
-    url: !secret google_assistant_url
-    method: POST
-    content_type: 'application/json'
-    payload: !secret google_assistant_payload_relay
-
-  grocy_add_task:
-    url: !secret grocy_addtask_url
-    method: POST
-    headers:
-      GROCY-API-KEY: !secret grocy_api_key
-      accept: 'application/json'
-    payload: '{"name":"{{ task_name }}","description":"{{ task_description }}","due_date":"{{ task_due }}","category_id":"","assigned_to_user_id":"1"}'
-    content_type:  'application/json'
-    verify_ssl: false
-
-timer:
-  charge:
-    duration: '04:00:00'
-  light_up:
-    duration: '00:10:00'
-  light_down:
-    duration: '00:05:00'
-
-# xiaomi_aqara:
-#   gateways:
-#     - mac: !secret xiaomi_gw_mac
-#       key: !secret xiaomi_gw_key
-
-input_boolean:
-  alarm:
-    name: Track alarm state
-    icon: mdi:alarm-bell
-
-input_select:
-  home_mode:
-    name: Home Mode
-    options:
-      - Day
-      - Night
-      - Away
-      - Vacation
-      - House Keeping
-      - Guest
-    initial: Day
-    icon: mdi:message-settings-variant
-
-input_text:
-  card_containers:
-    initial: Containers
-  software_version:
-    initial: Version
-
-alarm_control_panel:
-  - platform: manual
-    name: Home Alarm
-    code: !secret alarm_code
-    arming_time: 5
-    delay_time: 1
-    trigger_time: 1
-    disarmed:
-      trigger_time: 0
-    armed_home:
-      arming_time: 0
-      delay_time: 0
-
-speedtestdotnet:
-  scan_interval:
-    minutes: 720
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-    mode: daily
-
 # mqtt:
 #   broker: a0d7b954-mqtt
 #   username: !secret mqtt_username
 #   password: !secret mqtt_password
 #   client_id: home-assistant
-
-minio:
-  host: !secret minio_host
-  port: 8000
-  access_key: !secret minio_access_key
-  secret_key: !secret minio_secret_key
-  secure: true
-
-folder_watcher:
-  - folder: /config/www/sync
-  - folder: /config/snapshots
-    # patterns:
-    #   - 'sync*.log'
 
 # influxdb:
 #   host: a0d7b954-influxdb
@@ -314,166 +101,6 @@ folder_watcher:
 #   password: !secret influxdb_password
 #   max_retries: 3
 #   default_measurement: state
-
-withings:
-  client_id: !secret withings_client_id
-  client_secret: !secret withings_client_secret
-  # profiles:
-  #   - Julien
-  #   - Mojca
-  #   - Mia 
-  #   - Evy
-  # measures:
-  #   - weight_kg
-  #   - fat_mass_kg
-
-########### CUSTOM COMPONENTS ########### 
-
-hacs:
-  token: !secret hacs_token
-
-#breaking_changes:
-
-# shelly:
-
-edgeos:
-  host: !secret edge_os_host
-  ssl: !secret edge_os_ssl
-  username: !secret edge_os_username
-  password: !secret edge_os_password
-#  cert_file: !secret ssl_certificate
-  monitored_interfaces:
-    - eth0
-    - eth1
-    - eth2
-    - eth3
-    - eth4
-  monitored_devices:
-    - iphone-x
-    - iphone-5S
-    - lumia
-    - oneplus-onex 
-  unit: 'M'
-
-device_tracker:
-  - platform: edgeos
-    hosts:
-      - iphone-x
-      - iphone-5S
-      - lumia
-      - oneplus-onex
-
-  - platform: edgeos_cmd
-    host: !secret edge_os_host
-    username: !secret edge_os_admin_username
-    password: !secret edge_os_admin_password
-    interval_seconds: 60
-    consider_home: 180
-    new_device_defaults:
-      track_new_devices: false
-
-fan:
-  - platform: xiaomi_miio_fan
-    name: Xiaomi Smart Fan
-    host: !secret smartmi_ip
-    token: !secret smartmi_token
-
-ffmpeg:
-
-          
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - person
-  #   confidence: 66
-  #   source:
-  #     - entity_id: camera.nvr_cam1
-  #       name: cam1_person
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - person
-  #   confidence: 66
-  #   source:
-  #     - entity_id: camera.nvr_cam2
-  #       name: cam2_person
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - person
-  #   confidence: 66
-  #   source:
-  #     - entity_id: camera.nvr_cam3
-  #       name: cam3_person
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - person
-  #   confidence: 66
-  #   source:
-  #     - entity_id: camera.nvr_cam4
-  #       name: cam4_person
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - cat
-  #   confidence: 25
-  #   source:
-  #     - entity_id: camera.nvr_cam1
-  #       name: cam1_cat
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - cat
-  #     - dog
-  #   confidence: 25
-  #   source:
-  #     - entity_id: camera.nvr_cam2
-  #       name: cam2_cat
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - car
-  #     - cat
-  #     - dog
-  #   confidence: 33
-  #   source:
-  #     - entity_id: camera.nvr_cam3
-  #       name: cam3_cat
-  # - platform: deepstack_object
-  #   ip_address: !secret deepstack_host
-  #   port: 5555
-  #   save_file_folder: /config/snapshots/
-  #   save_timestamped_file: True
-  #   targets:
-  #     - cat
-  #   confidence: 66
-  #   source:
-  #     - entity_id: camera.nvr_cam4
-  #       name: cam4_cat
-
-
 
 ########### LOVELACE ########### 
 
@@ -503,16 +130,5 @@ lovelace:
     - url: /hacsfiles/lovelace-fan-xiaomi/fan-xiaomi.js
       type: module
 
-########### INCLUDES ########### 
 
-automation: !include_dir_merge_list automations
-script: !include_dir_merge_named scripts
-sensor: !include sensors.yaml
-switch: !include switchs.yaml
-cover: !include covers.yaml
-group: !include groups.yaml
-person: !include persons.yaml
-intent_script: !include intent_scripts.yaml
-camera: !include_dir_merge_list cameras
-binary_sensor: !include_dir_merge_list binary_sensors
 
