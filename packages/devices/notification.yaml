@@ -1,30 +1,30 @@
 signalmessenger:
-  notify:
-    - name: signal_info
-      platform: signalmessenger
-      destinations: 
-        - !secret signal_info
-    - name: signal_alert
-      platform: signalmessenger
-      destinations: 
-        - !secret signal_alert
-    - name: signal_cam
-      platform: signalmessenger
-      destinations: 
-        - !secret signal_cam
-    - name: mail
-      platform: smtp
-      server: !secret smtp_url 
-      port: 587
-      timeout: 15
-      sender: !secret smtp_from
-      encryption: starttls
-      username: !secret smtp_user
-      password: !secret smtp_password
-      recipient:
-        - !secret smtp_to_home
-  #      - !secret smtp_to_work
-      sender_name: My Home Assistant
+notify:
+  - name: signal_info
+    platform: signalmessenger
+    destinations: 
+      - !secret signal_info
+  - name: signal_alert
+    platform: signalmessenger
+    destinations: 
+      - !secret signal_alert
+  - name: signal_cam
+    platform: signalmessenger
+    destinations: 
+      - !secret signal_cam
+  - name: mail
+    platform: smtp
+    server: !secret smtp_url 
+    port: 587
+    timeout: 15
+    sender: !secret smtp_from
+    encryption: starttls
+    username: !secret smtp_user
+    password: !secret smtp_password
+    recipient:
+      - !secret smtp_to_home
+#      - !secret smtp_to_work
+    sender_name: My Home Assistant
       
 script:
   notify:

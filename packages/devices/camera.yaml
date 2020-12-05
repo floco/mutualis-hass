@@ -1,4 +1,5 @@
 ffmpeg:
+delete:
 camera:
   # single cams
   - platform: mjpeg
@@ -129,68 +130,6 @@ binary_sensor:
       motion:
         delay: 10  
 
-image_processing:
-  - platform: doods
-    url: !secret doods_host
-    detector: tensorflow
-    scan_interval: 604800
-    source:
-      - entity_id: camera.nvr_cam1_local
-    file_out:
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-    confidence: 60
-    labels:
-      - name: person
-        confidence: 90
-      - name: cat
-        confidence: 40
-  - platform: doods
-    url: !secret doods_host
-    detector: tensorflow
-    scan_interval: 604800
-    source:
-      - entity_id: camera.nvr_cam2_local
-    file_out:
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-    confidence: 60
-    labels:
-      - name: person
-        confidence: 90
-      - name: cat
-        confidence: 40
-  - platform: doods
-    url: !secret doods_host
-    detector: tensorflow
-    scan_interval: 604800
-    source:
-      - entity_id: camera.nvr_cam3_local
-    file_out:
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-    confidence: 60
-    labels:
-      - name: person
-        confidence: 90
-      - name: cat
-        confidence: 40
-  - platform: doods
-    url: !secret doods_host
-    detector: tensorflow
-    scan_interval: 604800
-    source:
-      - entity_id: camera.nvr_cam4_local
-    file_out:
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
-      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
-    confidence: 60
-    labels:
-      - name: person
-        confidence: 90
-      - name: cat
-        confidence: 40
-
 automation:
   - id: CAM01
     alias: Scan cam1 garage for known object
@@ -203,15 +142,15 @@ automation:
         from: 'off'
         platform: state
         to: 'on'
-    # condition:
-    #   condition: or
-    #   conditions:
-    #     - condition: state
-    #       entity_id: alarm_control_panel.home_alarm
-    #       state: armed_away
-    #     - condition: state
-    #       entity_id: alarm_control_panel.home_alarm
-    #       state: armed_home
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: alarm_control_panel.home_alarm
+          state: armed_away
+        - condition: state
+          entity_id: alarm_control_panel.home_alarm
+          state: armed_home
     action:
       - repeat:
           count: 5
@@ -295,3 +234,84 @@ automation:
         message: ""
         # message: "Intruder detected ! See file {{ trigger.event.data.file }}"
         file: "{{ trigger.event.data.path }}"
+  - id: CAM06
+    alias: Delete snapshots older than 24h
+    trigger:
+      platform: time
+      at: "23:55:00"
+    action:
+    - service: delete.files_in_folder
+      data:
+        folder: "/config/snapshots"
+        time: 86400
+        except_files:
+          - 'nvr_cam1_local_latest.jpg'
+          - 'nvr_cam2_local_latest.jpg'
+          - 'nvr_cam3_local_latest.jpg'
+          - 'nvr_cam4_local_latest.jpg'
+          - 'nvr_cam1_local_doods_latest.jpg'
+          - 'nvr_cam2_local_doods_latest.jpg'
+          - 'nvr_cam3_local_doods_latest.jpg'
+          - 'nvr_cam4_local_doods_latest.jpg'
+
+image_processing:
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam1_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam2_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam3_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40
+  - platform: doods
+    url: !secret doods_host
+    detector: tensorflow
+    scan_interval: 604800
+    source:
+      - entity_id: camera.nvr_cam4_local
+    file_out:
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_latest.jpg"
+      - "/config/snapshots/{{ camera_entity.split('.')[1] }}_doods_{{ now().strftime('%Y%m%d_%H%M%S') }}.jpg"
+    confidence: 60
+    labels:
+      - name: person
+        confidence: 90
+      - name: cat
+        confidence: 40

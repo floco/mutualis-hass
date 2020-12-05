@@ -281,3 +281,26 @@ alert:
         url: 'http://hassio.local/hassio/dashboard'
         ttl: 21600
 
+switch: 
+  - platform: template
+    switches:
+      adb_addon:
+        value_template: "{{ is_state('sensor.adb_addon', 'started') }}"
+        turn_on:
+          service: hassio.addon_start
+          data:
+            addon: a0d7b954_adb
+        turn_off:
+          service: hassio.addon_stop
+          data:
+            addon: a0d7b954_adb
+      mariadb_addon:
+        value_template: "{{ is_state('sensor.mariadb_addon', 'started') }}"
+        turn_on:
+          service: hassio.addon_start
+          data:
+            addon: core_mariadb
+        turn_off:
+          service: hassio.addon_stop
+          data:
+            addon: core_mariadb

@@ -260,3 +260,23 @@ script:
         data:
           entity_id: media_player.cuisine, media_player.mezzanine
           volume_level: 0.4
+
+switch:
+  - platform: template
+    switches:
+      table:
+        friendly_name: "table"
+        value_template: "{{ is_state('switch.table', 'on') }}"
+        turn_on:
+          service: script.turn_on
+          entity_id: script.table_up
+        turn_off:
+          service: script.turn_on
+          entity_id: script.do_nothing
+
+  - platform: command_line
+    switches:
+      send_text_to_nest_hub:
+        command_on: "catt cast_site 'https://dummyimage.com/1080x728/fff/0011ff.png&text=Message+de+Home+Assistant'"
+        command_off: "catt stop"
+        friendly_name: Cast Text
