@@ -12,18 +12,18 @@ edgeos:
     - eth4
   monitored_devices:
     - iphone-x
-    - iphone-5S
-    - lumia
-    - oneplus-onex 
+    - mi9
+    - mi9tpro
+    - mi10lite
   unit: 'M'
 
 device_tracker:
   - platform: edgeos
     hosts:
       - iphone-x
-      - iphone-5S
-      - lumia
-      - oneplus-onex
+      - mi9
+      - mi9tpro
+      - mi10lite
 
   - platform: edgeos_cmd
     host: !secret edge_os_host
@@ -51,7 +51,7 @@ person:
   - name: Evy
     id: evy
     device_trackers:
-      - device_tracker.54_e4_3a_28_fe_75
+      - device_tracker.e0_cc_f8_de_ce_7e
 
 automation: 
   # Presence notification

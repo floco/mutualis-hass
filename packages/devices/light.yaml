@@ -38,9 +38,13 @@ automation:
         # - condition: time
         #   after: '06:30:00'
         #   before: '23:00:00'
-        - condition: state
+        # - condition: state
+        #   entity_id: sun.sun
+        #   state: 'below_horizon'
+        - condition: numeric_state
           entity_id: sun.sun
-          state: 'below_horizon'
+          attribute: elevation
+          below: 1       
     action:
     - service: timer.start
       entity_id: timer.light_down
@@ -78,11 +82,15 @@ automation:
       condition: and
       conditions:
         - condition: time
-          after: '06:30:00'
-          before: '23:00:00'
-        - condition: state
+          after: '06:45:00'
+          before: '23:30:00'
+        - condition: numeric_state
           entity_id: sun.sun
-          state: 'below_horizon'
+          attribute: elevation
+          below: 1            
+        # - condition: state
+        #   entity_id: sun.sun
+        #   state: 'below_horizon'
     action:
     - service: timer.start
       entity_id: timer.light_up

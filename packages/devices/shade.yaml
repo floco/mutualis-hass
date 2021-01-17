@@ -55,7 +55,7 @@ automation:
         state: 'off'
     action:
       - repeat:
-          count: 3
+          count: 5
           sequence: 
             - service: script.mezzanine_shade_down
             - delay: 2
@@ -87,7 +87,7 @@ automation:
         - fri
     action:
       - repeat:
-          count: 3
+          count: 5
           sequence: 
             - service: script.mezzanine_shade_up
             - delay: 2
@@ -115,7 +115,7 @@ automation:
         - sun
     action:
       - repeat:
-          count: 3
+          count: 5
           sequence: 
             - service: script.mezzanine_shade_up
             - delay: 2
