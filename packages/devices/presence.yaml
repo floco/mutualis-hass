@@ -1,29 +1,29 @@
-edgeos:
-  host: !secret edge_os_host
-  ssl: !secret edge_os_ssl
-  username: !secret edge_os_username
-  password: !secret edge_os_password
-#  cert_file: !secret ssl_certificate
-  monitored_interfaces:
-    - eth0
-    - eth1
-    - eth2
-    - eth3
-    - eth4
-  monitored_devices:
-    - iphone-x
-    - mi9
-    - mi9tpro
-    - mi10lite
-  unit: 'M'
+# edgeos:
+#   host: !secret edge_os_host
+#   ssl: !secret edge_os_ssl
+#   username: !secret edge_os_username
+#   password: !secret edge_os_password
+# #  cert_file: !secret ssl_certificate
+#   monitored_interfaces:
+#     - eth0
+#     - eth1
+#     - eth2
+#     - eth3
+#     - eth4
+#   monitored_devices:
+#     - iphone-x
+#     - mi9
+#     - mi9tpro
+#     - mi10lite
+#   unit: 'M'
 
 device_tracker:
-  - platform: edgeos
-    hosts:
-      - iphone-x
-      - mi9
-      - mi9tpro
-      - mi10lite
+  # - platform: edgeos
+  #   hosts:
+  #     - iphone-x
+  #     - mi9
+  #     - mi9tpro
+  #     - mi10lite
 
   - platform: edgeos_cmd
     host: !secret edge_os_host

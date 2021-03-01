@@ -135,19 +135,14 @@ automation:
       platform: time
       at: '23:30:00'
     action:
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - service: homeassistant.turn_off
-      entity_id: light.lightstrip
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
+      - service: homeassistant.turn_off
+        entity_id: light.lightstrip
+      - repeat:
+          count: 5
+          sequence: 
+            - service: homeassistant.turn_off
+              entity_id: switch.prise4
+            - delay: 10
 
   - id: LI008b
     alias: Turn on outside light in the morning
@@ -155,10 +150,10 @@ automation:
       platform: time
       at: '06:30:00'      
     action:
-    - service: homeassistant.turn_on
-      entity_id: switch.prise4
-    - service: homeassistant.turn_on
-      entity_id: light.lightstrip
+    # - service: homeassistant.turn_on
+    #   entity_id: switch.prise4
+      - service: homeassistant.turn_on
+        entity_id: light.lightstrip
 
   - id: LI009b
     alias: Turn off outside light in the morning
@@ -167,19 +162,14 @@ automation:
       event: sunrise
       offset: +00:01:01
     action:
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - service: homeassistant.turn_off
-      entity_id: light.lightstrip
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
+      - service: homeassistant.turn_off
+        entity_id: light.lightstrip
+      - repeat:
+          count: 5
+          sequence: 
+            - service: homeassistant.turn_off
+              entity_id: switch.prise4
+            - delay: 10
 
   - id: LI010
     alias: To scare animals on
@@ -196,14 +186,12 @@ automation:
       platform: time
       at: '06:00:00'
     action:
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
-    - delay: '00:01:00'
-    - service: homeassistant.turn_off
-      entity_id: switch.prise4
+      - repeat:
+          count: 5
+          sequence: 
+            - service: homeassistant.turn_off
+              entity_id: switch.prise4
+            - delay: 10
 
   # - id: A002a
   #   alias: Turn on lights evy before bed
