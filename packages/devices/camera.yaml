@@ -133,6 +133,8 @@ binary_sensor:
 automation:
   - id: CAM01
     alias: Scan cam1 garage for known object
+    mode: single
+    max_exceeded: silent
     trigger:
       - entity_id: binary_sensor.nvr_motion_1
         from: 'off'
@@ -165,6 +167,8 @@ automation:
             - delay: 1 
   - id: CAM02
     alias: Scan cam2 garden for known object
+    mode: single
+    max_exceeded: silent
     trigger:
       - entity_id: binary_sensor.nvr_motion_2
         from: 'off'
@@ -184,6 +188,8 @@ automation:
             - delay: 1 
   - id: CAM03
     alias: Scan cam3 front for known object
+    mode: single
+    max_exceeded: silent
     trigger:
       - entity_id: binary_sensor.nvr_motion_3
         from: 'off'
@@ -203,6 +209,8 @@ automation:
             - delay: 1  
   - id: CAM04
     alias: Scan cam4 for known object
+    mode: single
+    max_exceeded: silent
     trigger:
       - entity_id: binary_sensor.nvr_motion_4
         from: 'off'
@@ -221,6 +229,7 @@ automation:
               entity_id: image_processing.doods_nvr_cam4_local
             - delay: 1  
   - id: CAM05
+    mode: queued
     alias: Detection alert on one of the cam
     trigger:
       platform: event
@@ -228,6 +237,7 @@ automation:
       event_data:
         event_type: created
     action:
+    - delay: 1 
     - service: script.notify_with_file
       data_template:
         type: Warning

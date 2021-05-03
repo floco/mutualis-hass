@@ -1,0 +1,33 @@
+script:
+  scare_fox:
+    sequence:
+      - repeat:
+          count: 20
+          sequence: 
+            - service: media_player.play_media
+              data:
+                entity_id: media_player.echo_dot
+                media_content_type: sound
+                media_content_id: amzn_sfx_dog_med_bark_1x_02
+            - delay: 2
+
+automation:
+  - id: FOX01
+    mode: queued
+    alias: Fox might be detected
+    condition:
+      condition: time
+      after: "23:00:00"
+      before: "06:30:00"
+    trigger:
+      platform: event
+      event_type: folder_watcher
+      event_data:
+        event_type: created
+    action:
+    - delay: 1 
+    - service: script.scare_fox
+    - service: script.notify
+      data_template:
+        type: Warning
+        message: "Fox detected ? barking to try to frighten"
