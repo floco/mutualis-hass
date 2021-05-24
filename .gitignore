@@ -29,3 +29,4 @@ ip_bans.yaml
 env
 *.csv
 snapshots
+google_calendars.yaml

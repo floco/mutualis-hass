@@ -1,16 +1,21 @@
-signalmessenger:
 notify:
   - name: signal_info
-    platform: signalmessenger
-    destinations: 
+    platform: signal_messenger
+    url: !secret signal_url
+    number: !secret signal_number
+    recipients: 
       - !secret signal_info
   - name: signal_alert
-    platform: signalmessenger
-    destinations: 
+    platform: signal_messenger
+    url: !secret signal_url
+    number: !secret signal_number
+    recipients: 
       - !secret signal_alert
   - name: signal_cam
-    platform: signalmessenger
-    destinations: 
+    platform: signal_messenger
+    url: !secret signal_url
+    number: !secret signal_number
+    recipients: 
       - !secret signal_cam
   - name: mail
     platform: smtp
@@ -76,12 +81,13 @@ script:
         data_template:
           message: >
             {% if type == "Warning" %}
-              "{{message}}"
+              {{message}}
             {% else %}
-              "{{ now().strftime('%H:%M') }} {{type}}: {{message}}"    
+              {{ now().strftime('%H:%M') }} {{type}}: {{message}}  
             {% endif %}  
           data:
-            file: "{{file}}"
+            attachments: 
+              - "{{file}}"
 
   mail:
     description: 'Send a notification by mail'
