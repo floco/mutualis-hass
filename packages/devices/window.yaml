@@ -1,4 +1,10 @@
 group:
+  windows_mia:
+    - binary_sensor.door_window_sensor_158d000237d1e8
+    - binary_sensor.door_window_sensor_158d000238c840
+  windows_evy:
+    - binary_sensor.door_window_sensor_158d00023295ce
+    - binary_sensor.door_window_sensor_158d000237d247
   windows:
     - binary_sensor.door_window_sensor_158d000232b0ad     # Fenetre_Parents
     - binary_sensor.door_window_sensor_158d000237d1e8     # Fenetre_Mia_Devant
@@ -17,3 +23,6 @@ group:
     - binary_sensor.door_window_sensor_158d00047d4c05     # Fenetre Laterale Salon
     - binary_sensor.door_window_sensor_158d0001e1066e     # Fenetre_Salon_Gauche
     - binary_sensor.door_window_sensor_158d0002ec540a     # Fenetre_Salon_Droite
+  doors:
+    - binary_sensor.door_window_sensor_158d0002c9c949     # Door_Entree
+    - binary_sensor.door_window_sensor_158d00047d4a5e     # Porte_Interieure_Garage

@@ -7,12 +7,6 @@
       - media_player.cuisine
       - media_player.salon
       - media_player.apple_tv
-    windows_mia:
-      - binary_sensor.door_window_sensor_158d000237d1e8
-      - binary_sensor.door_window_sensor_158d000238c840
-    windows_evy:
-      - binary_sensor.door_window_sensor_158d00023295ce
-      - binary_sensor.door_window_sensor_158d000237d247
     powerstrip1_p402a:
       - switch.powerstrip1_plug1 #SHA
       - switch.powerstrip1_plug2 #BTV
@@ -56,8 +50,6 @@
       - binary_sensor.wall_switch_left_158d000237bae7       # Wall_Switch_Left
       - light.gateway_light_7811dcb8f98a
       - sensor.illumination_7811dcb8f98a
-    doors:
-      - binary_sensor.door_window_sensor_158d0002c9c949     # Door_Entree
     motion:
       - binary_sensor.motion_sensor_158d000276d4da          # Motion_Upstairs
       - binary_sensor.motion_sensor_158d00042026f7          # Motion_Entree

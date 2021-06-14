@@ -27,7 +27,7 @@ rooms:
     motion: binary_sensor.garage_sensor_motion
     light: light.garage_light
     # window:
-    # door: 
+    door: binary_sensor.door_window_sensor_158d00047d4a5e
     # media_player:
     # plant: 
     page_entities:
@@ -38,7 +38,8 @@ rooms:
         - entity: camera.nvr_cam1_cat
         - entity: image_processing.cam1_person
         - entity: image_processing.cam1_cat
-        - entity: binary_sensor.door_window_sensor_158d00047d4a5e
+        - entity: binary_sensor.vibration_158d000322f8e3
+        - entity: sensor.tilt_angle_158d000322f8e3
         # - entity: petkit
 
   - name: Salon
