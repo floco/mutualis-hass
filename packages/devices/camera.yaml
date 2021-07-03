@@ -9,6 +9,7 @@ camera:
     password: !secret cam1_password
   - platform: mjpeg
     mjpeg_url: !secret cam2_url
+    still_image_url: !secret cam2_still_url
     name: cam2
     username: !secret cam2_username
     password: !secret cam2_password
