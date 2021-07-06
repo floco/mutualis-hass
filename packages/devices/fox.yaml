@@ -17,14 +17,14 @@ automation:
     alias: Fox might be detected
     condition:
       condition: time
-      after: "23:00:00"
+      after: "13:00:00"
       before: "06:30:00"
     trigger:
       platform: event
       event_type: folder_watcher
       event_data:
         event_type: modified
-        path: 'nvr_cam2_local_doods_latest.jpg'
+        path: '/config/snapshots/nvr_cam2_local_doods_latest.jpg'
     action:
     - delay: 1 
     - service: script.scare_fox
