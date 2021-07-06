@@ -14,10 +14,11 @@ script:
 automation:
   - id: FOX01
     mode: queued
+    max: 1
     alias: Fox might be detected
     condition:
       condition: time
-      after: "13:00:00"
+      after: "23:00:00"
       before: "06:30:00"
     trigger:
       platform: event
