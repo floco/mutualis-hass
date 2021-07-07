@@ -14,7 +14,7 @@ script:
 automation:
   - id: FOX01
     mode: queued
-    max: 1
+    max: 2
     alias: Fox might be detected
     condition:
       condition: time
